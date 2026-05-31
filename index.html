@@ -7,262 +7,237 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100vw;height:100vh;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}
-body{background:#010615}
+body{background:#0a0515}
 @media(max-width:768px){body{font-size:14px}}
 
-/* ── 深空底调 ── */
-.space-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
+/* ── 暮光渐变底 ── */
+.twilight{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 60% 50% at 30% 50%, rgba(20,30,70,.25) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 70% 30%, rgba(15,25,60,.15) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 35% at 50% 80%, rgba(40,20,60,.08) 0%, transparent 70%),
-    radial-gradient(ellipse at center, transparent 40%, rgba(0,0,8,.60) 100%);
+    radial-gradient(ellipse 80% 40% at 50% 100%, rgba(180,100,130,.20) 0%, rgba(120,70,130,.10) 30%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 30% 70%, rgba(140,80,160,.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 70% 80%, rgba(180,120,100,.08) 0%, transparent 55%),
+    linear-gradient(to top, rgba(60,20,50,.15) 0%, rgba(30,10,40,.05) 30%, transparent 55%),
+    linear-gradient(to top, #0a0515 0%, #0f0825 40%, #120a30 100%);
 }
 
-/* ── 银河柔光带 ── */
-.milky-way{position:fixed;z-index:0;pointer-events:none;filter:blur(50px);opacity:.4}
-.mw1{top:10%;left:-5%;width:100vmax;height:30vmax;background:linear-gradient(160deg,transparent 0%,rgba(30,50,100,.06) 25%,rgba(70,110,170,.08) 45%,rgba(100,150,200,.05) 55%,rgba(40,80,130,.04) 75%,transparent 100%);transform:rotate(-18deg);animation:mwDrift 40s ease-in-out infinite}
-.mw2{top:28%;left:8%;width:80vmax;height:22vmax;background:linear-gradient(160deg,transparent 0%,rgba(60,90,150,.05) 30%,rgba(120,160,210,.06) 50%,rgba(60,100,160,.04) 70%,transparent 100%);transform:rotate(-15deg);animation:mwDrift 50s ease-in-out infinite reverse}
-@keyframes mwDrift{0%,100%{transform:rotate(-18deg) translate(0,0)}33%{transform:rotate(-16deg) translate(4vw,1vh)}66%{transform:rotate(-20deg) translate(-3vw,-1vh)}}
+/* ── 玫瑰星云 ── */
+.nebula-layer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.nebula{position:absolute;border-radius:50%;filter:blur(70px)}
+.n1{width:70vmax;height:50vmax;top:5%;left:10%;background:radial-gradient(ellipse,rgba(130,80,160,.10) 0%,rgba(180,100,150,.06) 30%,rgba(200,130,160,.03) 50%,transparent 70%);animation:nFloat 30s ease-in-out infinite}
+.n2{width:55vmax;height:45vmax;top:15%;right:5%;background:radial-gradient(ellipse,rgba(100,70,150,.08) 0%,rgba(160,120,170,.04) 35%,transparent 65%);animation:nFloat 35s ease-in-out infinite reverse}
+.n3{width:60vmax;height:40vmax;bottom:-5%;left:15%;background:radial-gradient(ellipse,rgba(200,130,140,.06) 0%,rgba(150,90,130,.04) 30%,transparent 60%);animation:nFloat 40s ease-in-out infinite}
+@keyframes nFloat{0%,100%{transform:translate(0,0)}33%{transform:translate(3vw,-2vh)}66%{transform:translate(-2vw,3vh)}}
 
-/* ── 稀疏星层 ── */
-.star-layer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
-.star-dot{position:absolute;border-radius:50%;animation:starPulse var(--pd) ease-in-out infinite;animation-delay:var(--dl);opacity:0}
-@keyframes starPulse{0%,100%{opacity:var(--omin);transform:scale(1)}40%{opacity:var(--omax);transform:scale(var(--sc))}60%{opacity:var(--omax);transform:scale(var(--sc))}}
+/* ── 萤火粒子 ── */
+.fireflies{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.ff{position:absolute;border-radius:50%;animation:ffFloat var(--fd) ease-in-out infinite;animation-delay:var(--fdl);opacity:0}
+@keyframes ffFloat{0%{opacity:0;transform:translate(0,0)}20%{opacity:var(--fo)}25%{opacity:0}30%{opacity:var(--fo)}80%{opacity:var(--fo);transform:translate(var(--fx),var(--fy))}100%{opacity:0;transform:translate(var(--fx),var(--fy))}}
+
+/* ── 星星 ── */
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.star{position:absolute;border-radius:50%;animation:sPulse var(--pd) ease-in-out infinite;animation-delay:var(--dl);opacity:0}
+@keyframes sPulse{0%,100%{opacity:var(--omin);transform:scale(1)}45%{opacity:var(--omax);transform:scale(var(--sc))}55%{opacity:var(--omax);transform:scale(var(--sc))}}
 
 /* ── 摩羯座星座 ── */
-.constel{position:fixed;z-index:2;pointer-events:none;opacity:0;transition:opacity 3s ease}
+.constel{position:fixed;z-index:2;pointer-events:none;opacity:0;transition:opacity 3.5s ease}
 .constel.on{opacity:1}
 .const-svg{position:absolute;top:0;left:0;width:100%;height:100%}
-.const-star{position:absolute;border-radius:50%;background:#e2c488;box-shadow:0 0 8px 2px rgba(226,196,136,.35);animation:constTwinkle var(--ct) ease-in-out infinite;animation-delay:var(--cdl)}
-@keyframes constTwinkle{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:.8;transform:scale(1.15)}}
-.const-glow{position:absolute;pointer-events:none;border-radius:50%;background:radial-gradient(circle,rgba(226,196,136,.04) 0%,transparent 70%);animation:constGlowPulse 5s ease-in-out infinite}
-@keyframes constGlowPulse{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.2);opacity:.7}}
-.const-label{position:absolute;color:rgba(226,196,136,.25);font-size:.6rem;letter-spacing:8px;pointer-events:none;animation:labelFade 5s ease-in-out infinite}
-@keyframes labelFade{0%,100%{opacity:.15}50%{opacity:.4}}
+.cstar{position:absolute;border-radius:50%;background:#e8cca0;box-shadow:0 0 10px 3px rgba(232,204,160,.35);animation:cTwinkle var(--ct) ease-in-out infinite;animation-delay:var(--cdl)}
+@keyframes cTwinkle{0%,100%{opacity:.25;transform:scale(.75)}50%{opacity:.85;transform:scale(1.2)}}
+.cglow{position:absolute;pointer-events:none;border-radius:50%;background:radial-gradient(circle,rgba(232,204,160,.05) 0%,transparent 70%);animation:cGlow 6s ease-in-out infinite}
+@keyframes cGlow{0%,100%{transform:scale(1);opacity:.25}50%{transform:scale(1.25);opacity:.65}}
+.clabel{position:absolute;color:rgba(232,204,160,.22);font-size:.55rem;letter-spacing:9px;pointer-events:none;animation:labelFade 6s ease-in-out infinite}
+@keyframes labelFade{0%,100%{opacity:.12}50%{opacity:.4}}
 
 /* ── 流星 ── */
-.meteor{position:fixed;z-index:3;pointer-events:none;animation:meteorShoot var(--sp) linear forwards;opacity:0}
-.meteor-head{width:2px;height:2px;background:rgba(220,230,255,.9);border-radius:50%;box-shadow:0 0 6px 2px rgba(200,220,255,.35)}
-.meteor-tail{position:absolute;top:50%;right:1px;width:70px;height:1px;background:linear-gradient(to left,rgba(200,220,255,.7),transparent);transform:translateY(-50%)}
-@keyframes meteorShoot{0%{opacity:0}8%{opacity:1}35%{opacity:.7}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.meteor{position:fixed;z-index:3;pointer-events:none;animation:mShoot var(--sp) linear forwards;opacity:0}
+.mhead{width:2px;height:2px;background:rgba(255,240,220,.9);border-radius:50%;box-shadow:0 0 8px 3px rgba(255,220,180,.4)}
+.mtail{position:absolute;top:50%;right:1px;width:65px;height:1px;background:linear-gradient(to left,rgba(255,235,210,.6),transparent);transform:translateY(-50%)}
+@keyframes mShoot{0%{opacity:0}10%{opacity:1}40%{opacity:.6}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
 
 /* ── 烟花 ── */
-.fw-container{position:fixed;z-index:4;pointer-events:none}
-.fw-spark{position:absolute;width:2px;height:2px;border-radius:50%;animation:fwBurst var(--d) cubic-bezier(.25,.46,.45,.94) forwards;opacity:0}
+.fw{position:fixed;z-index:4;pointer-events:none}
+.fws{position:absolute;width:1.5px;height:1.5px;border-radius:50%;animation:fwBurst var(--d) cubic-bezier(.25,.46,.45,.94) forwards;opacity:0}
 @keyframes fwBurst{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}}
 
 /* ── 文字层 ── */
-.scene-stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
-.scene-box{position:absolute;width:82%;max-width:520px;text-align:center;opacity:0;transform:scale(.96);transition:opacity 1.8s cubic-bezier(.16,1,.3,1),transform 1.8s cubic-bezier(.16,1,.3,1)}
-.scene-box.in{opacity:1;transform:scale(1)}
-.scene-box.out{opacity:0;transform:scale(1.03);transition-duration:.9s}
+.stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
+.scene{position:absolute;width:82%;max-width:520px;text-align:center;opacity:0;transform:scale(.96);transition:opacity 1.8s cubic-bezier(.16,1,.3,1),transform 1.8s cubic-bezier(.16,1,.3,1)}
+.scene.in{opacity:1;transform:scale(1)}
+.scene.out{opacity:0;transform:scale(1.03);transition-duration:.9s}
 
-.sc-sub{color:rgba(150,165,200,.40);font-size:.65rem;letter-spacing:10px;display:block;margin-bottom:40px}
-.sc-hero{font-size:5.2rem;font-weight:900;color:#cfb87c;display:block;text-shadow:0 0 80px rgba(207,184,124,.2);margin-bottom:15px;line-height:1}
+.sc-sub{color:rgba(190,170,200,.40);font-size:.65rem;letter-spacing:11px;display:block;margin-bottom:40px}
+.sc-hero{font-size:5.2rem;font-weight:900;color:#dfc090;display:block;text-shadow:0 0 80px rgba(223,192,144,.2),0 2px 10px rgba(0,0,0,.3);margin-bottom:18px;line-height:1}
 @media(max-width:768px){.sc-hero{font-size:3.2rem}}
-.sc-tag{color:rgba(150,165,200,.45);font-size:.85rem;letter-spacing:6px;display:block;margin-top:22px}
+.sc-tag{color:rgba(190,170,200,.45);font-size:.85rem;letter-spacing:7px;display:block;margin-top:25px}
 
-.sc-line{color:#99a5c8;font-size:1.2rem;line-height:2.6;font-weight:300;display:block;text-shadow:0 0 20px rgba(0,0,10,.5)}
+.sc-line{color:#b0a8c8;font-size:1.2rem;line-height:2.6;font-weight:300;display:block}
 @media(max-width:768px){.sc-line{font-size:1rem;line-height:2.4}}
-.sc-line.gold{color:#cfb87c;text-shadow:0 0 30px rgba(207,184,124,.15)}
-.sc-line.big{font-size:2rem;font-weight:700;color:#dfd0b0;margin:8px 0;text-shadow:0 0 40px rgba(223,208,176,.12)}
-@media(max-width:768px){.sc-line.big{font-size:1.4rem}}
+.sc-line.g{color:#dfc090}
+.sc-line.b{font-size:2rem;font-weight:700;color:#e8d5b0;margin:8px 0;text-shadow:0 0 30px rgba(232,213,176,.12)}
+@media(max-width:768px){.sc-line.b{font-size:1.4rem}}
 
-.sc-end{font-size:2.2rem;font-weight:700;color:#cfb87c;line-height:1.9;text-shadow:0 0 40px rgba(207,184,124,.2)}
+.sc-end{font-size:2.2rem;font-weight:700;color:#dfc090;line-height:1.9;text-shadow:0 0 40px rgba(223,192,144,.2)}
 @media(max-width:768px){.sc-end{font-size:1.6rem}}
-.sc-sign{color:rgba(150,165,200,.4);font-size:.85rem;margin-top:28px;display:block}
+.sc-sign{color:rgba(190,170,200,.40);font-size:.85rem;margin-top:30px;display:block}
 </style>
 </head>
 <body>
 
-<div class="space-bg"></div>
-<div class="milky-way mw1"></div>
-<div class="milky-way mw2"></div>
+<div class="twilight"></div>
+<div class="nebula-layer"><div class="nebula n1"></div><div class="nebula n2"></div><div class="nebula n3"></div></div>
+<div class="fireflies" id="ff"></div>
+<div class="stars" id="stars"></div>
 
-<div class="star-layer" id="sl1"></div>
-<div class="star-layer" id="sl2"></div>
+<div class="constel" id="constellation"><svg class="const-svg" id="constSvg"></svg></div>
 
-<div class="constel" id="constellation">
-  <svg class="const-svg" id="constSvg"></svg>
-</div>
-
-<div class="scene-stage" id="stage">
-  <div class="scene-box" id="s0"><span class="sc-sub">CHILDREN'S DAY · 2026</span><span class="sc-hero">吴 总</span><span class="sc-tag">✦ 摩羯座 · 12.29 ✦</span></div>
-  <div class="scene-box" id="s1"><span class="sc-line">你出生在<span class="sc-line gold">12月29日</span>，</span><span class="sc-line">摩羯座的星星，从那天起就为你亮着。</span></div>
-  <div class="scene-box" id="s2"><span class="sc-line"><span class="sc-line gold">19岁</span>了，刚好的年纪——</span><span class="sc-line">有大人的洒脱，也有孩子气的骄傲。</span></div>
-  <div class="scene-box" id="s3"><span class="sc-line big">所以今天，</span><span class="sc-line">麻烦你做回那个<span class="sc-line gold">吃糖的小孩</span>。</span></div>
-  <div class="scene-box" id="s4"><span class="sc-line">每一颗星星，都是你这一年里<span class="sc-line gold">发过的光</span>——</span></div>
-  <div class="scene-box" id="s5"><span class="sc-line">倔强过，努力过，也偷偷<span class="sc-line gold">难过过</span>。</span></div>
-  <div class="scene-box" id="s6"><span class="sc-line big">但你看看，</span><span class="sc-line">星星从来不会因为黑夜而停止<span class="sc-line gold">闪烁</span>。</span></div>
-  <div class="scene-box" id="s7"><span class="sc-line big">六一快乐。</span></div>
-  <div class="scene-box" id="s8"><span class="sc-line">这里的所有烟花，<span class="sc-line gold">为你一人而放</span>。</span></div>
-  <div class="scene-box" id="s9"><span class="sc-line">不是因为你需要庆祝，</span><span class="sc-line">而是因为这个世界——</span><span class="sc-line">需要你这样<span class="sc-line gold">天真烂漫</span>的人。</span></div>
-  <div class="scene-box" id="s10"><span class="sc-line">你的六一礼物，<span class="sc-line gold">会晚两天到</span>。</span></div>
-  <div class="scene-box" id="s11"><span class="sc-line">是我的疏忽，对不起。</span></div>
-  <div class="scene-box" id="s12"><span class="sc-line">但等它到了——</span><span class="sc-line big">希望你会感到双倍的快乐，</span></div>
-  <div class="scene-box" id="s13"><span class="sc-end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，一直是开心果。</span><span class="sc-sign">—— 儿童节快乐，吴总 🌟</span></div>
+<div class="stage">
+  <div class="scene" id="s0"><span class="sc-sub">CHILDREN'S DAY · 2026</span><span class="sc-hero">吴 总</span><span class="sc-tag">✦ 摩羯座 · 12.29 ✦</span></div>
+  <div class="scene" id="s1"><span class="sc-line">你出生在<span class="sc-line g">12月29日</span>，</span><span class="sc-line">摩羯座的星星，从那天起就为你亮着。</span></div>
+  <div class="scene" id="s2"><span class="sc-line"><span class="sc-line g">19岁</span>了，刚好的年纪——</span><span class="sc-line">有大人的洒脱，也有孩子气的骄傲。</span></div>
+  <div class="scene" id="s3"><span class="sc-line b">所以今天，</span><span class="sc-line">麻烦你做回那个<span class="sc-line g">吃糖的小孩</span>。</span></div>
+  <div class="scene" id="s4"><span class="sc-line">每一颗星星，都是你这一年里<span class="sc-line g">发过的光</span>——</span></div>
+  <div class="scene" id="s5"><span class="sc-line">倔强过，努力过，也偷偷<span class="sc-line g">难过过</span>。</span></div>
+  <div class="scene" id="s6"><span class="sc-line b">但你看看，</span><span class="sc-line">星星从来不会因为黑夜而停止<span class="sc-line g">闪烁</span>。</span></div>
+  <div class="scene" id="s7"><span class="sc-line b">六一快乐。</span></div>
+  <div class="scene" id="s8"><span class="sc-line">这里的所有烟花，<span class="sc-line g">为你一人而放</span>。</span></div>
+  <div class="scene" id="s9"><span class="sc-line">不是因为你需要庆祝，</span><span class="sc-line">而是因为这个世界——</span><span class="sc-line">需要你这样<span class="sc-line g">天真烂漫</span>的人。</span></div>
+  <div class="scene" id="s10"><span class="sc-line">你的六一礼物，<span class="sc-line g">会晚两天到</span>。</span></div>
+  <div class="scene" id="s11"><span class="sc-line">是我的疏忽，对不起。</span></div>
+  <div class="scene" id="s12"><span class="sc-line">但等它到了——</span><span class="sc-line b">希望你会感到双倍的快乐，</span></div>
+  <div class="scene" id="s13"><span class="sc-end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，一直是开心果。</span><span class="sc-sign">—— 儿童节快乐，吴总 🌟</span></div>
 </div>
 
 <script>
 (function(){
-  var W=window.innerWidth,H=window.innerHeight;
+  var W=innerWidth,H=innerHeight;
   var scenes=[]; for(var i=0;i<14;i++){var e=document.getElementById('s'+i);if(e)scenes.push(e)}
-  var cur=-1,lastEl=null;
+  var cur=-1,lst=null;
 
-  /* ══ 星星生成（稀疏·柔光·浪漫） ══ */
-  function mkStars(id,count,minR,maxR,minOp,maxOp,minPd,maxPd,scMin,scMax,colors){
-    var L=document.getElementById(id),f=document.createDocumentFragment();
-    for(var i=0;i<count;i++){
-      var d=document.createElement('div');
-      d.className='star-dot';
-      var r=minR+Math.random()*(maxR-minR);
-      var c=colors[Math.floor(Math.random()*colors.length)];
-      var omin=minOp+Math.random()*(maxOp-minOp)*.4;
-      var omax=minOp+Math.random()*(maxOp-minOp);
-      d.style.cssText=
-        'left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;'+
-        'width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;'+
-        'background:'+c+';'+
-        'box-shadow:0 0 '+(r*2.5).toFixed(0)+'px '+(r*1.2).toFixed(0)+'px '+c.replace('1)', '.25)')+';'+
-        '--omin:'+omin.toFixed(2)+';--omax:'+omax.toFixed(2)+';'+
-        '--pd:'+(minPd+Math.random()*(maxPd-minPd)).toFixed(1)+'s;'+
-        '--dl:'+(Math.random()*maxPd).toFixed(1)+'s;'+
-        '--sc:'+(scMin+Math.random()*(scMax-scMin)).toFixed(1)
+  /* ══ 星星 — 暖调金白 ══ */
+  (function(){
+    var c=document.getElementById('stars'),f=document.createDocumentFragment();
+    var cols=['rgba(255,240,220,.7)','rgba(250,230,200,.6)','rgba(255,235,215,.55)','rgba(240,220,210,.65)','rgba(255,245,230,.5)','rgba(230,200,190,.55)','rgba(255,225,195,.6)'];
+    for(var i=0;i<100;i++){
+      var s=document.createElement('div');s.className='star';
+      var r=.6+Math.random()*2.8;
+      var bc=cols[Math.floor(Math.random()*cols.length)];
+      var omin=(.03+Math.random()*.12).toFixed(2), omax=(.08+Math.random()*.30).toFixed(2);
+      s.style.cssText='left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:'+bc+';box-shadow:0 0 '+(r*2.8).toFixed(0)+'px '+(r*1.2).toFixed(0)+'px '+bc.replace('.7)', '.2)').replace('.6)', '.15)')+';--omin:'+omin+';--omax:'+omax+';--pd:'+(4+Math.random()*8).toFixed(1)+'s;--dl:'+(Math.random()*8).toFixed(1)+'s;--sc:'+(1.2+Math.random()*2.2).toFixed(1);
+      f.appendChild(s);
+    }
+    c.appendChild(f);
+  })();
+
+  /* ══ 萤火/魔法粒子 ══ */
+  (function(){
+    var c=document.getElementById('ff'),f=document.createDocumentFragment();
+    var cols=['rgba(255,220,180,.5)','rgba(255,200,220,.4)','rgba(220,180,240,.35)','rgba(255,210,190,.45)','rgba(240,190,210,.35)','rgba(200,180,220,.3)'];
+    for(var i=0;i<35;i++){
+      var d=document.createElement('div');d.className='ff';
+      var fd=8+Math.random()*20;
+      d.style.cssText='left:'+(Math.random()*90+5)+'%;top:'+(Math.random()*85+5)+'%;width:'+(1.5+Math.random()*3)+'px;height:'+(1.5+Math.random()*3)+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';box-shadow:0 0 '+(3+Math.random()*8)+'px '+(1+Math.random()*4)+'px '+cols[Math.floor(Math.random()*cols.length)].replace('0.','0.').replace(')', '.15)')+';--fd:'+fd+'s;--fdl:'+(-Math.random()*fd)+'s;--fo:'+(.2+Math.random()*.5).toFixed(2)+';--fx:'+(-30+Math.random()*60)+'px;--fy:'+(-50-Math.random()*40)+'px';
       f.appendChild(d);
     }
-    L.appendChild(f);
-  }
-  mkStars('sl1',80, .5,1.8, .04,.18, 6,12, 1.2,2.0,
-    ['rgba(180,200,240,.8)','rgba(200,210,245,.7)','rgba(220,225,255,.6)','rgba(240,220,200,.7)','rgba(200,215,240,.65)']);
-  mkStars('sl2',45, 1.5,3.5, .08,.35, 3,8, 1.5,3.0,
-    ['rgba(190,210,250,.75)','rgba(210,220,250,.65)','rgba(240,225,210,.65)','rgba(200,215,245,.6)','rgba(225,230,255,.55)']);
+    c.appendChild(f);
+  })();
 
-  /* ══ 摩羯座星座 ══ */
+  /* ══ 星座 ══ */
   var constEl=document.getElementById('constellation'),constSvg=document.getElementById('constSvg');
-  var constPts,constStarEls=[],constVisible=0,constCenter={x:0,y:0};
-  var rawPts=[[0.48,0.14],[0.54,0.10],[0.60,0.13],[0.64,0.20],[0.58,0.27],[0.72,0.09],[0.77,0.07],[0.56,0.24],[0.52,0.06]];
+  var pts,stars=[],vis=0,center={x:0,y:0};
+  var raw=[[0.48,0.14],[0.54,0.10],[0.60,0.13],[0.64,0.20],[0.58,0.27],[0.72,0.09],[0.77,0.07],[0.56,0.24],[0.52,0.06]];
   var lines=[[0,2],[2,3],[1,0],[0,7],[5,6],[1,5],[7,4],[4,3],[1,8]];
 
-  function buildConstellation(){
-    var cw=Math.min(W,H)*.5, cx=W*.48, cy=H*.30;
-    constCenter={x:cx,y:cy};
-    constPts=rawPts.map(function(p){return {x:cx+(p[0]-.58)*cw, y:cy+(p[1]-.14)*cw}});
-    constSvg.setAttribute('viewBox','0 0 '+W+' '+H);
-    constSvg.setAttribute('width',W);constSvg.setAttribute('height',H);
-    var pd='';
-    lines.forEach(function(l){var a=constPts[l[0]],b=constPts[l[1]];pd+='M'+a.x.toFixed(0)+','+a.y.toFixed(0)+' L'+b.x.toFixed(0)+','+b.y.toFixed(0)+' '});
-    constSvg.innerHTML='<path d="'+pd+'" stroke="rgba(226,196,136,.22)" stroke-width="1" fill="none" opacity="0" id="constPath"/>';
-    constStarEls.forEach(function(el){if(el.parentNode)el.parentNode.removeChild(el)});constStarEls=[];
-    constPts.forEach(function(p,i){
-      var s=document.createElement('div');s.className='const-star';
-      s.style.cssText='left:'+(p.x-5)+'px;top:'+(p.y-5)+'px;width:10px;height:10px;opacity:0;transition:opacity .8s ease;--ct:'+(1.5+Math.random()*2.5).toFixed(1)+'s;--cdl:'+(Math.random()*2).toFixed(1)+'s';
-      constEl.appendChild(s);constStarEls.push(s);
+  function buildConst(){
+    var cw=Math.min(W,H)*.48,cx=W*.48,cy=H*.28;center={x:cx,y:cy};
+    pts=raw.map(function(p){return {x:cx+(p[0]-.58)*cw,y:cy+(p[1]-.14)*cw}});
+    constSvg.setAttribute('viewBox','0 0 '+W+' '+H);constSvg.setAttribute('width',W);constSvg.setAttribute('height',H);
+    var pd='';lines.forEach(function(l){var a=pts[l[0]],b=pts[l[1]];pd+='M'+a.x.toFixed(0)+','+a.y.toFixed(0)+' L'+b.x.toFixed(0)+','+b.y.toFixed(0)+' '});
+    constSvg.innerHTML='<path d="'+pd+'" stroke="rgba(232,204,160,.2)" stroke-width="1" fill="none" opacity="0" id="constPath"/>';
+    stars.forEach(function(el){if(el.parentNode)el.parentNode.removeChild(el)});stars=[];
+    pts.forEach(function(p,i){
+      var s=document.createElement('div');s.className='cstar';
+      s.style.cssText='left:'+(p.x-5)+'px;top:'+(p.y-5)+'px;width:10px;height:10px;opacity:0;transition:opacity .8s ease;--ct:'+(1.8+Math.random()*3).toFixed(1)+'s;--cdl:'+(Math.random()*2).toFixed(1)+'s';
+      constEl.appendChild(s);stars.push(s);
     });
-    // 光环
-    var old=constEl.querySelector('.const-glow');if(old)old.remove();
-    var g=document.createElement('div');g.className='const-glow';
-    g.style.cssText='left:'+(cx-cw*.35)+'px;top:'+(cy-cw*.3)+'px;width:'+(cw*.7)+'px;height:'+(cw*.6)+'px';
-    constEl.appendChild(g);
-    // 标签
-    old=constEl.querySelector('.const-label');if(old)old.remove();
-    var l=document.createElement('div');l.className='const-label';l.textContent='♑ CAPRICORNUS';
-    l.style.cssText='left:'+(cx-cw*.25)+'px;top:'+(cy-cw*.38)+'px';
-    constEl.appendChild(l);
-    constVisible=0;
+    var old=constEl.querySelector('.cglow');if(old)old.remove();
+    var g=document.createElement('div');g.className='cglow';g.style.cssText='left:'+(cx-cw*.35)+'px;top:'+(cy-cw*.3)+'px;width:'+(cw*.7)+'px;height:'+(cw*.6)+'px';constEl.appendChild(g);
+    old=constEl.querySelector('.clabel');if(old)old.remove();
+    var l=document.createElement('div');l.className='clabel';l.textContent='♑ CAPRICORNUS';l.style.cssText='left:'+(cx-cw*.25)+'px;top:'+(cy-cw*.38)+'px';constEl.appendChild(l);
+    vis=0;
   }
-  buildConstellation();
+  buildConst();
 
-  function revealConstStar(){
-    if(constVisible>=constStarEls.length)return;
-    constStarEls[constVisible].style.opacity='1';constVisible++;
-    var p=document.getElementById('constPath');
-    if(p&&constVisible>=2)p.setAttribute('opacity',String(Math.min(1,constVisible/constStarEls.length*.8)));
+  function revealStar(){
+    if(vis>=stars.length)return;
+    stars[vis].style.opacity='1';vis++;
+    var p=document.getElementById('constPath');if(p&&vis>=2)p.setAttribute('opacity',String(Math.min(1,vis/stars.length*.7)));
   }
 
   /* ══ 场景切换 ══ */
   function showScene(i){
-    if(lastEl){lastEl.classList.add('out');lastEl.classList.remove('in')}
+    if(lst){lst.classList.add('out');lst.classList.remove('in')}
     if(i>=0&&i<scenes.length){scenes[i].classList.remove('out');scenes[i].classList.add('in')}
-    lastEl=scenes[i];cur=i;
+    lst=scenes[i];cur=i;
   }
 
   /* ══ 烟花 ══ */
-  function explode(x,y,count,colors){
-    count=count||45;
-    var cont=document.createElement('div');cont.className='fw-container';
-    cont.style.left=x+'px';cont.style.top=y+'px';
-    var cs=colors||['#f7c873','#f4a261','#e76f51','#ffb703','#cfb87c','#f0b0c0','#8eb8d8','#a8d0b0','#e8c880','#d8a0c0'];
-    for(var i=0;i<count;i++){
-      var s=document.createElement('div');s.className='fw-spark';
-      var ang=Math.PI*2*i/count,dist=30+Math.random()*90;
-      s.style.cssText='background:'+cs[Math.floor(Math.random()*cs.length)]+';--sx:'+(Math.cos(ang)*dist).toFixed(0)+'px;--sy:'+(Math.sin(ang)*dist).toFixed(0)+'px;--d:'+(.6+Math.random()*1.2).toFixed(1)+'s';
-      cont.appendChild(s);
+  function boom(x,y,n,cols){
+    n=n||45;var c=document.createElement('div');c.className='fw';c.style.left=x+'px';c.style.top=y+'px';
+    var cs=cols||['#f0c870','#f0a060','#e87050','#f0b070','#dfc090','#e8a0b0','#a0c8e0','#b0d8c0','#e8c880','#d0a0c0'];
+    for(var i=0;i<n;i++){
+      var s=document.createElement('div');s.className='fws';
+      var ang=Math.PI*2*i/n,dist=30+Math.random()*85;
+      s.style.cssText='background:'+cs[Math.floor(Math.random()*cs.length)]+';--sx:'+(Math.cos(ang)*dist).toFixed(0)+'px;--sy:'+(Math.sin(ang)*dist).toFixed(0)+'px;--d:'+(.5+Math.random()*1.1).toFixed(1)+'s';
+      c.appendChild(s);
     }
-    for(var j=0;j<count*.35;j++){
-      var r=document.createElement('div');r.className='fw-spark';
-      var a2=Math.random()*Math.PI*2,d2=8+Math.random()*35;
-      r.style.cssText='background:'+cs[Math.floor(Math.random()*cs.length)]+';--sx:'+(Math.cos(a2)*d2).toFixed(0)+'px;--sy:'+(Math.sin(a2)*d2).toFixed(0)+'px;--d:'+(.3+Math.random()*.7).toFixed(1)+'s;width:1px;height:1px';
-      cont.appendChild(r);
+    for(var j=0;j<n*.35;j++){
+      var r=document.createElement('div');r.className='fws';var a2=Math.random()*Math.PI*2,d2=8+Math.random()*30;
+      r.style.cssText='background:'+cs[Math.floor(Math.random()*cs.length)]+';--sx:'+(Math.cos(a2)*d2).toFixed(0)+'px;--sy:'+(Math.sin(a2)*d2).toFixed(0)+'px;--d:'+(.3+Math.random()*.6).toFixed(1)+'s;width:1px;height:1px';
+      c.appendChild(r);
     }
-    document.body.appendChild(cont);
-    setTimeout(function(){if(cont.parentNode)cont.parentNode.removeChild(cont)},2200);
+    document.body.appendChild(c);setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c)},2000);
   }
-  function grandFirework(m){m=m||3;for(var i=0;i<m;i++)setTimeout(function(){explode(W*(.15+Math.random()*.7),H*(.08+Math.random()*.5),40+Math.floor(Math.random()*60))},i*280)}
-  function showFirework(x,y){explode(x,y,35+Math.floor(Math.random()*45))}
+  function grand(n){n=n||3;for(var i=0;i<n;i++)setTimeout(function(){boom(W*(.15+Math.random()*.7),H*(.08+Math.random()*.5),40+Math.floor(Math.random()*55))},i*280)}
+  function fw(x,y){boom(x,y,35+Math.floor(Math.random()*40))}
 
   /* ══ 流星 ══ */
-  function shootMeteor(sx,sy,dx,dy,dur){
+  function meteor(sx,sy,dx,dy,dur){
     var m=document.createElement('div');m.className='meteor';
     m.style.cssText='left:'+sx+'px;top:'+sy+'px;--dx:'+dx+'px;--dy:'+dy+'px;--sp:'+dur+'ms';
-    m.innerHTML='<div class="meteor-head"></div><div class="meteor-tail"></div>';
-    document.body.appendChild(m);
+    m.innerHTML='<div class="mhead"></div><div class="mtail"></div>';document.body.appendChild(m);
     setTimeout(function(){if(m.parentNode)m.parentNode.removeChild(m)},dur+200);
   }
-  function randomMeteor(){
-    shootMeteor(-30+Math.random()*(W+60),-30+Math.random()*H*.4,160+Math.random()*320,120+Math.random()*220,1200+Math.random()*1600);
-  }
-  function meteorThroughConstellation(){
-    var cx=constCenter.x,cy=constCenter.y;
-    shootMeteor(cx-240+Math.random()*480,cy-260-Math.random()*160,50+Math.random()*220,90+Math.random()*180,900+Math.random()*1300);
-  }
+  function randMeteor(){meteor(-30+Math.random()*(W+60),-30+Math.random()*H*.4,150+Math.random()*300,110+Math.random()*200,1200+Math.random()*1500)}
+  function cMeteor(){var cx=center.x,cy=center.y;meteor(cx-240+Math.random()*480,cy-240-Math.random()*150,50+Math.random()*200,80+Math.random()*170,900+Math.random()*1200)}
 
   /* ══ 时间轴 ══ */
   function start(){
     showScene(0);
-    // 星座渐显
     setTimeout(function(){constEl.classList.add('on')},1800);
-    var t=setInterval(function(){revealConstStar();if(constVisible>=constStarEls.length)clearInterval(t)},320);
-    setTimeout(function(){meteorThroughConstellation()},4500);
-
+    var t=setInterval(function(){revealStar();if(vis>=stars.length)clearInterval(t)},340);
+    setTimeout(cMeteor,4600);
     setTimeout(function(){showScene(1)},4200);
-    setTimeout(function(){showScene(2)},7000);
-    setTimeout(function(){showScene(3)},10000);
-    setTimeout(function(){showScene(4);setTimeout(randomMeteor,400);setTimeout(randomMeteor,900)},12000);
-    setTimeout(function(){showScene(5);meteorThroughConstellation()},14800);
-    setTimeout(function(){showScene(6)},17600);
-    setTimeout(function(){showScene(7);grandFirework(5);setTimeout(function(){grandFirework(4)},1200)},20800);
-    setTimeout(function(){showScene(8);grandFirework(5)},23800);
-    setTimeout(function(){showScene(9);grandFirework(6);setTimeout(function(){grandFirework(3)},1100)},26800);
-    setTimeout(function(){showScene(10);randomMeteor()},30800);
-    setTimeout(function(){showScene(11);setTimeout(randomMeteor,600)},33800);
-    setTimeout(function(){showScene(12);grandFirework(7);setTimeout(function(){grandFirework(5)},800);setTimeout(function(){grandFirework(4)},1600)},36800);
-    setTimeout(function(){showScene(13);grandFirework(8);setTimeout(function(){grandFirework(6)},700);setTimeout(function(){grandFirework(5)},1400);setTimeout(function(){grandFirework(4)},2100)},40800);
+    setTimeout(function(){showScene(2)},7200);
+    setTimeout(function(){showScene(3)},10200);
+    setTimeout(function(){showScene(4);setTimeout(randMeteor,400);setTimeout(randMeteor,900)},12200);
+    setTimeout(function(){showScene(5);cMeteor()},15000);
+    setTimeout(function(){showScene(6)},17800);
+    setTimeout(function(){showScene(7);grand(5);setTimeout(function(){grand(4)},1200)},21000);
+    setTimeout(function(){showScene(8);grand(5)},24000);
+    setTimeout(function(){showScene(9);grand(6);setTimeout(function(){grand(3)},1100)},27000);
+    setTimeout(function(){showScene(10);randMeteor()},31000);
+    setTimeout(function(){showScene(11);setTimeout(randMeteor,600)},34000);
+    setTimeout(function(){showScene(12);grand(7);setTimeout(function(){grand(5)},800);setTimeout(function(){grand(4)},1600)},37000);
+    setTimeout(function(){showScene(13);grand(8);setTimeout(function(){grand(6)},700);setTimeout(function(){grand(5)},1400);setTimeout(function(){grand(4)},2100)},41000);
   }
 
-  /* ══ 持续背景 ══ */
-  setInterval(function(){if(Math.random()<.3)randomMeteor();if(Math.random()<.12)meteorThroughConstellation()},3200);
-  setInterval(function(){if(Math.random()<.12)showFirework(W*(.15+Math.random()*.7),H*(.1+Math.random()*.45))},4500);
+  setInterval(function(){if(Math.random()<.28)randMeteor();if(Math.random()<.10)cMeteor()},3300);
+  setInterval(function(){if(Math.random()<.10)fw(W*(.15+Math.random()*.7),H*(.1+Math.random()*.45))},4800);
 
   start();
 
-  window.addEventListener('resize',function(){
-    W=window.innerWidth;H=window.innerHeight;buildConstellation();
-    if(constEl.classList.contains('on')){
-      constStarEls.forEach(function(s,i){if(i<constVisible)s.style.opacity='1'});
-      var p=document.getElementById('constPath');if(p&&constVisible>=2)p.setAttribute('opacity',String(Math.min(1,constVisible/constStarEls.length*.8)));
-    }
-  });
+  window.addEventListener('resize',function(){W=innerWidth;H=innerHeight;buildConst();if(constEl.classList.contains('on')){stars.forEach(function(s,i){if(i<vis)s.style.opacity='1'});var p=document.getElementById('constPath');if(p&&vis>=2)p.setAttribute('opacity',String(Math.min(1,vis/stars.length*.7)))}});
 })();
 </script>
 </body>
