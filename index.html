@@ -731,46 +731,20 @@
             }, 2000);
         }
 
-        // ---- 背景音乐 ----
-        const audio = document.createElement('audio');
-        audio.loop = true;
-        audio.volume = 0.25;
-        audio.src = 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Ketsa/Raising_Frequencies/Ketsa_-_04_-_Soul_Brother.mp3';
-
-        function startMusic() {
-            audio.play().catch(() => {});
+        // ---- 启动 - 页面加载即自动播放，无需点击 ----
+        function startMovie() {
+            try {
+                document.getElementById('startHint').style.display = 'none';
+            } catch(e) {}
+            try {
+                playMovie();
+                ambientFireworks();
+                setTimeout(function(){ startMeteors(2500); }, 20000);
+            } catch(e) {}
         }
 
-        // ---- 启动 ----
-        let started = false;
-        function start() {
-            if (started) return;
-            started = true;
-            document.removeEventListener('click', start);
-            document.removeEventListener('touchstart', start);
-            // 隐藏开始提示
-            document.getElementById('startHint').classList.add('hidden');
-            setTimeout(() => {
-                const h = document.getElementById('startHint');
-                if (h) h.style.display = 'none';
-            }, 800);
-            startMusic();
-            playMovie();
-            ambientFireworks();
-            // 持续流星
-            setTimeout(() => startMeteors(2500), 20000);
-        }
-
-        // 初始不揭示任何星星，让全部星星都处于未揭示态（loop里会画暗的版本）
-        // 用户点击后，revealStarsGradually 会逐颗亮起
-
-        // 3秒后自动开始（微信浏览器兼容）
-        setTimeout(() => {
-            if (!started) start();
-        }, 3000);
-
-        document.addEventListener('click', start, { once: true });
-        document.addEventListener('touchstart', start, { once: true });
+        // 立即启动
+        startMovie();
 
         // 动画循环
         requestAnimationFrame(loop);
