@@ -140,7 +140,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(2, 5, 16, 0.85);
             cursor: pointer;
             transition: opacity 0.8s ease;
         }
@@ -473,11 +472,16 @@
             frame++;
             const t = ts * 0.001;
 
-            // 画星空
+            // 画星空 — 没被"揭示"的星星也画，只是更暗
             starCtx.clearRect(0, 0, W, H);
             stars.forEach(s => {
-                if (!s.revealed) return;
-                const a = s.baseAlpha + Math.sin(t * s.speed * 60 + s.phase) * 0.15;
+                let a;
+                if (s.revealed) {
+                    a = s.baseAlpha + Math.sin(t * s.speed * 60 + s.phase) * 0.15;
+                } else {
+                    // 未揭示的星星：暗但可见
+                    a = s.baseAlpha * 0.4 + Math.sin(t * s.speed * 40 + s.phase) * 0.08;
+                }
                 drawStar(starCtx, s.x, s.y, s.r, a, s.gold ? 'gold' : 'blue');
             });
 
@@ -757,10 +761,13 @@
             setTimeout(() => startMeteors(2500), 20000);
         }
 
-        // 初始显示部分星星
-        stars.forEach((s, i) => {
-            if (i < 80) s.revealed = true;
-        });
+        // 初始不揭示任何星星，让全部星星都处于未揭示态（loop里会画暗的版本）
+        // 用户点击后，revealStarsGradually 会逐颗亮起
+
+        // 3秒后自动开始（微信浏览器兼容）
+        setTimeout(() => {
+            if (!started) start();
+        }, 3000);
 
         document.addEventListener('click', start, { once: true });
         document.addEventListener('touchstart', start, { once: true });
@@ -771,16 +778,7 @@
         // 持续更新流星
         setInterval(updateShootingStars, 33);
 
-        // 初始绘制几颗可见的星星（让背景不完全是黑的）
-        function drawInitStars() {
-            starCtx.clearRect(0, 0, W, H);
-            stars.forEach(s => {
-                if (!s.revealed) return;
-                drawStar(starCtx, s.x, s.y, s.r, s.baseAlpha * 0.5, s.gold ? 'gold' : 'blue');
-            });
-            if (!started) requestAnimationFrame(drawInitStars);
-        }
-        drawInitStars();
+
     </script>
 </body>
 </html>
