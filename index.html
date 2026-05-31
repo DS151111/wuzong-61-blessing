@@ -2,757 +2,324 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 六一快乐，吴总</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🌟 六一快乐，吴总 v3</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background: #020510;
-            font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
-            overflow: hidden;
-            width: 100vw;
-            height: 100vh;
-            position: relative;
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html, body {
+            width:100vw; height:100vh;
+            overflow:hidden;
+            background:#020510;
+            font-family:'PingFang SC','Microsoft YaHei',sans-serif;
+            position:relative;
         }
 
-        /* 星空画布 */
-        #starCanvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
+        /* === 星星层 === */
+        .stars-layer { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; }
+        .star {
+            position:absolute;
+            border-radius:50%;
+            background:#fff;
+            animation: twinkle var(--d) ease-in-out infinite;
+            animation-delay: var(--dl);
+            opacity:0;
+        }
+        .star.gold { background:#e2c488; }
+        @keyframes twinkle {
+            0%,100% { opacity:0.15; transform:scale(1); }
+            50% { opacity:1; transform:scale(1.8); }
         }
 
-        /* 流星 + 烟花画布 */
-        #fxCanvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 1;
-            pointer-events: none;
+        /* === 流星 === */
+        .meteor {
+            position:fixed;
+            width:2px; height:2px;
+            background:#fff;
+            border-radius:50%;
+            z-index:1;
+            animation: meteorFly var(--sp) linear infinite;
+            animation-delay: var(--dl);
+            pointer-events:none;
+        }
+        .meteor::after {
+            content:'';
+            position:absolute;
+            top:50%; right:100%;
+            width:60px; height:1px;
+            background:linear-gradient(to left, #fff, transparent);
+            transform:translateY(-50%);
+        }
+        @keyframes meteorFly {
+            0% { transform:translate(0, 0); opacity:1; }
+            70% { opacity:1; }
+            100% { transform:translate(var(--dx), var(--dy)); opacity:0; }
         }
 
-        /* 文字层 */
-        .text-layer {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* === 烟花 === */
+        .firework {
+            position:fixed;
+            pointer-events:none;
+            z-index:2;
+        }
+        .firework .spark {
+            position:absolute;
+            width:4px; height:4px;
+            border-radius:50%;
+            animation: sparkBurst var(--d) ease-out forwards;
+            opacity:0;
+        }
+        @keyframes sparkBurst {
+            0% { transform:translate(0,0) scale(1); opacity:1; }
+            100% { transform:translate(var(--sx), var(--sy)) scale(0); opacity:0; }
         }
 
-        .sequence {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 1.5s ease;
-            pointer-events: none;
-            padding: 20px 30px;
+        /* === 文字层 === */
+        .text-layer { position:fixed; top:0; left:0; width:100%; height:100%; z-index:10; display:flex; justify-content:center; align-items:center; pointer-events:none; }
+        .scene {
+            position:absolute; width:90%; max-width:600px;
+            text-align:center;
+            opacity:0;
+            transition:opacity 1.2s ease;
+            padding:20px;
         }
+        .scene.show { opacity:1; }
 
-        .sequence.on { opacity: 1; }
+        .sc-label { color:#646c90; font-size:0.8rem; letter-spacing:8px; display:block; margin-bottom:30px; }
+        .sc-name { font-size:4.5rem; font-weight:900; color:#e2c488; display:block; text-shadow:0 0 40px rgba(226,196,136,.3); animation: nameGlow 3s ease-in-out infinite; }
+        @keyframes nameGlow { 0%,100%{text-shadow:0 0 30px rgba(226,196,136,.2)} 50%{text-shadow:0 0 60px rgba(226,196,136,.5)} }
+        .sc-tag { color:#8890b0; font-size:1rem; letter-spacing:4px; display:block; margin-top:25px; }
 
-        .title-line {
-            display: block;
-            margin-bottom: 12px;
-        }
+        .sc-line { color:#b8c0e0; font-size:1.2rem; line-height:2.3; font-weight:300; display:block; }
+        .sc-line.gold { color:#e2c488; font-weight:400; }
+        .sc-line.big { font-size:2rem; font-weight:700; color:#f7e8c8; margin:12px 0; }
 
-        .seq-1 .label {
-            color: #646c90;
-            font-size: 0.85rem;
-            letter-spacing: 10px;
-            display: block;
-            margin-bottom: 40px;
-        }
-        .seq-1 .name {
-            font-size: 5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #e2c488 0%, #f7e8c8 50%, #d4a853 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: goldShimmer 4s ease-in-out infinite;
-        }
-        @keyframes goldShimmer {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-        }
-        .seq-1 .tag {
-            color: #8890b0;
-            font-size: 1.1rem;
-            letter-spacing: 6px;
-            display: block;
-            margin-top: 30px;
-        }
+        .sc-ending { font-size:2.2rem; font-weight:700; color:#e2c488; line-height:1.8; text-shadow:0 0 30px rgba(226,196,136,.3); }
+        .sc-sign  { color:#8890b0; font-size:0.95rem; margin-top:20px; display:block; }
 
-        .seq-text {
-            color: #b8c0e0;
-            font-size: 1.3rem;
-            line-height: 2.4;
-            font-weight: 300;
-        }
-        .seq-text .gold {
-            color: #e2c488;
-            font-weight: 400;
-        }
-        .seq-text .big {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #f7e8c8;
-            display: block;
-            margin: 15px 0;
-        }
-        .seq-text .small {
-            font-size: 1rem;
-            color: #8890b0;
-        }
-
-        .ending-text {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #e2c488 0%, #f7e8c8 50%, #d4a853 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: goldShimmer 4s ease-in-out infinite;
-            line-height: 1.8;
-        }
-
-        .signature {
-            color: #8890b0;
-            font-size: 1rem;
-            margin-top: 25px;
-            display: block;
-        }
-
-        /* 点击开始提示 */
-        .start-hint {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: opacity 0.8s ease;
-        }
-        .start-hint.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .start-hint .inner {
-            text-align: center;
-        }
-        .start-hint .icon {
-            font-size: 3rem;
-            animation: floatIcon 2s ease-in-out infinite;
-            display: block;
-            margin-bottom: 20px;
-        }
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        .start-hint .text {
-            color: #e2c488;
-            font-size: 1.3rem;
-            letter-spacing: 4px;
-            font-weight: 300;
-        }
-        .start-hint .sub {
-            color: #646c90;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            margin-top: 8px;
-        }
-
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .seq-1 .name { font-size: 3.2rem; }
-            .seq-text { font-size: 1.1rem; line-height: 2.2; }
-            .seq-text .big { font-size: 1.6rem; }
-            .ending-text { font-size: 1.8rem; }
-            .start-hint .icon { font-size: 2.2rem; }
-            .start-hint .text { font-size: 1.1rem; }
+        /* === 响应式 === */
+        @media (max-width:768px) {
+            .sc-name { font-size:3rem; }
+            .sc-line { font-size:1rem; line-height:2.1; }
+            .sc-line.big { font-size:1.5rem; }
+            .sc-ending { font-size:1.6rem; }
         }
     </style>
 </head>
 <body>
-    <canvas id="starCanvas"></canvas>
-    <canvas id="fxCanvas"></canvas>
+    <div class="stars-layer" id="starsLayer"></div>
 
-    <!-- 点击开始 -->
-    <div class="start-hint" id="startHint">
-        <div class="inner">
-            <span class="icon">✨</span>
-            <span class="text">点击开始观看</span>
-            <span class="sub">Tap to start</span>
-        </div>
-    </div>
-
+    <!-- 文本 -->
     <div class="text-layer">
-        <!-- 第1幕：开场 -->
-        <div class="sequence seq-1" id="seq1">
-            <span class="label">CHILDREN'S DAY · 2026</span>
-            <span class="name">吴 总</span>
-            <span class="tag">✦ 摩羯座 · 12.29 ✦</span>
+        <div class="scene" id="sc0">
+            <span class="sc-label">CHILDREN'S DAY · 2026</span>
+            <span class="sc-name">吴 总</span>
+            <span class="sc-tag">✦ 摩羯座 · 12.29 ✦</span>
         </div>
-
-        <!-- 第2幕 -->
-        <div class="sequence seq-2" id="seq2">
-            <div class="seq-text">
-                <span class="title-line">你出生在<span class="gold">12月29日</span>，</span>
-                <span class="title-line">摩羯座的星星，</span>
-                <span class="title-line">从那天起就为你亮着。</span>
-            </div>
+        <div class="scene" id="sc1">
+            <span class="sc-line">你出生在<span class="gold" style="color:#e2c488">12月29日</span>，</span>
+            <span class="sc-line">摩羯座的星星，从那天起就为你亮着。</span>
         </div>
-
-        <!-- 第3幕 -->
-        <div class="sequence seq-3" id="seq3">
-            <div class="seq-text">
-                <span class="title-line"><span class="gold">19岁</span>了，刚好的年纪——</span>
-                <span class="title-line">有大人的洒脱，</span>
-                <span class="title-line">也有孩子气的骄傲。</span>
-            </div>
+        <div class="scene" id="sc2">
+            <span class="sc-line"><span style="color:#e2c488">19岁</span>了，刚好的年纪——</span>
+            <span class="sc-line">有大人的洒脱，也有孩子气的骄傲。</span>
         </div>
-
-        <!-- 第4幕 -->
-        <div class="sequence seq-4" id="seq4">
-            <div class="seq-text">
-                <span class="big">所以今天，</span>
-                <span class="title-line">麻烦你做回那个<span class="gold">吃糖的小孩</span>。</span>
-            </div>
+        <div class="scene" id="sc3">
+            <span class="sc-line big">所以今天，</span>
+            <span class="sc-line">麻烦你做回那个<span style="color:#e2c488">吃糖的小孩</span>。</span>
         </div>
-
-        <!-- 第5幕 -->
-        <div class="sequence seq-5" id="seq5">
-            <div class="seq-text">
-                <span class="title-line">每一颗星星，</span>
-                <span class="title-line">都是你这一年里<span class="gold">发过的光</span>——</span>
-            </div>
+        <div class="scene" id="sc4">
+            <span class="sc-line">每一颗星星，都是你这一年里<span style="color:#e2c488">发过的光</span>——</span>
         </div>
-
-        <!-- 第6幕 -->
-        <div class="sequence seq-6" id="seq6">
-            <div class="seq-text">
-                <span class="title-line">倔强过，努力过，</span>
-                <span class="title-line">也偷偷<span class="gold">难过过</span>。</span>
-            </div>
+        <div class="scene" id="sc5">
+            <span class="sc-line">倔强过，努力过，也偷偷<span style="color:#e2c488">难过过</span>。</span>
         </div>
-
-        <!-- 第7幕 -->
-        <div class="sequence seq-7" id="seq7">
-            <div class="seq-text">
-                <span class="big">但你看看，</span>
-                <span class="title-line">星星从来不会因为黑夜</span>
-                <span class="title-line">而停止<span class="gold">闪烁</span>。</span>
-            </div>
+        <div class="scene" id="sc6">
+            <span class="sc-line big">但你看看，</span>
+            <span class="sc-line">星星从来不会因为黑夜而停止<span style="color:#e2c488">闪烁</span>。</span>
         </div>
-
-        <!-- 第8幕：烟花 -->
-        <div class="sequence seq-8" id="seq8">
-            <div class="seq-text">
-                <span class="big">六一快乐。</span>
-            </div>
+        <div class="scene" id="sc7">
+            <span class="sc-line big">六一快乐。</span>
         </div>
-
-        <!-- 第9幕 -->
-        <div class="sequence seq-9" id="seq9">
-            <div class="seq-text">
-                <span class="title-line">今晚有烟花，</span>
-                <span class="title-line"><span class="gold">为你一个人放的</span>。</span>
-            </div>
+        <div class="scene" id="sc8">
+            <span class="sc-line">今晚有烟花，<span style="color:#e2c488">为你一个人放的</span>。</span>
         </div>
-
-        <!-- 第10幕 -->
-        <div class="sequence seq-10" id="seq10">
-            <div class="seq-text">
-                <span class="title-line">不是因为你需要庆祝，</span>
-                <span class="title-line">而是因为这个世界——</span>
-                <span class="title-line">需要你这样<span class="gold">天真烂漫</span>的人。</span>
-            </div>
+        <div class="scene" id="sc9">
+            <span class="sc-line">不是因为你需要庆祝，</span>
+            <span class="sc-line">而是因为这个世界——</span>
+            <span class="sc-line">需要你这样<span style="color:#e2c488">天真烂漫</span>的人。</span>
         </div>
-
-        <!-- 第11幕：礼物 -->
-        <div class="sequence seq-11" id="seq11">
-            <div class="seq-text">
-                <span class="title-line">你的六一礼物，</span>
-                <span class="title-line"><span class="gold">会晚两天到</span>。</span>
-            </div>
+        <div class="scene" id="sc10">
+            <span class="sc-line">你的六一礼物，<span style="color:#e2c488">会晚两天到</span>。</span>
         </div>
-
-        <!-- 第12幕：歉意 -->
-        <div class="sequence seq-12" id="seq12">
-            <div class="seq-text">
-                <span class="title-line">是我的疏忽，</span>
-                <span class="title-line">对不起。</span>
-            </div>
+        <div class="scene" id="sc11">
+            <span class="sc-line">是我的疏忽，对不起。</span>
         </div>
-
-        <!-- 第13幕：双倍快乐 -->
-        <div class="sequence seq-13" id="seq13">
-            <div class="seq-text">
-                <span class="title-line">但等它到了——</span>
-                <span class="big">你会收到双倍的快乐，</span>
-                <span class="title-line"><span class="gold">我保证。</span></span>
-            </div>
+        <div class="scene" id="sc12">
+            <span class="sc-line">但等它到了——</span>
+            <span class="sc-line big">你会收到双倍的快乐，</span>
+            <span class="sc-line"><span style="color:#e2c488">我保证。</span></span>
         </div>
-
-        <!-- 第14幕：结尾 -->
-        <div class="sequence seq-14" id="seq14">
-            <div class="ending-text">
-                永远有糖吃<br>
-                永远被偏爱<br>
-                永远做我的开心果
-            </div>
-            <span class="signature">—— 儿童节快乐，吴总 🌟</span>
+        <div class="scene" id="sc13">
+            <span class="sc-ending">永远有糖吃<br>永远被偏爱<br>永远做我的开心果</span>
+            <span class="sc-sign">—— 儿童节快乐，吴总 🌟</span>
         </div>
     </div>
 
     <script>
-        // ============================================================
-        //  全自动微电影 - 星空、流星、烟花、星座、字幕序列
-        // ============================================================
-
-        const starCanvas = document.getElementById('starCanvas');
-        const starCtx = starCanvas.getContext('2d');
-        const fxCanvas = document.getElementById('fxCanvas');
-        const fxCtx = fxCanvas.getContext('2d');
-
-        let W, H;
-
-        function resize() {
-            W = starCanvas.width = fxCanvas.width = window.innerWidth;
-            H = starCanvas.height = fxCanvas.height = window.innerHeight;
-            initStars();
+    (function(){
+        // ========== 生成星星 ==========
+        var layer = document.getElementById('starsLayer');
+        var w = window.innerWidth, h = window.innerHeight;
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < 250; i++) {
+            var s = document.createElement('div');
+            var gold = Math.random() < 0.12;
+            s.className = 'star' + (gold ? ' gold' : '');
+            s.style.cssText = [
+                'left:' + Math.random()*100 + '%',
+                'top:' + Math.random()*100 + '%',
+                'width:' + (1+Math.random()*3) + 'px',
+                'height:' + (1+Math.random()*3) + 'px',
+                '--d:' + (1.5+Math.random()*4) + 's',
+                '--dl:' + (Math.random()*4) + 's'
+            ].join(';');
+            frag.appendChild(s);
         }
-        resize();
-        window.addEventListener('resize', resize);
+        layer.appendChild(frag);
 
-        // ---- 星星 ----
-        let stars = [];
+        // ========== 场景切换 ==========
+        var scenes = [];
+        for (var i = 0; i < 14; i++) {
+            var el = document.getElementById('sc'+i);
+            if (el) scenes.push(el);
+        }
+        var cur = -1;
+        function showScene(i) {
+            if (i < 0 || i >= scenes.length) return;
+            if (cur >= 0) scenes[cur].classList.remove('show');
+            scenes[i].classList.add('show');
+            cur = i;
+        }
 
-        function initStars() {
-            stars = [];
-            for (let i = 0; i < 300; i++) {
-                stars.push({
-                    x: Math.random() * W,
-                    y: Math.random() * H,
-                    r: Math.random() * 1.8 + 0.3,
-                    baseAlpha: 0.1 + Math.random() * 0.35,
-                    alpha: 0,
-                    speed: 0.005 + Math.random() * 0.02,
-                    phase: Math.random() * Math.PI * 2,
-                    gold: Math.random() < 0.15,
-                    revealed: false
-                });
+        // ========== 烟花生成 ==========
+        function launchFirework(x, y) {
+            var container = document.createElement('div');
+            container.className = 'firework';
+            container.style.left = x + 'px';
+            container.style.top = y + 'px';
+            var colors = ['#f7c873','#f4a261','#e76f51','#ffb703','#e2c488','#ffb3c6','#8ecae6','#219ebc','#e9c46a'];
+            var n = 40 + Math.floor(Math.random()*40);
+            for (var i = 0; i < n; i++) {
+                var spark = document.createElement('div');
+                spark.className = 'spark';
+                var angle = Math.PI*2*i/n;
+                var dist = 40 + Math.random()*80;
+                spark.style.cssText = [
+                    'background:' + colors[Math.floor(Math.random()*colors.length)],
+                    '--sx:' + (Math.cos(angle)*dist) + 'px',
+                    '--sy:' + (Math.sin(angle)*dist) + 'px',
+                    '--d:' + (0.8+Math.random()*1.2) + 's'
+                ].join(';');
+                container.appendChild(spark);
             }
+            document.body.appendChild(container);
+            setTimeout(function(){ if(container.parentNode) container.parentNode.removeChild(container); }, 2000);
         }
 
-        // ---- 摩羯座星座 ----
-        const constRel = [
-            { rx: 0.58, ry: 0.18 },  // α²
-            { rx: 0.62, ry: 0.15 },
-            { rx: 0.66, ry: 0.17 },
-            { rx: 0.69, ry: 0.22 },
-            { rx: 0.65, ry: 0.27 },
-            { rx: 0.73, ry: 0.14 },
-            { rx: 0.76, ry: 0.12 },
-            { rx: 0.61, ry: 0.25 },
-            { rx: 0.60, ry: 0.11 },
-        ];
-        const constLines = [[0,2],[2,3],[1,0],[0,7],[5,6],[1,5],[7,4],[4,3],[1,8]];
-        let constStars = [], constRevealed = 0, constFullyRevealed = false;
-        let constAlpha = 0.15;
-        let constRevealIdx = 0;
-
-        function initConst() {
-            const cx = W * 0.5, cy = H * 0.4, s = Math.min(W, H) * 0.4;
-            constStars = constRel.map(({rx, ry}) => ({
-                x: cx + (rx - 0.68) * s,
-                y: cy + (ry - 0.19) * s,
-                r: 2 + Math.random() * 1.5,
-                phase: Math.random() * Math.PI * 2,
-                alpha: 0
-            }));
-            constRevealed = 0;
-            constFullyRevealed = false;
-            constAlpha = 0.15;
-            constRevealIdx = 0;
-        }
-        initConst();
-
-        // ---- 流星 ----
-        let shootingStars = [];
-
-        // ---- 烟花 ----
-        let fireworks = [];
-
-        class Spark {
-            constructor(x, y, vx, vy, color, life) {
-                this.x = x; this.y = y;
-                this.vx = vx; this.vy = vy;
-                this.color = color;
-                this.life = life;
-                this.maxLife = life;
-                this.size = 0.8 + Math.random() * 2;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.vy += 0.03;
-                this.vx *= 0.99;
-                this.vy *= 0.99;
-                this.life--;
-            }
-            draw(ctx) {
-                const ratio = this.life / this.maxLife;
-                ctx.globalAlpha = ratio;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * ratio, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-            }
+        function randomFirework() {
+            launchFirework(
+                w*(0.15+Math.random()*0.7),
+                h*(0.1+Math.random()*0.5)
+            );
         }
 
-        function spawnFirework(x, y) {
-            const palettes = [
-                ['#f7c873','#f4a261','#e76f51','#ffb703'],
-                ['#e2c488','#d4a853','#f7e8c8','#c9a84c'],
-                ['#8ecae6','#219ebc','#ffb703','#f7c873'],
-                ['#ffb3c6','#ff8fab','#ffd166','#ffb703'],
-                ['#e9c46a','#f4a261','#e76f51','#2a9d8f'],
-            ];
-            const pal = palettes[Math.floor(Math.random() * palettes.length)];
-            const n = 50 + Math.floor(Math.random() * 60);
-            const sparks = [];
-            for (let i = 0; i < n; i++) {
-                const a = Math.PI * 2 * i / n;
-                const sp = 2 + Math.random() * 6;
-                sparks.push(new Spark(
-                    x, y,
-                    Math.cos(a) * sp * (0.6 + Math.random() * 0.4),
-                    Math.sin(a) * sp * (0.6 + Math.random() * 0.4),
-                    pal[Math.floor(Math.random() * pal.length)],
-                    30 + Math.random() * 30
-                ));
-            }
-            fireworks.push(sparks);
+        // ========== 流星 ==========
+        function spawnMeteor() {
+            var m = document.createElement('div');
+            m.className = 'meteor';
+            var startX = -20 + Math.random()*(w+40);
+            var startY = -20 + Math.random()*h*0.5;
+            var dx = 200 + Math.random()*300;
+            var dy = 150 + Math.random()*200;
+            m.style.cssText = [
+                'left:' + startX + 'px',
+                'top:' + startY + 'px',
+                '--dx:' + dx + 'px',
+                '--dy:' + dy + 'px',
+                '--sp:' + (1.5+Math.random()*2) + 's',
+                '--dl:' + (Math.random()*3) + 's'
+            ].join(';');
+            document.body.appendChild(m);
+            // 动画结束后移除，但CSS infinite会一直循环——用setTimeout移除再重建
+            setTimeout(function(){ if(m.parentNode) m.parentNode.removeChild(m); }, 5000);
         }
 
-        // ---- 绘制恒星（带光晕）----
-        function drawStar(ctx, x, y, r, alpha, hue) {
-            // 光晕
-            const grd = ctx.createRadialGradient(x, y, 0, x, y, r * 5);
-            const c = hue === 'gold' ? '247,232,200' : '180,195,230';
-            grd.addColorStop(0, `rgba(${c},${alpha * 0.5})`);
-            grd.addColorStop(1, `rgba(${c},0)`);
-            ctx.beginPath();
-            ctx.arc(x, y, r * 5, 0, Math.PI * 2);
-            ctx.fillStyle = grd;
-            ctx.fill();
-            // 核心
-            ctx.beginPath();
-            ctx.arc(x, y, r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${c},${alpha * 1.3})`;
-            ctx.fill();
-        }
-
-        // ---- 主循环 ----
-        let frame = 0;
-        function loop(ts) {
-            frame++;
-            const t = ts * 0.001;
-
-            // 画星空 — 没被"揭示"的星星也画，只是更暗
-            starCtx.clearRect(0, 0, W, H);
-            stars.forEach(s => {
-                let a;
-                if (s.revealed) {
-                    a = s.baseAlpha + Math.sin(t * s.speed * 60 + s.phase) * 0.15;
-                } else {
-                    // 未揭示的星星：暗但可见
-                    a = s.baseAlpha * 0.4 + Math.sin(t * s.speed * 40 + s.phase) * 0.08;
-                }
-                drawStar(starCtx, s.x, s.y, s.r, a, s.gold ? 'gold' : 'blue');
-            });
-
-            // 画星座
-            if (constRevealed >= constStars.length && !constFullyRevealed) {
-                constFullyRevealed = true;
-            }
-            // 连线
-            const shown = constStars.filter((_, i) => i < constRevealed);
-            if (shown.length >= 2 && constAlpha > 0.05) {
-                starCtx.strokeStyle = `rgba(226,196,136,${constAlpha})`;
-                starCtx.lineWidth = 1;
-                constLines.forEach(([a, b]) => {
-                    if (a < constRevealed && b < constRevealed) {
-                        starCtx.beginPath();
-                        starCtx.moveTo(constStars[a].x, constStars[a].y);
-                        starCtx.lineTo(constStars[b].x, constStars[b].y);
-                        starCtx.stroke();
-                    }
-                });
-            }
-            // 星座星星
-            constStars.forEach((s, i) => {
-                if (i >= constRevealed) return;
-                const a = 0.7 + Math.sin(t * 1.5 + s.phase) * 0.25;
-                drawStar(starCtx, s.x, s.y, s.r, a, 'gold');
-            });
-
-            // 画流星
-            fxCtx.clearRect(0, 0, W, H);
-            shootingStars.forEach(ss => {
-                const tailLen = ss.tail.length;
-                for (let i = 0; i < tailLen; i++) {
-                    const ratio = i / tailLen;
-                    fxCtx.globalAlpha = ratio * 0.6;
-                    fxCtx.beginPath();
-                    fxCtx.arc(ss.tail[i].x, ss.tail[i].y, 1.5 * ratio, 0, Math.PI * 2);
-                    fxCtx.fillStyle = '#f7e8c8';
-                    fxCtx.fill();
-                }
-                fxCtx.globalAlpha = 1;
-                fxCtx.beginPath();
-                fxCtx.arc(ss.x, ss.y, 2, 0, Math.PI * 2);
-                fxCtx.fillStyle = '#fff';
-                fxCtx.fill();
-            });
-
-            // 画烟花
-            fireworks.forEach(sparks => {
-                sparks.forEach(s => {
-                    if (s.life > 0) s.draw(fxCtx);
-                });
-            });
-            // 清理死烟花
-            fireworks = fireworks.filter(arr => arr.some(s => s.life > 0));
-            // 更新烟花
-            fireworks.forEach(arr => arr.forEach(s => s.update()));
-
-            requestAnimationFrame(loop);
-        }
-
-        // ---- 星星逐颗亮起 ----
-        function revealStarsGradually() {
-            let idx = 0;
-            const batchSize = 3;
-            const interval = setInterval(() => {
-                for (let k = 0; k < batchSize && idx < stars.length; k++, idx++) {
-                    stars[idx].revealed = true;
-                }
-                if (idx >= stars.length) clearInterval(interval);
-            }, 30);
-        }
-
-        // ---- 星座逐颗亮起 ----
-        function revealConstellation() {
-            const interval = setInterval(() => {
-                if (constRevealed < constStars.length) {
-                    constRevealed++;
-                    constAlpha = 0.08 + (constRevealed / constStars.length) * 0.22;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 350);
-        }
-
-        // ---- 流星 ----
-        function spawnShootingStar() {
-            const x = Math.random() * W;
-            const y = Math.random() * H * 0.4;
-            const angle = Math.PI / 4 + Math.random() * Math.PI / 4; // 45~90度
-            const speed = 6 + Math.random() * 8;
-            shootingStars.push({
-                x, y,
-                vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed,
-                life: 60 + Math.random() * 40,
-                tail: []
-            });
-        }
-
-        function updateShootingStars() {
-            shootingStars.forEach(ss => {
-                ss.tail.unshift({ x: ss.x, y: ss.y });
-                if (ss.tail.length > 20) ss.tail.pop();
-                ss.x += ss.vx;
-                ss.y += ss.vy;
-                ss.life--;
-            });
-            shootingStars = shootingStars.filter(ss => ss.life > 0 && ss.x > -50 && ss.y < H + 50);
-        }
-
-        // ---- 持续流星循环 ----
-        let meteorTimer = null;
-        function startMeteors(intervalMs) {
-            if (meteorTimer) clearInterval(meteorTimer);
-            meteorTimer = setInterval(() => {
-                if (Math.random() < 0.7) spawnShootingStar();
-            }, intervalMs);
-        }
-
-        // ---- 字幕序列 ----
-        const sequences = document.querySelectorAll('.sequence');
-        function showSeq(i) {
-            sequences.forEach(s => s.classList.remove('on'));
-            if (i < sequences.length) {
-                sequences[i].classList.add('on');
-            }
-        }
-
-        function hideAll() {
-            sequences.forEach(s => s.classList.remove('on'));
-        }
-
-        // ---- 微电影时间轴 ----
-        function playMovie() {
-            // 0s: 开场 - 名字
-            showSeq(0);
-
-            // 2s: 星星开始亮起
-            setTimeout(() => revealStarsGradually(), 500);
-
-            // 3s: 星座开始揭示
-            setTimeout(() => revealConstellation(), 1500);
-
-            // 5s: 第2幕
-            setTimeout(() => showSeq(1), 4500);
-
-            // 8s: 第3幕
-            setTimeout(() => showSeq(2), 7500);
-
-            // 11s: 第4幕
-            setTimeout(() => showSeq(3), 10500);
-
-            // 13s: 流星开始
-            setTimeout(() => {
-                startMeteors(1500);
-                // 初始一波密集流星
-                for (let i = 0; i < 3; i++) setTimeout(() => spawnShootingStar(), i * 200);
-            }, 13000);
-
-            // 15s: 第5幕
-            setTimeout(() => showSeq(4), 14500);
-
-            // 18s: 第6幕
-            setTimeout(() => showSeq(5), 17500);
-
-            // 21s: 第7幕
-            setTimeout(() => showSeq(6), 20500);
-
-            // 24s: 第8幕 - 六一快乐 + 烟花
-            setTimeout(() => {
-                showSeq(7);
-                // 大面积烟花
-                for (let i = 0; i < 8; i++) {
-                    setTimeout(() => {
-                        const fx = W * (0.15 + Math.random() * 0.7);
-                        const fy = H * (0.1 + Math.random() * 0.5);
-                        spawnFirework(fx, fy);
-                    }, i * 400);
-                }
-                // 加速流星
-                startMeteors(800);
-            }, 23500);
-
-            // 27s: 第9幕 + 烟花
-            setTimeout(() => {
-                showSeq(8);
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => spawnFirework(
-                        W * (0.2 + Math.random() * 0.6),
-                        H * (0.15 + Math.random() * 0.4)
-                    ), i * 300);
-                }
-            }, 26500);
-
-            // 30s: 第10幕
-            setTimeout(() => {
-                showSeq(9);
-                for (let i = 0; i < 6; i++) {
-                    setTimeout(() => spawnFirework(
-                        W * (0.1 + Math.random() * 0.8),
-                        H * (0.1 + Math.random() * 0.5)
-                    ), i * 350);
-                }
-            }, 29500);
-
-            // 34s: 第11幕
-            setTimeout(() => showSeq(10), 33500);
-
-            // 37s: 第12幕
-            setTimeout(() => showSeq(11), 36500);
-
-            // 40s: 第13幕 + 大烟花
-            setTimeout(() => {
-                showSeq(12);
-                startMeteors(500);
-                for (let i = 0; i < 10; i++) {
-                    setTimeout(() => spawnFirework(
-                        W * (0.1 + Math.random() * 0.8),
-                        H * (0.08 + Math.random() * 0.5)
-                    ), i * 250);
-                }
-            }, 39500);
-
-            // 44s: 结尾
-            setTimeout(() => {
-                showSeq(13);
-                // 终极烟花
-                for (let i = 0; i < 15; i++) {
-                    setTimeout(() => spawnFirework(
-                        W * (0.05 + Math.random() * 0.9),
-                        H * (0.05 + Math.random() * 0.6)
-                    ), i * 200);
-                }
-            }, 43500);
-        }
-
-        // ---- 持续烟花 ----
-        function ambientFireworks() {
-            setInterval(() => {
-                if (Math.random() < 0.25) {
-                    spawnFirework(
-                        W * (0.1 + Math.random() * 0.8),
-                        H * (0.1 + Math.random() * 0.5)
-                    );
-                }
-            }, 2000);
-        }
-
-        // ---- 启动 - 页面加载即自动播放，无需点击 ----
+        // ========== 时间轴 ==========
         function startMovie() {
-            try {
-                document.getElementById('startHint').style.display = 'none';
-            } catch(e) {}
-            try {
-                playMovie();
-                ambientFireworks();
-                setTimeout(function(){ startMeteors(2500); }, 20000);
-            } catch(e) {}
+            showScene(0);
+
+            // 2s
+            setTimeout(function(){ showScene(1); }, 3000);
+            // 5s
+            setTimeout(function(){ showScene(2); }, 5500);
+            // 8s
+            setTimeout(function(){ showScene(3); }, 8000);
+            // 11s - 开始流星
+            setTimeout(function(){
+                showScene(4);
+                for (var i=0;i<3;i++) setTimeout(spawnMeteor, i*400);
+            }, 10500);
+            // 14s
+            setTimeout(function(){ showScene(5); }, 13500);
+            // 17s
+            setTimeout(function(){ showScene(6); }, 16500);
+            // 20s - 六一快乐 + 烟花
+            setTimeout(function(){
+                showScene(7);
+                for (var i=0;i<8;i++) setTimeout(randomFirework, i*350);
+            }, 19500);
+            // 23s + 烟花
+            setTimeout(function(){
+                showScene(8);
+                for (var i=0;i<5;i++) setTimeout(randomFirework, i*300);
+            }, 22500);
+            // 26s + 烟花
+            setTimeout(function(){
+                showScene(9);
+                for (var i=0;i<6;i++) setTimeout(randomFirework, i*350);
+            }, 25500);
+            // 30s
+            setTimeout(function(){ showScene(10); }, 29500);
+            // 33s
+            setTimeout(function(){ showScene(11); }, 32500);
+            // 36s + 大烟花
+            setTimeout(function(){
+                showScene(12);
+                for (var i=0;i<10;i++) setTimeout(randomFirework, i*220);
+            }, 35500);
+            // 40s 结尾 + 终极烟花
+            setTimeout(function(){
+                showScene(13);
+                for (var i=0;i<15;i++) setTimeout(randomFirework, i*180);
+            }, 39500);
         }
 
-        // 立即启动
+        // ========== 持续流星和烟花 ==========
+        setInterval(function(){
+            if (Math.random() < 0.3) spawnMeteor();
+        }, 2500);
+        setInterval(function(){
+            if (Math.random() < 0.25) randomFirework();
+        }, 3000);
+
+        // ========== 启动！ ==========
         startMovie();
 
-        // 动画循环
-        requestAnimationFrame(loop);
-
-        // 持续更新流星
-        setInterval(updateShootingStars, 33);
-
-
+        // 窗口大小变化时更新
+        window.addEventListener('resize', function(){
+            w = window.innerWidth; h = window.innerHeight;
+        });
+    })();
     </script>
 </body>
 </html>
