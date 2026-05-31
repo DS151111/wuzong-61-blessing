@@ -131,18 +131,72 @@
             display: block;
         }
 
+        /* 点击开始提示 */
+        .start-hint {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(2, 5, 16, 0.85);
+            cursor: pointer;
+            transition: opacity 0.8s ease;
+        }
+        .start-hint.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .start-hint .inner {
+            text-align: center;
+        }
+        .start-hint .icon {
+            font-size: 3rem;
+            animation: floatIcon 2s ease-in-out infinite;
+            display: block;
+            margin-bottom: 20px;
+        }
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .start-hint .text {
+            color: #e2c488;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            font-weight: 300;
+        }
+        .start-hint .sub {
+            color: #646c90;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
         /* 响应式 */
         @media (max-width: 768px) {
             .seq-1 .name { font-size: 3.2rem; }
             .seq-text { font-size: 1.1rem; line-height: 2.2; }
             .seq-text .big { font-size: 1.6rem; }
             .ending-text { font-size: 1.8rem; }
+            .start-hint .icon { font-size: 2.2rem; }
+            .start-hint .text { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
     <canvas id="starCanvas"></canvas>
     <canvas id="fxCanvas"></canvas>
+
+    <!-- 点击开始 -->
+    <div class="start-hint" id="startHint">
+        <div class="inner">
+            <span class="icon">✨</span>
+            <span class="text">点击开始观看</span>
+            <span class="sub">Tap to start</span>
+        </div>
+    </div>
 
     <div class="text-layer">
         <!-- 第1幕：开场 -->
@@ -684,15 +738,30 @@
         }
 
         // ---- 启动 ----
+        let started = false;
         function start() {
+            if (started) return;
+            started = true;
             document.removeEventListener('click', start);
             document.removeEventListener('touchstart', start);
+            // 隐藏开始提示
+            document.getElementById('startHint').classList.add('hidden');
+            setTimeout(() => {
+                const h = document.getElementById('startHint');
+                if (h) h.style.display = 'none';
+            }, 800);
             startMusic();
             playMovie();
             ambientFireworks();
             // 持续流星
             setTimeout(() => startMeteors(2500), 20000);
         }
+
+        // 初始显示部分星星
+        stars.forEach((s, i) => {
+            if (i < 80) s.revealed = true;
+        });
+
         document.addEventListener('click', start, { once: true });
         document.addEventListener('touchstart', start, { once: true });
 
@@ -701,6 +770,17 @@
 
         // 持续更新流星
         setInterval(updateShootingStars, 33);
+
+        // 初始绘制几颗可见的星星（让背景不完全是黑的）
+        function drawInitStars() {
+            starCtx.clearRect(0, 0, W, H);
+            stars.forEach(s => {
+                if (!s.revealed) return;
+                drawStar(starCtx, s.x, s.y, s.r, s.baseAlpha * 0.5, s.gold ? 'gold' : 'blue');
+            });
+            if (!started) requestAnimationFrame(drawInitStars);
+        }
+        drawInitStars();
     </script>
 </body>
 </html>
