@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
-<title>馃専 鍚存€?路 鍏竴蹇箰</title>
+<title>🌟 吴总 · 六一快乐</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100vw;height:100vh;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}
 body{background:#010615}
 @media(max-width:768px){body{font-size:14px}}
 
-/* 鈹€鈹€ 娣辩┖搴曡皟 鈹€鈹€ */
+/* ── 深空底调 ── */
 .space-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
   background:
     radial-gradient(ellipse 60% 50% at 30% 50%, rgba(20,30,70,.25) 0%, transparent 70%),
@@ -19,18 +19,18 @@ body{background:#010615}
     radial-gradient(ellipse at center, transparent 40%, rgba(0,0,8,.60) 100%);
 }
 
-/* 鈹€鈹€ 閾舵渤鏌斿厜甯?鈹€鈹€ */
+/* ── 银河柔光带 ── */
 .milky-way{position:fixed;z-index:0;pointer-events:none;filter:blur(50px);opacity:.4}
 .mw1{top:10%;left:-5%;width:100vmax;height:30vmax;background:linear-gradient(160deg,transparent 0%,rgba(30,50,100,.06) 25%,rgba(70,110,170,.08) 45%,rgba(100,150,200,.05) 55%,rgba(40,80,130,.04) 75%,transparent 100%);transform:rotate(-18deg);animation:mwDrift 40s ease-in-out infinite}
 .mw2{top:28%;left:8%;width:80vmax;height:22vmax;background:linear-gradient(160deg,transparent 0%,rgba(60,90,150,.05) 30%,rgba(120,160,210,.06) 50%,rgba(60,100,160,.04) 70%,transparent 100%);transform:rotate(-15deg);animation:mwDrift 50s ease-in-out infinite reverse}
 @keyframes mwDrift{0%,100%{transform:rotate(-18deg) translate(0,0)}33%{transform:rotate(-16deg) translate(4vw,1vh)}66%{transform:rotate(-20deg) translate(-3vw,-1vh)}}
 
-/* 鈹€鈹€ 绋€鐤忔槦灞?鈹€鈹€ */
+/* ── 稀疏星层 ── */
 .star-layer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .star-dot{position:absolute;border-radius:50%;animation:starPulse var(--pd) ease-in-out infinite;animation-delay:var(--dl);opacity:0}
 @keyframes starPulse{0%,100%{opacity:var(--omin);transform:scale(1)}40%{opacity:var(--omax);transform:scale(var(--sc))}60%{opacity:var(--omax);transform:scale(var(--sc))}}
 
-/* 鈹€鈹€ 鎽╃警搴ф槦搴?鈹€鈹€ */
+/* ── 摩羯座星座 ── */
 .constel{position:fixed;z-index:2;pointer-events:none;opacity:0;transition:opacity 3s ease}
 .constel.on{opacity:1}
 .const-svg{position:absolute;top:0;left:0;width:100%;height:100%}
@@ -41,18 +41,18 @@ body{background:#010615}
 .const-label{position:absolute;color:rgba(226,196,136,.25);font-size:.6rem;letter-spacing:8px;pointer-events:none;animation:labelFade 5s ease-in-out infinite}
 @keyframes labelFade{0%,100%{opacity:.15}50%{opacity:.4}}
 
-/* 鈹€鈹€ 娴佹槦 鈹€鈹€ */
+/* ── 流星 ── */
 .meteor{position:fixed;z-index:3;pointer-events:none;animation:meteorShoot var(--sp) linear forwards;opacity:0}
 .meteor-head{width:2px;height:2px;background:rgba(220,230,255,.9);border-radius:50%;box-shadow:0 0 6px 2px rgba(200,220,255,.35)}
 .meteor-tail{position:absolute;top:50%;right:1px;width:70px;height:1px;background:linear-gradient(to left,rgba(200,220,255,.7),transparent);transform:translateY(-50%)}
 @keyframes meteorShoot{0%{opacity:0}8%{opacity:1}35%{opacity:.7}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
 
-/* 鈹€鈹€ 鐑熻姳 鈹€鈹€ */
+/* ── 烟花 ── */
 .fw-container{position:fixed;z-index:4;pointer-events:none}
 .fw-spark{position:absolute;width:2px;height:2px;border-radius:50%;animation:fwBurst var(--d) cubic-bezier(.25,.46,.45,.94) forwards;opacity:0}
 @keyframes fwBurst{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}}
 
-/* 鈹€鈹€ 鏂囧瓧灞?鈹€鈹€ */
+/* ── 文字层 ── */
 .scene-stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
 .scene-box{position:absolute;width:82%;max-width:520px;text-align:center;opacity:0;transform:scale(.96);transition:opacity 1.8s cubic-bezier(.16,1,.3,1),transform 1.8s cubic-bezier(.16,1,.3,1)}
 .scene-box.in{opacity:1;transform:scale(1)}
@@ -88,20 +88,20 @@ body{background:#010615}
 </div>
 
 <div class="scene-stage" id="stage">
-  <div class="scene-box" id="s0"><span class="sc-sub">CHILDREN'S DAY 路 2026</span><span class="sc-hero">鍚?鎬?/span><span class="sc-tag">鉁?鎽╃警搴?路 12.29 鉁?/span></div>
-  <div class="scene-box" id="s1"><span class="sc-line">浣犲嚭鐢熷湪<span class="sc-line gold">12鏈?9鏃?/span>锛?/span><span class="sc-line">鎽╃警搴х殑鏄熸槦锛屼粠閭ｅぉ璧峰氨涓轰綘浜潃銆?/span></div>
-  <div class="scene-box" id="s2"><span class="sc-line"><span class="sc-line gold">19宀?/span>浜嗭紝鍒氬ソ鐨勫勾绾€斺€?/span><span class="sc-line">鏈夊ぇ浜虹殑娲掕劚锛屼篃鏈夊瀛愭皵鐨勯獎鍌层€?/span></div>
-  <div class="scene-box" id="s3"><span class="sc-line big">鎵€浠ヤ粖澶╋紝</span><span class="sc-line">楹荤儲浣犲仛鍥為偅涓?span class="sc-line gold">鍚冪硸鐨勫皬瀛?/span>銆?/span></div>
-  <div class="scene-box" id="s4"><span class="sc-line">姣忎竴棰楁槦鏄燂紝閮芥槸浣犺繖涓€骞撮噷<span class="sc-line gold">鍙戣繃鐨勫厜</span>鈥斺€?/span></div>
-  <div class="scene-box" id="s5"><span class="sc-line">鍊斿己杩囷紝鍔姏杩囷紝涔熷伔鍋?span class="sc-line gold">闅捐繃杩?/span>銆?/span></div>
-  <div class="scene-box" id="s6"><span class="sc-line big">浣嗕綘鐪嬬湅锛?/span><span class="sc-line">鏄熸槦浠庢潵涓嶄細鍥犱负榛戝鑰屽仠姝?span class="sc-line gold">闂儊</span>銆?/span></div>
-  <div class="scene-box" id="s7"><span class="sc-line big">鍏竴蹇箰銆?/span></div>
-  <div class="scene-box" id="s8"><span class="sc-line">杩欓噷鐨勬墍鏈夌儫鑺憋紝<span class="sc-line gold">涓轰綘涓€浜鸿€屾斁</span>銆?/span></div>
-  <div class="scene-box" id="s9"><span class="sc-line">涓嶆槸鍥犱负浣犻渶瑕佸簡绁濓紝</span><span class="sc-line">鑰屾槸鍥犱负杩欎釜涓栫晫鈥斺€?/span><span class="sc-line">闇€瑕佷綘杩欐牱<span class="sc-line gold">澶╃湡鐑傛极</span>鐨勪汉銆?/span></div>
-  <div class="scene-box" id="s10"><span class="sc-line">浣犵殑鍏竴绀肩墿锛?span class="sc-line gold">浼氭櫄涓ゅぉ鍒?/span>銆?/span></div>
-  <div class="scene-box" id="s11"><span class="sc-line">鏄垜鐨勭枏蹇斤紝瀵逛笉璧枫€?/span></div>
-  <div class="scene-box" id="s12"><span class="sc-line">浣嗙瓑瀹冨埌浜嗏€斺€?/span><span class="sc-line big">甯屾湜浣犱細鎰熷埌鍙屽€嶇殑蹇箰锛?/span></div>
-  <div class="scene-box" id="s13"><span class="sc-end">姘歌繙鏈夌硸鍚?br>姘歌繙琚亸鐖?br>涔熸効鎴戞案杩滆兘閫椾綘绗戯紝涓€鐩存槸寮€蹇冩灉銆?/span><span class="sc-sign">鈥斺€?鍎跨鑺傚揩涔愶紝鍚存€?馃専</span></div>
+  <div class="scene-box" id="s0"><span class="sc-sub">CHILDREN'S DAY · 2026</span><span class="sc-hero">吴 总</span><span class="sc-tag">✦ 摩羯座 · 12.29 ✦</span></div>
+  <div class="scene-box" id="s1"><span class="sc-line">你出生在<span class="sc-line gold">12月29日</span>，</span><span class="sc-line">摩羯座的星星，从那天起就为你亮着。</span></div>
+  <div class="scene-box" id="s2"><span class="sc-line"><span class="sc-line gold">19岁</span>了，刚好的年纪——</span><span class="sc-line">有大人的洒脱，也有孩子气的骄傲。</span></div>
+  <div class="scene-box" id="s3"><span class="sc-line big">所以今天，</span><span class="sc-line">麻烦你做回那个<span class="sc-line gold">吃糖的小孩</span>。</span></div>
+  <div class="scene-box" id="s4"><span class="sc-line">每一颗星星，都是你这一年里<span class="sc-line gold">发过的光</span>——</span></div>
+  <div class="scene-box" id="s5"><span class="sc-line">倔强过，努力过，也偷偷<span class="sc-line gold">难过过</span>。</span></div>
+  <div class="scene-box" id="s6"><span class="sc-line big">但你看看，</span><span class="sc-line">星星从来不会因为黑夜而停止<span class="sc-line gold">闪烁</span>。</span></div>
+  <div class="scene-box" id="s7"><span class="sc-line big">六一快乐。</span></div>
+  <div class="scene-box" id="s8"><span class="sc-line">这里的所有烟花，<span class="sc-line gold">为你一人而放</span>。</span></div>
+  <div class="scene-box" id="s9"><span class="sc-line">不是因为你需要庆祝，</span><span class="sc-line">而是因为这个世界——</span><span class="sc-line">需要你这样<span class="sc-line gold">天真烂漫</span>的人。</span></div>
+  <div class="scene-box" id="s10"><span class="sc-line">你的六一礼物，<span class="sc-line gold">会晚两天到</span>。</span></div>
+  <div class="scene-box" id="s11"><span class="sc-line">是我的疏忽，对不起。</span></div>
+  <div class="scene-box" id="s12"><span class="sc-line">但等它到了——</span><span class="sc-line big">希望你会感到双倍的快乐，</span></div>
+  <div class="scene-box" id="s13"><span class="sc-end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，一直是开心果。</span><span class="sc-sign">—— 儿童节快乐，吴总 🌟</span></div>
 </div>
 
 <script>
@@ -110,7 +110,7 @@ body{background:#010615}
   var scenes=[]; for(var i=0;i<14;i++){var e=document.getElementById('s'+i);if(e)scenes.push(e)}
   var cur=-1,lastEl=null;
 
-  /* 鈺愨晲 鏄熸槦鐢熸垚锛堢█鐤徛锋煍鍏壜锋氮婕級 鈺愨晲 */
+  /* ══ 星星生成（稀疏·柔光·浪漫） ══ */
   function mkStars(id,count,minR,maxR,minOp,maxOp,minPd,maxPd,scMin,scMax,colors){
     var L=document.getElementById(id),f=document.createDocumentFragment();
     for(var i=0;i<count;i++){
@@ -138,7 +138,7 @@ body{background:#010615}
   mkStars('sl2',45, 1.5,3.5, .08,.35, 3,8, 1.5,3.0,
     ['rgba(190,210,250,.75)','rgba(210,220,250,.65)','rgba(240,225,210,.65)','rgba(200,215,245,.6)','rgba(225,230,255,.55)']);
 
-  /* 鈺愨晲 鎽╃警搴ф槦搴?鈺愨晲 */
+  /* ══ 摩羯座星座 ══ */
   var constEl=document.getElementById('constellation'),constSvg=document.getElementById('constSvg');
   var constPts,constStarEls=[],constVisible=0,constCenter={x:0,y:0};
   var rawPts=[[0.48,0.14],[0.54,0.10],[0.60,0.13],[0.64,0.20],[0.58,0.27],[0.72,0.09],[0.77,0.07],[0.56,0.24],[0.52,0.06]];
@@ -159,14 +159,14 @@ body{background:#010615}
       s.style.cssText='left:'+(p.x-5)+'px;top:'+(p.y-5)+'px;width:10px;height:10px;opacity:0;transition:opacity .8s ease;--ct:'+(1.5+Math.random()*2.5).toFixed(1)+'s;--cdl:'+(Math.random()*2).toFixed(1)+'s';
       constEl.appendChild(s);constStarEls.push(s);
     });
-    // 鍏夌幆
+    // 光环
     var old=constEl.querySelector('.const-glow');if(old)old.remove();
     var g=document.createElement('div');g.className='const-glow';
     g.style.cssText='left:'+(cx-cw*.35)+'px;top:'+(cy-cw*.3)+'px;width:'+(cw*.7)+'px;height:'+(cw*.6)+'px';
     constEl.appendChild(g);
-    // 鏍囩
+    // 标签
     old=constEl.querySelector('.const-label');if(old)old.remove();
-    var l=document.createElement('div');l.className='const-label';l.textContent='鈾?CAPRICORNUS';
+    var l=document.createElement('div');l.className='const-label';l.textContent='♑ CAPRICORNUS';
     l.style.cssText='left:'+(cx-cw*.25)+'px;top:'+(cy-cw*.38)+'px';
     constEl.appendChild(l);
     constVisible=0;
@@ -180,14 +180,14 @@ body{background:#010615}
     if(p&&constVisible>=2)p.setAttribute('opacity',String(Math.min(1,constVisible/constStarEls.length*.8)));
   }
 
-  /* 鈺愨晲 鍦烘櫙鍒囨崲 鈺愨晲 */
+  /* ══ 场景切换 ══ */
   function showScene(i){
     if(lastEl){lastEl.classList.add('out');lastEl.classList.remove('in')}
     if(i>=0&&i<scenes.length){scenes[i].classList.remove('out');scenes[i].classList.add('in')}
     lastEl=scenes[i];cur=i;
   }
 
-  /* 鈺愨晲 鐑熻姳 鈺愨晲 */
+  /* ══ 烟花 ══ */
   function explode(x,y,count,colors){
     count=count||45;
     var cont=document.createElement('div');cont.className='fw-container';
@@ -211,7 +211,7 @@ body{background:#010615}
   function grandFirework(m){m=m||3;for(var i=0;i<m;i++)setTimeout(function(){explode(W*(.15+Math.random()*.7),H*(.08+Math.random()*.5),40+Math.floor(Math.random()*60))},i*280)}
   function showFirework(x,y){explode(x,y,35+Math.floor(Math.random()*45))}
 
-  /* 鈺愨晲 娴佹槦 鈺愨晲 */
+  /* ══ 流星 ══ */
   function shootMeteor(sx,sy,dx,dy,dur){
     var m=document.createElement('div');m.className='meteor';
     m.style.cssText='left:'+sx+'px;top:'+sy+'px;--dx:'+dx+'px;--dy:'+dy+'px;--sp:'+dur+'ms';
@@ -227,10 +227,10 @@ body{background:#010615}
     shootMeteor(cx-240+Math.random()*480,cy-260-Math.random()*160,50+Math.random()*220,90+Math.random()*180,900+Math.random()*1300);
   }
 
-  /* 鈺愨晲 鏃堕棿杞?鈺愨晲 */
+  /* ══ 时间轴 ══ */
   function start(){
     showScene(0);
-    // 鏄熷骇娓愭樉
+    // 星座渐显
     setTimeout(function(){constEl.classList.add('on')},1800);
     var t=setInterval(function(){revealConstStar();if(constVisible>=constStarEls.length)clearInterval(t)},320);
     setTimeout(function(){meteorThroughConstellation()},4500);
@@ -250,7 +250,7 @@ body{background:#010615}
     setTimeout(function(){showScene(13);grandFirework(8);setTimeout(function(){grandFirework(6)},700);setTimeout(function(){grandFirework(5)},1400);setTimeout(function(){grandFirework(4)},2100)},40800);
   }
 
-  /* 鈺愨晲 鎸佺画鑳屾櫙 鈺愨晲 */
+  /* ══ 持续背景 ══ */
   setInterval(function(){if(Math.random()<.3)randomMeteor();if(Math.random()<.12)meteorThroughConstellation()},3200);
   setInterval(function(){if(Math.random()<.12)showFirework(W*(.15+Math.random()*.7),H*(.1+Math.random()*.45))},4500);
 
