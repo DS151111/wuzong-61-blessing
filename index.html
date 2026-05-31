@@ -30,8 +30,13 @@
         .constel{position:fixed;z-index:2;pointer-events:none;opacity:0;transition:opacity 2s ease}
         .constel.on{opacity:1}
         .const-svg{position:absolute;top:0;left:0;width:100%;height:100%}
-        .const-star{position:absolute;border-radius:50%;background:#f7e8c8;box-shadow:0 0 12px 2px rgba(247,232,200,.5);animation:constTwinkle 2s ease-in-out infinite}
-        @keyframes constTwinkle{0%,100%{opacity:.7}50%{opacity:1}}
+        .const-star{position:absolute;border-radius:50%;background:#f7e8c8;box-shadow:0 0 12px 2px rgba(247,232,200,.5);animation:constTwinkle var(--ct,2s) ease-in-out infinite;animation-delay:var(--cdl,0s)}
+        @keyframes constTwinkle{0%,100%{opacity:.35;transform:scale(.8);box-shadow:0 0 6px 1px rgba(247,232,200,.3)}50%{opacity:1;transform:scale(1.3);box-shadow:0 0 20px 6px rgba(247,232,200,.7)}}
+        /* 星座光环 */
+        .const-glow{position:absolute;pointer-events:none;border-radius:50%;background:radial-gradient(circle,rgba(226,196,136,.08) 0%,transparent 70%);animation:constGlowPulse 4s ease-in-out infinite}
+        @keyframes constGlowPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.3);opacity:1}}
+        .const-label{position:absolute;color:rgba(226,196,136,.35);font-size:.65rem;letter-spacing:8px;pointer-events:none;animation:labelFade 4s ease-in-out infinite}
+        @keyframes labelFade{0%,100%{opacity:.2}50%{opacity:.5}}
 
         /* ── 流星 ── */
         .meteor{position:fixed;z-index:3;pointer-events:none;animation:meteorShoot var(--sp) linear forwards;opacity:0}
@@ -96,12 +101,12 @@
     <div class="scene-box" id="s5"><span class="sc-line">倔强过，努力过，也偷偷<span class="sc-line gold">难过过</span>。</span></div>
     <div class="scene-box" id="s6"><span class="sc-line big">但你看看，</span><span class="sc-line">星星从来不会因为黑夜而停止<span class="sc-line gold">闪烁</span>。</span></div>
     <div class="scene-box" id="s7"><span class="sc-line big">六一快乐。</span></div>
-    <div class="scene-box" id="s8"><span class="sc-line">今晚有烟花，<span class="sc-line gold">为你一个人放的</span>。</span></div>
+    <div class="scene-box" id="s8"><span class="sc-line">这里的所有烟花，<span class="sc-line gold">为你一人而放</span>。</span></div>
     <div class="scene-box" id="s9"><span class="sc-line">不是因为你需要庆祝，</span><span class="sc-line">而是因为这个世界——</span><span class="sc-line">需要你这样<span class="sc-line gold">天真烂漫</span>的人。</span></div>
     <div class="scene-box" id="s10"><span class="sc-line">你的六一礼物，<span class="sc-line gold">会晚两天到</span>。</span></div>
     <div class="scene-box" id="s11"><span class="sc-line">是我的疏忽，对不起。</span></div>
-    <div class="scene-box" id="s12"><span class="sc-line">但等它到了——</span><span class="sc-line big">你会收到双倍的快乐，</span><span class="sc-line"><span class="sc-line gold">我保证。</span></span></div>
-    <div class="scene-box" id="s13"><span class="sc-end">永远有糖吃<br>永远被偏爱<br>永远做我的开心果</span><span class="sc-sign">—— 儿童节快乐，吴总 🌟</span></div>
+    <div class="scene-box" id="s12"><span class="sc-line">但等它到了——</span><span class="sc-line big">希望你会感到双倍的快乐，</span></div>
+    <div class="scene-box" id="s13"><span class="sc-end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，一直是开心果。</span><span class="sc-sign">—— 儿童节快乐，吴总 🌟</span></div>
 </div>
 
 <script>
@@ -138,6 +143,7 @@
     var constEl=document.getElementById('constellation');
     var constSvg=document.getElementById('constSvg');
     var constPts, constStarEls=[], constVisible=0;
+    var constCenter={x:0,y:0};
     // 摩羯座简化坐标（9颗星 + 连线）
     var rawPts=[
         [0.48,0.14],[0.54,0.10],[0.60,0.13],
@@ -164,15 +170,33 @@
         });
         constSvg.innerHTML='<path d="'+pathData+'" stroke="rgba(226,196,136,0.25)" stroke-width="1.5" fill="none" opacity="0" id="constPath"/>';
         // 星星DOM
+        constCenter={x:cx,y:cy};
         constStarEls.forEach(function(el){if(el.parentNode)el.parentNode.removeChild(el)});
         constStarEls=[];
-        constPts.forEach(function(p){
+        constPts.forEach(function(p,i){
             var s=document.createElement('div');
             s.className='const-star';
-            s.style.cssText='left:'+(p.x-6)+'px;top:'+(p.y-6)+'px;width:12px;height:12px;opacity:0;transition:opacity .6s ease';
+            var td=(1.5+Math.random()*2.5).toFixed(1);
+            var dl=(Math.random()*2).toFixed(1);
+            s.style.cssText='left:'+(p.x-6)+'px;top:'+(p.y-6)+'px;width:12px;height:12px;opacity:0;transition:opacity .6s ease;--ct:'+td+'s;--cdl:'+dl+'s';
             constEl.appendChild(s);
             constStarEls.push(s);
         });
+        // 光环
+        var oldGlow=constEl.querySelector('.const-glow');
+        if(oldGlow)oldGlow.remove();
+        var glow=document.createElement('div');
+        glow.className='const-glow';
+        glow.style.cssText='left:'+(cx-cw*0.4)+'px;top:'+(cy-cw*0.35)+'px;width:'+(cw*0.8)+'px;height:'+(cw*0.7)+'px';
+        constEl.appendChild(glow);
+        // 标签
+        var oldLbl=constEl.querySelector('.const-label');
+        if(oldLbl)oldLbl.remove();
+        var lbl=document.createElement('div');
+        lbl.className='const-label';
+        lbl.textContent='♑ CAPRICORNUS';
+        lbl.style.cssText='left:'+(cx-cw*0.3)+'px;top:'+(cy-cw*0.42)+'px';
+        constEl.appendChild(lbl);
         constVisible=0;
     }
     buildConstellation();
@@ -242,6 +266,14 @@
     function showFirework(x,y){ explode(x,y,40+Math.floor(Math.random()*50)) }
 
     /* ═══════ 流星 ═══════ */
+    function meteorThroughConstellation(){
+        var cx=constCenter.x, cy=constCenter.y;
+        var sx=cx-250+Math.random()*500;
+        var sy=cy-280-Math.random()*180;
+        var dx=60+Math.random()*250;
+        var dy=100+Math.random()*200;
+        shootMeteor(sx,sy,dx,dy,900+Math.random()*1400);
+    }
     function shootMeteor(sx,sy,dx,dy,dur){
         var m=document.createElement('div');
         m.className='meteor';
@@ -274,6 +306,8 @@
             revealConstStar();
             if(constVisible>=constStarEls.length) clearInterval(constTimer);
         }, 280);
+        // 星座逐颗亮完后，流星穿过
+        setTimeout(function(){ meteorThroughConstellation(); }, 4200);
 
         // 4s
         setTimeout(function(){ showScene(1); }, 3800);
@@ -289,11 +323,11 @@
         }, 11500);
 
         // 15s
-        setTimeout(function(){ showScene(5); randomMeteor(); }, 14000);
+        setTimeout(function(){ showScene(5); meteorThroughConstellation(); }, 14000);
         // 18s
         setTimeout(function(){
             showScene(6);
-            for(var i=0;i<2;i++) setTimeout(randomMeteor,i*500);
+            setTimeout(meteorThroughConstellation,300);
         }, 17000);
 
         // 21s - 🎆 六一快乐 + 盛大烟花
@@ -342,7 +376,10 @@
     }
 
     /* ═══════ 持续背景效果 ═══════ */
-    setInterval(function(){if(Math.random()<.35)randomMeteor()},2800);
+    setInterval(function(){
+        if(Math.random()<.35)randomMeteor();
+        if(Math.random()<.15)meteorThroughConstellation();
+    },2800);
     setInterval(function(){if(Math.random()<.15)showFirework(W*(.1+Math.random()*.8),H*(.08+Math.random()*.45))},4000);
 
     /* ═══════ 启动 ═══════ */
