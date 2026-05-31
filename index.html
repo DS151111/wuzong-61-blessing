@@ -3,58 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
-    <title>🌟 吴总 · 六一快乐</title>
+    <title>馃専 鍚存€?路 鍏竴蹇箰</title>
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         html,body{width:100vw;height:100vh;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}
-        body{background:radial-gradient(ellipse at 30% 20%, #0a1030 0%, #030818 40%, #010412 100%)}
+        body{background:#000008;background-image:radial-gradient(ellipse at 35% 25%, #0a1028 0%, #030612 35%, #000004 100%)}
         @media(max-width:768px){body{font-size:14px}}
 
-        /* ── 星云层 ── */
-        .nebula{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-        .nebula-blob{position:absolute;border-radius:50%;filter:blur(80px)}
-        .nb1{width:60vmax;height:60vmax;top:-20%;left:-10%;background:radial-gradient(circle,rgba(30,60,130,.18) 0%,transparent 70%);animation:driftA 25s ease-in-out infinite}
-        .nb2{width:50vmax;height:50vmax;bottom:-15%;right:-10%;background:radial-gradient(circle,rgba(180,140,80,.10) 0%,transparent 70%);animation:driftB 30s ease-in-out infinite}
-        .nb3{width:40vmax;height:40vmax;top:40%;left:30%;background:radial-gradient(circle,rgba(60,100,180,.08) 0%,transparent 70%);animation:driftC 20s ease-in-out infinite}
-        @keyframes driftA{0%,100%{transform:translate(0,0)}33%{transform:translate(10vw,-5vh)}66%{transform:translate(-5vw,8vh)}}
-        @keyframes driftB{0%,100%{transform:translate(0,0)}33%{transform:translate(-8vw,5vh)}66%{transform:translate(6vw,-4vh)}}
-        @keyframes driftC{0%,100%{transform:translate(0,0)}50%{transform:translate(-4vw,-3vh)}}
+        /* 鈹€鈹€ 閾舵渤鍏夊甫灞?鈹€鈹€ */
+        .galaxy-band{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+        .galaxy-strip{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35}
+        .gs1{width:120vmax;height:25vmax;top:15%;left:-10%;background:linear-gradient(135deg,rgba(80,120,200,.15) 0%,rgba(140,170,220,.12) 20%,rgba(200,215,240,.10) 40%,rgba(140,170,220,.12) 60%,rgba(60,90,180,.08) 100%);transform:rotate(-15deg);animation:galaxyShift 35s ease-in-out infinite}
+        .gs2{width:100vmax;height:20vmax;top:30%;left:5%;background:linear-gradient(135deg,transparent 0%,rgba(180,200,240,.08) 30%,rgba(220,230,250,.14) 50%,rgba(160,190,230,.09) 70%,transparent 100%);transform:rotate(-12deg);animation:galaxyShift 40s ease-in-out infinite reverse}
+        .gs3{width:90vmax;height:18vmax;top:42%;left:-5%;background:linear-gradient(135deg,transparent 0%,rgba(100,140,200,.06) 25%,rgba(200,220,245,.10) 55%,rgba(120,160,210,.07) 80%,transparent 100%);transform:rotate(-10deg);animation:galaxyShift 45s ease-in-out infinite}
+        @keyframes galaxyShift{0%,100%{transform:rotate(-15deg) translate(0,0)}25%{transform:rotate(-13deg) translate(5vw,2vh)}50%{transform:rotate(-17deg) translate(-3vw,-1vh)}75%{transform:rotate(-14deg) translate(-4vw,3vh)}}
+        /* 瀹囧畽灏樺焹寰矑 */
+        .cosmic-dust{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        .dust-particle{position:absolute;border-radius:50%;background:rgba(180,200,235,.15);animation:dustDrift var(--dd) linear infinite;opacity:0}
+        @keyframes dustDrift{0%{opacity:0;transform:translate(var(--dx0),var(--dy0))}10%{opacity:.6}90%{opacity:.6}100%{opacity:0;transform:translate(var(--dx1),var(--dy1))}}
+        /* 鐢靛奖閬箙 */
+        .cinema-vignette{position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,4,.55) 100%)}
 
-        /* ── 星星（三层视差） ── */
+        /* 鈹€鈹€ 鏄熸槦锛堜笁灞傝宸級 鈹€鈹€ */
         .star-layer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
         .star-dot{position:absolute;border-radius:50%;background:#fff;animation:starPulse var(--pd) ease-in-out infinite;animation-delay:var(--dl);opacity:var(--op)}
-        .star-dot.gold{background:#e2c488;box-shadow:0 0 6px rgba(226,196,136,.4)}
+        .star-dot.bright{box-shadow:0 0 var(--glow,8px) var(--gcol,3px) rgba(200,220,255,.6)}
+        .star-dot.gold{background:#e2c488;box-shadow:0 0 10px 4px rgba(226,196,136,.5)}
+        .star-dot.cool-white{background:#e8f0ff;box-shadow:0 0 14px 6px rgba(180,210,255,.7)}
         @keyframes starPulse{0%,100%{opacity:var(--op);transform:scale(1)}50%{opacity:1;transform:scale(var(--sc))}}
 
-        /* ── 摩羯座星座（SVG连线） ── */
+        /* 鈹€鈹€ 鎽╃警搴ф槦搴э紙SVG杩炵嚎锛?鈹€鈹€ */
         .constel{position:fixed;z-index:2;pointer-events:none;opacity:0;transition:opacity 2s ease}
         .constel.on{opacity:1}
         .const-svg{position:absolute;top:0;left:0;width:100%;height:100%}
         .const-star{position:absolute;border-radius:50%;background:#f7e8c8;box-shadow:0 0 12px 2px rgba(247,232,200,.5);animation:constTwinkle var(--ct,2s) ease-in-out infinite;animation-delay:var(--cdl,0s)}
         @keyframes constTwinkle{0%,100%{opacity:.35;transform:scale(.8);box-shadow:0 0 6px 1px rgba(247,232,200,.3)}50%{opacity:1;transform:scale(1.3);box-shadow:0 0 20px 6px rgba(247,232,200,.7)}}
-        /* 星座光环 */
+        /* 鏄熷骇鍏夌幆 */
         .const-glow{position:absolute;pointer-events:none;border-radius:50%;background:radial-gradient(circle,rgba(226,196,136,.08) 0%,transparent 70%);animation:constGlowPulse 4s ease-in-out infinite}
         @keyframes constGlowPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.3);opacity:1}}
         .const-label{position:absolute;color:rgba(226,196,136,.35);font-size:.65rem;letter-spacing:8px;pointer-events:none;animation:labelFade 4s ease-in-out infinite}
         @keyframes labelFade{0%,100%{opacity:.2}50%{opacity:.5}}
 
-        /* ── 流星 ── */
+        /* 鈹€鈹€ 娴佹槦 鈹€鈹€ */
         .meteor{position:fixed;z-index:3;pointer-events:none;animation:meteorShoot var(--sp) linear forwards;opacity:0}
-        .meteor-head{width:3px;height:3px;background:#fff;border-radius:50%;box-shadow:0 0 8px 2px #fff}
-        .meteor-tail{position:absolute;top:50%;right:2px;width:80px;height:1px;background:linear-gradient(to left,#fff,transparent);transform:translateY(-50%)}
+        .meteor-head{width:3px;height:3px;background:#fff;border-radius:50%;box-shadow:0 0 12px 4px #fff,0 0 24px 8px rgba(200,220,255,.5)}
+        .meteor-tail{position:absolute;top:50%;right:2px;width:100px;height:1.5px;background:linear-gradient(to left,#fff,rgba(180,210,255,.5),transparent);transform:translateY(-50%)}
         @keyframes meteorShoot{0%{opacity:0}5%{opacity:1}30%{opacity:.8}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
 
-        /* ── 烟花 ── */
+        /* 鈹€鈹€ 鐑熻姳 鈹€鈹€ */
         .fw-container{position:fixed;z-index:4;pointer-events:none}
         .fw-spark{position:absolute;width:3px;height:3px;border-radius:50%;animation:fwBurst var(--d) cubic-bezier(.25,.46,.45,.94) forwards;opacity:0}
         .fw-spark.trail{width:2px;height:2px}
         @keyframes fwBurst{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}}
 
-        /* ── 上升火箭 ── */
+        /* 鈹€鈹€ 涓婂崌鐏 鈹€鈹€ */
         .fw-rocket{position:fixed;z-index:3;width:2px;height:2px;background:#f7c873;border-radius:50%;box-shadow:0 0 8px 2px rgba(247,200,115,.6);pointer-events:none;animation:fwRise .8s cubic-bezier(.25,.46,.45,.94) forwards}
         @keyframes fwRise{0%{transform:translateY(0);opacity:1}100%{transform:translateY(var(--ry));opacity:0}}
 
-        /* ── 场景文字层 ── */
+        /* 鈹€鈹€ 鍦烘櫙鏂囧瓧灞?鈹€鈹€ */
         .scene-stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
         .scene-box{position:absolute;width:85%;max-width:560px;text-align:center;opacity:0;transform:scale(.94);transition:opacity 1.5s cubic-bezier(.16,1,.3,1),transform 1.5s cubic-bezier(.16,1,.3,1)}
         .scene-box.in{opacity:1;transform:scale(1)}
@@ -78,35 +84,41 @@
 </head>
 <body>
 
-<!-- 星云 -->
-<div class="nebula"><div class="nebula-blob nb1"></div><div class="nebula-blob nb2"></div><div class="nebula-blob nb3"></div></div>
+<!-- 閾舵渤鍏夊甫 -->
+<div class="galaxy-band"><div class="galaxy-strip gs1"></div><div class="galaxy-strip gs2"></div><div class="galaxy-strip gs3"></div></div>
 
-<!-- 星星层（3层：深空/中距/近距） -->
+<!-- 瀹囧畽灏樺焹 -->
+<div class="cosmic-dust" id="cosmicDust"></div>
+
+<!-- 鐢靛奖閬箙 -->
+<div class="cinema-vignette"></div>
+
+<!-- 鏄熸槦灞傦紙3灞傦細娣辩┖/涓窛/杩戣窛锛?-->
 <div class="star-layer" id="sl1"></div>
 <div class="star-layer" id="sl2"></div>
 <div class="star-layer" id="sl3"></div>
 
-<!-- 摩羯座星座 -->
+<!-- 鎽╃警搴ф槦搴?-->
 <div class="constel" id="constellation">
     <svg class="const-svg" id="constSvg"></svg>
 </div>
 
-<!-- 场景文字 -->
+<!-- 鍦烘櫙鏂囧瓧 -->
 <div class="scene-stage" id="stage">
-    <div class="scene-box" id="s0"><span class="sc-sub">CHILDREN'S DAY · 2026</span><span class="sc-hero">吴 总</span><span class="sc-tag">✦ 摩羯座 · 12.29 ✦</span></div>
-    <div class="scene-box" id="s1"><span class="sc-line">你出生在<span class="sc-line gold">12月29日</span>，</span><span class="sc-line">摩羯座的星星，从那天起就为你亮着。</span></div>
-    <div class="scene-box" id="s2"><span class="sc-line"><span class="sc-line gold">19岁</span>了，刚好的年纪——</span><span class="sc-line">有大人的洒脱，也有孩子气的骄傲。</span></div>
-    <div class="scene-box" id="s3"><span class="sc-line big">所以今天，</span><span class="sc-line">麻烦你做回那个<span class="sc-line gold">吃糖的小孩</span>。</span></div>
-    <div class="scene-box" id="s4"><span class="sc-line">每一颗星星，都是你这一年里<span class="sc-line gold">发过的光</span>——</span></div>
-    <div class="scene-box" id="s5"><span class="sc-line">倔强过，努力过，也偷偷<span class="sc-line gold">难过过</span>。</span></div>
-    <div class="scene-box" id="s6"><span class="sc-line big">但你看看，</span><span class="sc-line">星星从来不会因为黑夜而停止<span class="sc-line gold">闪烁</span>。</span></div>
-    <div class="scene-box" id="s7"><span class="sc-line big">六一快乐。</span></div>
-    <div class="scene-box" id="s8"><span class="sc-line">这里的所有烟花，<span class="sc-line gold">为你一人而放</span>。</span></div>
-    <div class="scene-box" id="s9"><span class="sc-line">不是因为你需要庆祝，</span><span class="sc-line">而是因为这个世界——</span><span class="sc-line">需要你这样<span class="sc-line gold">天真烂漫</span>的人。</span></div>
-    <div class="scene-box" id="s10"><span class="sc-line">你的六一礼物，<span class="sc-line gold">会晚两天到</span>。</span></div>
-    <div class="scene-box" id="s11"><span class="sc-line">是我的疏忽，对不起。</span></div>
-    <div class="scene-box" id="s12"><span class="sc-line">但等它到了——</span><span class="sc-line big">希望你会感到双倍的快乐，</span></div>
-    <div class="scene-box" id="s13"><span class="sc-end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，一直是开心果。</span><span class="sc-sign">—— 儿童节快乐，吴总 🌟</span></div>
+    <div class="scene-box" id="s0"><span class="sc-sub">CHILDREN'S DAY 路 2026</span><span class="sc-hero">鍚?鎬?/span><span class="sc-tag">鉁?鎽╃警搴?路 12.29 鉁?/span></div>
+    <div class="scene-box" id="s1"><span class="sc-line">浣犲嚭鐢熷湪<span class="sc-line gold">12鏈?9鏃?/span>锛?/span><span class="sc-line">鎽╃警搴х殑鏄熸槦锛屼粠閭ｅぉ璧峰氨涓轰綘浜潃銆?/span></div>
+    <div class="scene-box" id="s2"><span class="sc-line"><span class="sc-line gold">19宀?/span>浜嗭紝鍒氬ソ鐨勫勾绾€斺€?/span><span class="sc-line">鏈夊ぇ浜虹殑娲掕劚锛屼篃鏈夊瀛愭皵鐨勯獎鍌层€?/span></div>
+    <div class="scene-box" id="s3"><span class="sc-line big">鎵€浠ヤ粖澶╋紝</span><span class="sc-line">楹荤儲浣犲仛鍥為偅涓?span class="sc-line gold">鍚冪硸鐨勫皬瀛?/span>銆?/span></div>
+    <div class="scene-box" id="s4"><span class="sc-line">姣忎竴棰楁槦鏄燂紝閮芥槸浣犺繖涓€骞撮噷<span class="sc-line gold">鍙戣繃鐨勫厜</span>鈥斺€?/span></div>
+    <div class="scene-box" id="s5"><span class="sc-line">鍊斿己杩囷紝鍔姏杩囷紝涔熷伔鍋?span class="sc-line gold">闅捐繃杩?/span>銆?/span></div>
+    <div class="scene-box" id="s6"><span class="sc-line big">浣嗕綘鐪嬬湅锛?/span><span class="sc-line">鏄熸槦浠庢潵涓嶄細鍥犱负榛戝鑰屽仠姝?span class="sc-line gold">闂儊</span>銆?/span></div>
+    <div class="scene-box" id="s7"><span class="sc-line big">鍏竴蹇箰銆?/span></div>
+    <div class="scene-box" id="s8"><span class="sc-line">杩欓噷鐨勬墍鏈夌儫鑺憋紝<span class="sc-line gold">涓轰綘涓€浜鸿€屾斁</span>銆?/span></div>
+    <div class="scene-box" id="s9"><span class="sc-line">涓嶆槸鍥犱负浣犻渶瑕佸簡绁濓紝</span><span class="sc-line">鑰屾槸鍥犱负杩欎釜涓栫晫鈥斺€?/span><span class="sc-line">闇€瑕佷綘杩欐牱<span class="sc-line gold">澶╃湡鐑傛极</span>鐨勪汉銆?/span></div>
+    <div class="scene-box" id="s10"><span class="sc-line">浣犵殑鍏竴绀肩墿锛?span class="sc-line gold">浼氭櫄涓ゅぉ鍒?/span>銆?/span></div>
+    <div class="scene-box" id="s11"><span class="sc-line">鏄垜鐨勭枏蹇斤紝瀵逛笉璧枫€?/span></div>
+    <div class="scene-box" id="s12"><span class="sc-line">浣嗙瓑瀹冨埌浜嗏€斺€?/span><span class="sc-line big">甯屾湜浣犱細鎰熷埌鍙屽€嶇殑蹇箰锛?/span></div>
+    <div class="scene-box" id="s13"><span class="sc-end">姘歌繙鏈夌硸鍚?br>姘歌繙琚亸鐖?br>涔熸効鎴戞案杩滆兘閫椾綘绗戯紝涓€鐩存槸寮€蹇冩灉銆?/span><span class="sc-sign">鈥斺€?鍎跨鑺傚揩涔愶紝鍚存€?馃専</span></div>
 </div>
 
 <script>
@@ -115,37 +127,68 @@
     var scenes=[]; for(var i=0;i<14;i++){ var e=document.getElementById('s'+i); if(e)scenes.push(e); }
     var cur=-1,lastEl=null;
 
-    /* ═══════ 生成星星（3层深度） ═══════ */
-    function mkStars(id,count,minR,maxR,minOp,maxOp,minPd,maxPd,scMin,scMax,goldRate){
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?鐢熸垚鏄熸槦锛?灞傛繁搴?鐠€鐠ㄧ櫧鍏夛級 鈺愨晲鈺愨晲鈺愨晲鈺?*/
+    function mkStars(id,count,minR,maxR,minOp,maxOp,minPd,maxPd,scMin,scMax,goldRate,brightRate,coolRate){
         var L=document.getElementById(id),f=document.createDocumentFragment();
         for(var i=0;i<count;i++){
             var d=document.createElement('div');
             var gold=Math.random()<goldRate;
-            d.className='star-dot'+(gold?' gold':'');
-            d.style.cssText=
+            var bright=Math.random()<brightRate;
+            var cool=Math.random()<coolRate;
+            var cls='star-dot';
+            if(cool)cls+=' cool-white';
+            else if(gold)cls+=' gold';
+            else if(bright)cls+=' bright';
+            d.className=cls;
+            var r=minR+Math.random()*(maxR-minR);
+            var op=minOp+Math.random()*(maxOp-minOp);
+            var css=
                 'left:'+(Math.random()*100)+'%;'+
                 'top:'+(Math.random()*100)+'%;'+
-                'width:'+(minR+Math.random()*(maxR-minR)).toFixed(1)+'px;'+
-                'height:'+(minR+Math.random()*(maxR-minR)).toFixed(1)+'px;'+
-                '--op:'+(minOp+Math.random()*(maxOp-minOp)).toFixed(2)+';'+
+                'width:'+r.toFixed(1)+'px;'+
+                'height:'+r.toFixed(1)+'px;'+
+                '--op:'+op.toFixed(2)+';'+
                 '--pd:'+(minPd+Math.random()*(maxPd-minPd)).toFixed(1)+'s;'+
                 '--dl:'+(Math.random()*(maxPd-minPd)).toFixed(1)+'s;'+
-                '--sc:'+(scMin+Math.random()*(scMax-scMin)).toFixed(1)
+                '--sc:'+(scMin+Math.random()*(scMax-scMin)).toFixed(1);
+            if(bright)css+=';--glow:'+(r*4+4).toFixed(0)+'px;--gcol:'+(r*3+2).toFixed(0)+'px';
+            else if(cool)css+=';--glow:'+(r*5+6).toFixed(0)+'px;--gcol:'+(r*4+3).toFixed(0)+'px';
+            d.style.cssText=css;
             f.appendChild(d);
         }
         L.appendChild(f);
     }
-    mkStars('sl1',130, 0.5,1.8, 0.06,0.22, 4,9,   1.3,2.5, 0.05); // 深空 - 慢闪
-    mkStars('sl2',180, 1.0,3.0, 0.10,0.40, 2.5,6, 1.5,3.0, 0.10); // 中层
-    mkStars('sl3', 90, 2.0,4.5, 0.15,0.55, 1.5,4, 2.0,4.0, 0.20); // 近距 - 亮闪
+    mkStars('sl1',150, 0.5,2.0, 0.04,0.20, 5,10,   1.3,2.8, 0.03, 0.08, 0.05); // 娣辩┖
+    mkStars('sl2',200, 1.0,3.5, 0.08,0.45, 2.5,7,  1.5,3.5, 0.08, 0.12, 0.08); // 涓眰
+    mkStars('sl3',100, 2.0,5.5, 0.12,0.60, 1.5,5,  2.0,5.0, 0.15, 0.18, 0.12); // 杩戣窛 - 浜棯
 
-    /* ═══════ 摩羯座星座 ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?瀹囧畽灏樺焹 鈺愨晲鈺愨晲鈺愨晲鈺?*/
+    (function(){
+        var dust=document.getElementById('cosmicDust');
+        for(var i=0;i<50;i++){
+            var dp=document.createElement('div');
+            dp.className='dust-particle';
+            var dd=15+Math.random()*35;
+            dp.style.cssText=
+                'left:'+(Math.random()*100)+'%;'+
+                'top:'+(Math.random()*100)+'%;'+
+                'width:'+(1+Math.random()*2)+'px;'+
+                'height:'+(1+Math.random()*2)+'px;'+
+                '--dd:'+dd+'s;'+
+                'animation-delay:'+(-Math.random()*dd)+'s;'+
+                '--dx0:0px;--dy0:0px;'+
+                '--dx1:'+(-60+Math.random()*120)+'px;'+
+                '--dy1:'+(-40+Math.random()*80)+'px';
+            dust.appendChild(dp);
+        }
+    })();
+
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?鎽╃警搴ф槦搴?鈺愨晲鈺愨晲鈺愨晲鈺?*/
     var constEl=document.getElementById('constellation');
     var constSvg=document.getElementById('constSvg');
     var constPts, constStarEls=[], constVisible=0;
     var constCenter={x:0,y:0};
-    // 摩羯座简化坐标（9颗星 + 连线）
-    var rawPts=[
+    // 鎽╃警搴х畝鍖栧潗鏍囷紙9棰楁槦 + 杩炵嚎锛?    var rawPts=[
         [0.48,0.14],[0.54,0.10],[0.60,0.13],
         [0.64,0.20],[0.58,0.27],[0.72,0.09],
         [0.77,0.07],[0.56,0.24],[0.52,0.06]
@@ -157,7 +200,7 @@
         constPts=rawPts.map(function(p){
             return {x:cx+(p[0]-0.58)*cw, y:cy+(p[1]-0.14)*cw}
         });
-        // SVG线条
+        // SVG绾挎潯
         var svgW=W, svgH=H;
         constSvg.setAttribute('viewBox','0 0 '+svgW+' '+svgH);
         constSvg.setAttribute('width',svgW);
@@ -168,8 +211,8 @@
             pathData+='M'+a.x.toFixed(0)+','+a.y.toFixed(0)+' ';
             pathData+='L'+b.x.toFixed(0)+','+b.y.toFixed(0)+' ';
         });
-        constSvg.innerHTML='<path d="'+pathData+'" stroke="rgba(226,196,136,0.25)" stroke-width="1.5" fill="none" opacity="0" id="constPath"/>';
-        // 星星DOM
+        constSvg.innerHTML='<path d="'+pathData+'" stroke="rgba(226,196,136,0.30)" stroke-width="1.5" fill="none" opacity="0" id="constPath"/>';
+        // 鏄熸槦DOM
         constCenter={x:cx,y:cy};
         constStarEls.forEach(function(el){if(el.parentNode)el.parentNode.removeChild(el)});
         constStarEls=[];
@@ -182,19 +225,19 @@
             constEl.appendChild(s);
             constStarEls.push(s);
         });
-        // 光环
+        // 鍏夌幆
         var oldGlow=constEl.querySelector('.const-glow');
         if(oldGlow)oldGlow.remove();
         var glow=document.createElement('div');
         glow.className='const-glow';
         glow.style.cssText='left:'+(cx-cw*0.4)+'px;top:'+(cy-cw*0.35)+'px;width:'+(cw*0.8)+'px;height:'+(cw*0.7)+'px';
         constEl.appendChild(glow);
-        // 标签
+        // 鏍囩
         var oldLbl=constEl.querySelector('.const-label');
         if(oldLbl)oldLbl.remove();
         var lbl=document.createElement('div');
         lbl.className='const-label';
-        lbl.textContent='♑ CAPRICORNUS';
+        lbl.textContent='鈾?CAPRICORNUS';
         lbl.style.cssText='left:'+(cx-cw*0.3)+'px;top:'+(cy-cw*0.42)+'px';
         constEl.appendChild(lbl);
         constVisible=0;
@@ -205,12 +248,12 @@
         if(constVisible>=constStarEls.length)return;
         constStarEls[constVisible].style.opacity='1';
         constVisible++;
-        // 更新连线
+        // 鏇存柊杩炵嚎
         var path=document.getElementById('constPath');
         if(path&&constVisible>=2){path.setAttribute('opacity',String(Math.min(1,constVisible/constStarEls.length)));}
     }
 
-    /* ═══════ 场景切换 ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?鍦烘櫙鍒囨崲 鈺愨晲鈺愨晲鈺愨晲鈺?*/
     function showScene(i){
         if(lastEl){ lastEl.classList.add('out'); lastEl.classList.remove('in'); }
         if(i>=0&&i<scenes.length){
@@ -220,7 +263,7 @@
         lastEl=scenes[i]; cur=i;
     }
 
-    /* ═══════ 烟花系统 ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?鐑熻姳绯荤粺 鈺愨晲鈺愨晲鈺愨晲鈺?*/
     function explode(x,y,count,colors){
         count=count||50;
         var cont=document.createElement('div');
@@ -239,8 +282,7 @@
                 '--d:'+(0.7+Math.random()*1.3).toFixed(1)+'s'
             cont.appendChild(s);
         }
-        // 内层小火花
-        for(var j=0;j<Math.floor(count*0.4);j++){
+        // 鍐呭眰灏忕伀鑺?        for(var j=0;j<Math.floor(count*0.4);j++){
             var r=document.createElement('div');
             r.className='fw-spark trail';
             var a2=Math.random()*Math.PI*2;
@@ -265,7 +307,7 @@
 
     function showFirework(x,y){ explode(x,y,40+Math.floor(Math.random()*50)) }
 
-    /* ═══════ 流星 ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?娴佹槦 鈺愨晲鈺愨晲鈺愨晲鈺?*/
     function meteorThroughConstellation(){
         var cx=constCenter.x, cy=constCenter.y;
         var sx=cx-250+Math.random()*500;
@@ -295,18 +337,16 @@
         shootMeteor(sx,sy,dx,dy,dur);
     }
 
-    /* ═══════ 时间轴 ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?鏃堕棿杞?鈺愨晲鈺愨晲鈺愨晲鈺?*/
     function start(){
-        // 0s 开场
-        showScene(0);
+        // 0s 寮€鍦?        showScene(0);
 
-        // 2s - 星座开始显现
-        setTimeout(function(){ constEl.classList.add('on'); }, 1500);
+        // 2s - 鏄熷骇寮€濮嬫樉鐜?        setTimeout(function(){ constEl.classList.add('on'); }, 1500);
         var constTimer=setInterval(function(){
             revealConstStar();
             if(constVisible>=constStarEls.length) clearInterval(constTimer);
         }, 280);
-        // 星座逐颗亮完后，流星穿过
+        // 鏄熷骇閫愰浜畬鍚庯紝娴佹槦绌胯繃
         setTimeout(function(){ meteorThroughConstellation(); }, 4200);
 
         // 4s
@@ -316,7 +356,7 @@
         // 10s
         setTimeout(function(){ showScene(3); }, 9500);
 
-        // 12s - 流星入场
+        // 12s - 娴佹槦鍏ュ満
         setTimeout(function(){
             showScene(4);
             for(var i=0;i<4;i++) setTimeout(randomMeteor, i*350);
@@ -330,21 +370,20 @@
             setTimeout(meteorThroughConstellation,300);
         }, 17000);
 
-        // 21s - 🎆 六一快乐 + 盛大烟花
+        // 21s - 馃巻 鍏竴蹇箰 + 鐩涘ぇ鐑熻姳
         setTimeout(function(){
             showScene(7);
             grandFirework(6);
-            // 第二轮
-            setTimeout(function(){grandFirework(4)},1200);
+            // 绗簩杞?            setTimeout(function(){grandFirework(4)},1200);
         }, 20500);
 
-        // 24s + 烟花
+        // 24s + 鐑熻姳
         setTimeout(function(){
             showScene(8);
             grandFirework(5);
         }, 23500);
 
-        // 27s + 烟花
+        // 27s + 鐑熻姳
         setTimeout(function(){
             showScene(9);
             grandFirework(7);
@@ -357,15 +396,14 @@
         // 34s
         setTimeout(function(){ showScene(11); setTimeout(randomMeteor,600); }, 33500);
 
-        // 37s - 🎇 双倍快乐 + 超盛大烟花
-        setTimeout(function(){
+        // 37s - 馃巼 鍙屽€嶅揩涔?+ 瓒呯洓澶х儫鑺?        setTimeout(function(){
             showScene(12);
             grandFirework(8);
             setTimeout(function(){grandFirework(6)},800);
             setTimeout(function(){grandFirework(5)},1600);
         }, 36500);
 
-        // 41s - 🌟 结尾 + 终极烟花
+        // 41s - 馃専 缁撳熬 + 缁堟瀬鐑熻姳
         setTimeout(function(){
             showScene(13);
             grandFirework(10);
@@ -375,17 +413,17 @@
         }, 40500);
     }
 
-    /* ═══════ 持续背景效果 ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?鎸佺画鑳屾櫙鏁堟灉 鈺愨晲鈺愨晲鈺愨晲鈺?*/
     setInterval(function(){
         if(Math.random()<.35)randomMeteor();
         if(Math.random()<.15)meteorThroughConstellation();
     },2800);
     setInterval(function(){if(Math.random()<.15)showFirework(W*(.1+Math.random()*.8),H*(.08+Math.random()*.45))},4000);
 
-    /* ═══════ 启动 ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?鍚姩 鈺愨晲鈺愨晲鈺愨晲鈺?*/
     start();
 
-    /* ═══════ resize ═══════ */
+    /* 鈺愨晲鈺愨晲鈺愨晲鈺?resize 鈺愨晲鈺愨晲鈺愨晲鈺?*/
     window.addEventListener('resize',function(){
         W=window.innerWidth;H=window.innerHeight;
         buildConstellation();
@@ -393,6 +431,16 @@
             constStarEls.forEach(function(s,i){if(i<constVisible)s.style.opacity='1'});
             var path=document.getElementById('constPath');
             if(path&&constVisible>=2)path.setAttribute('opacity',String(Math.min(1,constVisible/constStarEls.length)));
+        }
+        // 鍒锋柊灏樺焹
+        var dust=document.getElementById('cosmicDust');
+        if(dust){dust.innerHTML='';
+            for(var i=0;i<50;i++){
+                var dp=document.createElement('div');dp.className='dust-particle';
+                var dd=15+Math.random()*35;
+                dp.style.cssText='left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;width:'+(1+Math.random()*2)+'px;height:'+(1+Math.random()*2)+'px;--dd:'+dd+'s;animation-delay:'+(-Math.random()*dd)+'s;--dx0:0px;--dy0:0px;--dx1:'+(-60+Math.random()*120)+'px;--dy1:'+(-40+Math.random()*80)+'px';
+                dust.appendChild(dp);
+            }
         }
     });
 })();
