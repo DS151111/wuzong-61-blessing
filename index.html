@@ -3,98 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
-<title>🌟 吴总 · 六一快乐</title>
+<title>🌸 吴总 · 六一快乐</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB','Noto Sans SC',sans-serif;background:#020610;-webkit-font-smoothing:antialiased}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
 
-/* ======== L0: DEEP SPACE ======== */
-.cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
-.cosmos-bg{
-  width:100%;height:100%;
+/* ======== TWILIGHT GRADIENT BACKGROUND ======== */
+.bg-sky{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 34%, rgba(30,110,170,.30) 0%, rgba(15,70,120,.18) 22%, transparent 52%),
-    radial-gradient(ellipse 50% 36% at 52% 36%, rgba(60,180,210,25) 0%, rgba(25,130,165,.12) 24%, transparent 50%),
-    radial-gradient(ellipse 56% 44% at 28% 54%, rgba(150,55,100,24) 0%, rgba(120,35,80,.14) 26%, transparent 54%),
-    radial-gradient(ellipse 42% 32% at 24% 58%, rgba(180,75,95,.18) 0%, rgba(140,45,72,.10) 26%, transparent 48%),
-    radial-gradient(ellipse 52% 28% at 44% 68%, rgba(170,110,80,.16) 0%, rgba(130,75,55,.08) 22%, transparent 46%),
-    radial-gradient(ellipse at center, rgba(6,16,40,.55) 0%, rgba(3,8,22,.88) 48%, rgba(1,3,12,.97) 100%),
-    linear-gradient(172deg, #030e1c 0%, #051226 28%, #071a32 50%, #051224 74%, #020610 100%);
+    /* top: deep night purple fading to twilight */
+    linear-gradient(180deg,
+      #0d0628 0%, #1a0a3a 8%, #2d1050 16%,
+      #3a1558 24%, #4a1a5c 32%,
+      #5c1f5a 40%, #6e2452 48%,
+      #7e2a4a 55%, #8c3242 62%,
+      #983c3a 69%, #a24838 76%,
+      #aa543c 83%, #b06042 90%,
+      #b46c4a 96%, #b87852 100%);
+}
+/* warm glow horizon */
+.bg-sky::after{
+  content:'';position:absolute;bottom:0;left:0;width:100%;height:35%;
+  background:linear-gradient(0deg,
+    rgba(255,180,140,.12) 0%, rgba(255,160,120,.08) 20%,
+    rgba(255,140,100,.04) 45%, transparent 100%);
 }
 
-/* ======== L1: NEBULAE ======== */
-.nebula{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden}
-.nb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.68}
-.n0{width:64vmax;height:36vmax;top:-6%;left:12%;
-  background:radial-gradient(ellipse 50% 44% at 48% 42%, rgba(38,140,190,.22), rgba(60,200,218,.10), transparent);
-  animation:nbDrift0 34s ease-in-out infinite alternate}
-.n1{width:52vmax;height:28vmax;top:3%;left:25%;
-  background:radial-gradient(ellipse 50% 42% at 53% 40%, rgba(48,155,200,.18), rgba(78,208,228,.08), transparent);
-  animation:nbDrift1 40s ease-in-out infinite alternate-reverse}
-.n2{width:50vmax;height:30vmax;top:16%;left:17%;
-  background:radial-gradient(ellipse 52% 46% at 47% 50%, rgba(60,38,148,.18), rgba(98,58,178,.09), transparent);
-  animation:nbDrift2 32s ease-in-out infinite alternate}
-.n3{width:52vmax;height:30vmax;top:35%;left:0%;
-  background:radial-gradient(ellipse 54% 48% at 42% 54%, rgba(168,58,102,18), rgba(198,88,118,.09), transparent);
-  animation:nbDrift3 39s ease-in-out infinite alternate-reverse}
-.n4{width:44vmax;height:24vmax;top:42%;left:8%;
-  background:radial-gradient(ellipse 50% 43% at 40% 56%, rgba(185,78,92,14), rgba(158,48,74,.07), transparent);
-  animation:nbDrift4 33s ease-in-out infinite alternate}
+/* ======== AURORA BANDS (柔光银河带) ======== */
+.aurora{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden}
+.ab{position:absolute;border-radius:50%;filter:blur(90px);opacity:.32}
+.ab0{width:80vmax;height:18vmax;top:22%;left:8%;
+  background:radial-gradient(ellipse 70% 42% at 48% 50%,
+    rgba(220,140,180,.18), rgba(180,120,160,.09), transparent);
+  animation:abDrift 38s ease-in-out infinite alternate}
+.ab1{width:72vmax;height:16vmax;top:38%;left:12%;
+  background:radial-gradient(ellipse 68% 40% at 50% 48%,
+    rgba(200,160,190,.14), rgba(170,130,155,.07), transparent);
+  animation:abDrift2 44s ease-in-out infinite alternate-reverse}
+.ab2{width:68vmax;height:14vmax;top:52%;left:6%;
+  background:radial-gradient(ellipse 65% 38% at 46% 50%,
+    rgba(255,180,150,.12), rgba(220,150,120,.06), transparent);
+  animation:abDrift 42s ease-in-out infinite alternate}
 
-@keyframes nbDrift0{from{transform:translate(0,0)}to{transform:translate(3.5vw,-1.8vh)}}
-@keyframes nbDrift1{from{transform:translate(0,0)}to{transform:translate(-2.4vw,2.4vh)}}
-@keyframes nbDrift2{from{transform:translate(0,0)}to{transform:translate(2.8vw,1.2vh)}}
-@keyframes nbDrift3{from{transform:translate(0,0)}to{transform:translate(-1.8vw,-1.6vh)}}
-@keyframes nbDrift4{from{transform:translate(0,0)}to{transform:translate(2.4vw,1.8vh)}}
+@keyframes abDrift{from{transform:translate(0,0)}to{transform:translate(2.5vw,-1.2vh)}}
+@keyframes abDrift2{from{transform:translate(0,0)}to{transform:translate(-2vw,1.5vh)}}
 
-/* ======== CAPRICORN CONSTELLATION — big & bright ======== */
-.con{position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none}
-.con-svg{position:absolute;top:14%;left:50%;transform:translateX(-50%);
-  filter:drop-shadow(0 0 8px rgba(120,180,255,.35)) drop-shadow(0 0 25px rgba(100,150,230,22));
-  animation:conGlow 4s ease-in-out infinite alternate}
+/* ======== ROSE NEBULAE ======== */
+.nebula{position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:hidden}
+.nb{position:absolute;border-radius:50%;filter:blur(60px)}
+.n0{width:48vmax;height:24vmax;top:8%;left:18%;opacity:.28;
+  background:radial-gradient(ellipse 50% 44% at 45% 42%,
+    rgba(210,130,160,.22), rgba(160,100,130,.10), transparent);
+  animation:nbDr0 36s ease-in-out infinite alternate}
+.n1{width:42vmax;height:22vmax;top:14%;left:28%;opacity:.24;
+  background:radial-gradient(ellipse 50% 42% at 52% 40%,
+    rgba(180,140,200,.18), rgba(140,110,160,.08), transparent);
+  animation:nbDr1 40s ease-in-out infinite alternate-reverse}
+.n2{width:46vmax;height:20vmax;top:30%;left:8%;opacity:.22;
+  background:radial-gradient(ellipse 52% 40% at 46% 48%,
+    rgba(200,120,150,.16), rgba(150,90,120,.07), transparent);
+  animation:nbDr2 33s ease-in-out infinite alternate}
+
+@keyframes nbDr0{from{transform:translate(0,0)}to{transform:translate(2vw,-1vh)}}
+@keyframes nbDr1{from{transform:translate(0,0)}to{transform:translate(-1.8vw,1.2vh)}}
+@keyframes nbDr2{from{transform:translate(0,0)}to{transform:translate(1.5vw,.8vh)}}
+
+/* ======== CAPRICORN CONSTELLATION — warm gold ======== */
+.con{position:fixed;top:0;left:0;width:100%;height:100%;z-index:4;pointer-events:none}
+.con-svg{position:absolute;top:10%;left:50%;transform:translateX(-50%);
+  filter:drop-shadow(0 0 6px rgba(255,200,150,.30)) drop-shadow(0 0 18px rgba(255,170,100,.16));
+  animation:conPulse 5s ease-in-out infinite alternate}
 .con-label{
-  position:absolute;top:14%;left:50%;transform:translateX(-50%) translateY(270px);
-  color:rgba(160,185,225,.30);font-size:.72rem;letter-spacing:12px;
-  font-weight:400;white-space:nowrap;
-  animation:conGlow 4s ease-in-out infinite alternate}
-@keyframes conGlow{0%{opacity:.22;filter:drop-shadow(0 0 6px rgba(120,180,255,.3)) drop-shadow(0 0 20px rgba(100,150,230,.18))}
-  100%{opacity:.40;filter:drop-shadow(0 0 14px rgba(150,200,255,.45)) drop-shadow(0 0 35px rgba(130,170,240,.25))}}
-
-/* ======== COSMIC DUST BANDS ======== */
-.dust{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden}
-.dd{position:absolute;height:2.5px;border-radius:50%;filter:blur(4px);opacity:.10}
-.dd1{top:26%;left:-12%;width:124%;background:linear-gradient(90deg,transparent,rgba(90,150,210,.28),rgba(130,170,220,.18),rgba(90,150,210,.28),transparent);
-  animation:dustSweep 48s linear infinite}
-.dd2{top:44%;left:-14%;width:132%;background:linear-gradient(90deg,transparent,rgba(155,95,175,.22),rgba(175,115,195,.14),rgba(155,95,175,.22),transparent);
-  animation:dustSweep 56s linear infinite reverse}
-.dd3{top:60%;left:-10%;width:118%;background:linear-gradient(90deg,transparent,rgba(175,135,95,.18),rgba(195,155,115,.11),rgba(175,135,95,.18),transparent);
-  animation:dustSweep 50s linear infinite}
-@keyframes dustSweep{from{transform:translateX(0)}to{transform:translateX(-28%)}}
+  position:absolute;top:10%;left:50%;transform:translateX(-50%) translateY(270px);
+  color:rgba(220,190,160,.28);font-size:.68rem;letter-spacing:10px;
+  font-weight:300;white-space:nowrap;
+  animation:conPulse 5s ease-in-out infinite alternate}
+@keyframes conPulse{
+  0%{opacity:.30;filter:drop-shadow(0 0 4px rgba(255,200,150,.25)) drop-shadow(0 0 14px rgba(255,160,100,.12))}
+  100%{opacity:.50;filter:drop-shadow(0 0 10px rgba(255,210,160,.40)) drop-shadow(0 0 26px rgba(255,170,110,.20))}}
 
 /* ======== VIGNETTE ======== */
-.vig{position:fixed;top:0;left:0;width:100%;height:100%;z-index:6;pointer-events:none;
-  background:radial-gradient(ellipse at center,transparent 38%,rgba(0,0,0,.38) 100%)}
+.vig{position:fixed;top:0;left:0;width:100%;height:100%;z-index:7;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 42%,rgba(10,4,20,.42) 100%)}
 
-/* ======== STARS — dense field ======== */
+/* ======== STARS — warm champagne + rose gold ======== */
 .stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:hidden}
 .sx{position:absolute;border-radius:50%}
-/* diamond star cross-glow */
+/* warm diamond star */
 .dx::before,.dx::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.dx::before{width:200%;height:1px;background:linear-gradient(90deg,transparent,rgba(220,235,255,.40),transparent)}
-.dx::after{width:1px;height:200%;background:linear-gradient(0deg,transparent,rgba(220,235,255,.40),transparent)}
+.dx::before{width:200%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,220,180,.35),transparent)}
+.dx::after{width:1px;height:200%;background:linear-gradient(0deg,transparent,rgba(255,220,180,.35),transparent)}
 
-/* ======== METEORS ======== */
-.me{position:fixed;z-index:4;pointer-events:none}
-.mh{width:2.5px;height:2.5px;background:#e0f4ff;border-radius:50%;
-  box-shadow:0 0 10px 4px rgba(224,244,255,.55),0 0 22px 8px rgba(180,220,255,.28)}
+/* ======== METEORS — warm trail ======== */
+.me{position:fixed;z-index:5;pointer-events:none}
+.mh{width:2px;height:2px;background:#ffe8d0;border-radius:50%;
+  box-shadow:0 0 8px 3px rgba(255,220,180,.45),0 0 18px 6px rgba(255,190,140,.20)}
 .mt{position:absolute;top:50%;right:1px;height:1px;
-  background:linear-gradient(to left,rgba(224,248,255,.80),rgba(195,230,255,.45) 22%,rgba(155,200,240,.18) 52%,transparent)}
+  background:linear-gradient(to left,rgba(255,225,190,.70),rgba(255,200,155,.35) 22%,rgba(255,175,130,.14) 52%,transparent)}
 
-/* ======== FIREWORKS ======== */
-.fw{position:fixed;z-index:5;pointer-events:none}
-.fp{position:absolute;width:3px;height:3px;border-radius:50%}
+/* ======== FIREFLY PARTICLES ======== */
+.fireflies{position:fixed;top:0;left:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:hidden}
+.ff{position:absolute;width:4px;height:4px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,220,140,.90),rgba(255,180,100,.40) 40%,transparent 70%);
+  box-shadow:0 0 10px 3px rgba(255,200,120,.35),0 0 22px 6px rgba(255,170,100,.15);
+  animation:ffFloat ease-in-out infinite;}
+@keyframes ffFloat{
+  0%{transform:translate(0,0) scale(1);opacity:.15}
+  25%{transform:translate(15px,-35px) scale(1.6);opacity:.75}
+  50%{transform:translate(-8px,-70px) scale(1.3);opacity:.50}
+  75%{transform:translate(12px,-105px) scale(1.7);opacity:.70}
+  100%{transform:translate(-5px,-140px) scale(0.6);opacity:.05}}
 
-/* ======== TEXT SCENES ======== */
+/* ======== FIREWORKS — rose gold palette ======== */
+.fw{position:fixed;z-index:6;pointer-events:none}
+.fp{position:absolute;width:2.5px;height:2.5px;border-radius:50%}
+
+/* ======== TEXT SCENES — warm cream tones ======== */
 .stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
 .scene{position:absolute;width:86%;max-width:560px;text-align:center;opacity:0;
   transition:opacity 2.4s cubic-bezier(.16,1,.3,1),transform 2.6s cubic-bezier(.16,1,.3,1);
@@ -102,122 +126,107 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
 .scene.on{opacity:1;transform:scale(1) translateY(0)}
 .scene.off{opacity:0;transform:scale(1.04) translateY(-14px);transition-duration:1s}
 
-.sub{color:rgba(175,195,225,.28);font-size:.56rem;letter-spacing:16px;display:block;margin-bottom:44px}
+.sub{color:rgba(210,180,170,.32);font-size:.52rem;letter-spacing:14px;display:block;margin-bottom:48px}
 .hero{
-  font-size:5.4rem;font-weight:900;color:#eae2f6;display:block;line-height:1.08;
-  text-shadow:0 0 36px rgba(200,185,235,.22),0 0 72px rgba(175,160,215,.13),
-              0 2px 16px rgba(0,0,0,.50),0 0 110px rgba(200,185,235,.10);
-  margin-bottom:20px}
-.tag{color:rgba(175,195,225,33);font-size:.74rem;letter-spacing:12px;display:block;margin-top:30px}
+  font-size:5.2rem;font-weight:900;color:#f2e4d8;display:block;line-height:1.08;
+  text-shadow:0 0 28px rgba(240,210,180,.18),0 0 60px rgba(220,180,150,.10),
+              0 2px 12px rgba(20,8,18,.50),0 0 90px rgba(240,200,170,.08);
+  margin-bottom:18px}
+.tag{color:rgba(210,180,165,.30);font-size:.68rem;letter-spacing:10px;display:block;margin-top:28px}
 
-.txt{
-  color:#bcc8e0;font-size:1.2rem;line-height:2.8;font-weight:300;display:block;
-  text-shadow:0 1px 6px rgba(0,0,0,.52),0 0 22px rgba(95,115,155,.08)}
-.txt.e{color:#d7c2ec}
-.txt.hl{
-  font-size:2rem;font-weight:700;color:#e2d5f0;line-height:1.9;
-  text-shadow:0 0 26px rgba(222,210,238,.18),0 2px 10px rgba(0,0,0,.52),0 0 58px rgba(222,210,238,.10);
-  margin:12px 0}
-
+.txt{color:#cfc0b5;font-size:1.2rem;line-height:2.9;font-weight:300;display:block;
+  text-shadow:0 1px 6px rgba(20,8,18,.50),0 0 18px rgba(180,140,120,.06)}
+.txt.e{color:#e8c8b8;font-weight:400}
+.txt.hl{font-size:2rem;font-weight:600;color:#e8d5c5;line-height:2;
+  text-shadow:0 0 20px rgba(230,200,170,.16),0 2px 8px rgba(20,8,18,.48),0 0 48px rgba(220,180,150,.08);margin:14px 0}
 .end{
-  font-size:2.2rem;font-weight:700;color:#dfcfea;line-height:2;
-  text-shadow:0 0 42px rgba(222,206,234,.20),0 2px 10px rgba(0,0,0,.52),0 0 76px rgba(222,206,234,.12)}
-.sign{color:rgba(175,195,225,.28);font-size:.82rem;margin-top:34px;display:block}
+  font-size:2.1rem;font-weight:600;color:#e2cdb8;line-height:2.1;
+  text-shadow:0 0 36px rgba(220,190,160,.18),0 2px 8px rgba(20,8,18,.48),0 0 64px rgba(210,170,140,.10)}
+.sign{color:rgba(210,175,160,.28);font-size:.76rem;margin-top:36px;display:block}
 
-/* ======== FINALE: firework text reveal ======== */
-.finale{position:fixed;top:0;left:0;width:100%;height:100%;z-index:12;pointer-events:none;
-  display:flex;align-items:center;justify-content:center;opacity:0;
-  transition:opacity 2s ease}
+/* ======== FINALE OVERLAY ======== */
+.finale{position:fixed;top:0;left:0;width:100%;height:100%;z-index:13;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 2.2s ease}
 .finale.show{opacity:1}
-.finale-text{
-  font-size:2.8rem;font-weight:900;text-align:center;line-height:2.2;
-  color:#ffe8d0;
-  text-shadow:0 0 24px rgba(255,210,140,.40),0 0 60px rgba(255,180,100,.25),
-              0 0 100px rgba(255,160,80,.15),0 2px 16px rgba(0,0,0,.55)}
-.finale-emoji{font-size:4rem;display:block;margin-top:18px;animation:emojiBounce 1.2s ease-in-out infinite alternate}
-@keyframes emojiBounce{from{transform:translateY(0) scale(1)}to{transform:translateY(-10px) scale(1.08)}}
+.finale-text{font-size:2.6rem;font-weight:900;text-align:center;line-height:2.3;
+  color:#ffe0c8;
+  text-shadow:0 0 22px rgba(255,200,140,.38),0 0 56px rgba(255,170,110,.22),
+              0 0 90px rgba(255,150,90,.12),0 2px 14px rgba(20,8,18,.52)}
+.finale-emoji{font-size:3.6rem;display:block;margin-top:16px;animation:emojiB 1.4s ease-in-out infinite alternate}
+@keyframes emojiB{from{transform:translateY(0) scale(1)}to{transform:translateY(-8px) scale(1.06)}}
 
-/* sparkle particles around finale text */
-.fsp{position:fixed;z-index:12;pointer-events:none;width:3px;height:3px;border-radius:50%;
-  background:#ffe8c0;box-shadow:0 0 6px 2px rgba(255,210,140,.35)}
+/* sparkle particles */
+.fsp{position:fixed;z-index:13;pointer-events:none;width:2.5px;height:2.5px;border-radius:50%;
+  background:#ffe0c0;box-shadow:0 0 5px 2px rgba(255,200,140,.30)}
 
 @media(max-width:768px){
-  .hero{font-size:3.4rem}.txt{font-size:1.04rem;line-height:2.5}
-  .txt.hl{font-size:1.42rem}.end{font-size:1.58rem}
-  .finale-text{font-size:1.8rem}.finale-emoji{font-size:2.8rem}
-  .con-svg{transform:translateX(-50%) scale(.75)}
+  .hero{font-size:3.2rem}.txt{font-size:1.02rem;line-height:2.6}
+  .txt.hl{font-size:1.36rem}.end{font-size:1.48rem}
+  .finale-text{font-size:1.7rem}.finale-emoji{font-size:2.6rem}
+  .con-svg{transform:translateX(-50%) scale(.70)}
 }
-
-/* twinkle keyframes injected via JS */
 </style>
 </head>
 <body>
 
-<!-- L0: DEEP SPACE -->
-<div class="cosmos"><div class="cosmos-bg"></div></div>
+<!-- TWILIGHT SKY -->
+<div class="bg-sky"></div>
 
-<!-- L1: NEBULAE -->
+<!-- AURORA BANDS -->
+<div class="aurora">
+  <div class="ab ab0"></div><div class="ab ab1"></div><div class="ab ab2"></div>
+</div>
+
+<!-- ROSE NEBULAE -->
 <div class="nebula">
   <div class="nb n0"></div><div class="nb n1"></div><div class="nb n2"></div>
-  <div class="nb n3"></div><div class="nb n4"></div>
 </div>
 
-<!-- DUST BANDS -->
-<div class="dust">
-  <div class="dd dd1"></div><div class="dd dd2"></div><div class="dd dd3"></div>
-</div>
-
-<!-- L2: STARS (filled by JS) -->
+<!-- STARS (filled by JS) -->
 <div class="stars" id="starField"></div>
 
-<!-- L3: CAPRICORN CONSTELLATION — BIG & BRIGHT -->
+<!-- FIREFLIES (filled by JS) -->
+<div class="fireflies" id="fireflyField"></div>
+
+<!-- CAPRICORN CONSTELLATION — warm gold -->
 <div class="con">
-  <svg class="con-svg" viewBox="0 0 320 300" width="340" height="318" xmlns="http://www.w3.org/2000/svg">
+  <svg class="con-svg" viewBox="0 0 320 300" width="320" height="300" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <filter id="cGlow">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="2.5"/>
+      <filter id="cGlow"><feGaussianBlur in="SourceGraphic" stdDeviation="2.8"/>
         <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMergeNode>
       </filter>
     </defs>
-    <!-- Main line: top-right tail through body to head -->
     <polyline points="55,235 90,190 125,152 165,122 205,98 245,78 268,52"
-      fill="none" stroke="rgba(160,195,245,.30)" stroke-width="2.2"
-      stroke-linecap="round" stroke-linejoin="round" filter="url(#cGlow)"/>
+      fill="none" stroke="rgba(230,190,140,.26)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#cGlow)"/>
     <polyline points="55,235 90,190 125,152 165,122 205,98 245,78 268,52"
-      fill="none" stroke="rgba(200,220,255,.16)" stroke-width="5"
-      stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- Branch lines -->
+      fill="none" stroke="rgba(240,210,160,.12)" stroke-width="4.5" stroke-linecap="round"/>
     <polyline points="90,190 78,138 105,100 140,84"
-      fill="none" stroke="rgba(160,195,245,.24)" stroke-width="1.8"
-      stroke-linecap="round" filter="url(#cGlow)"/>
+      fill="none" stroke="rgba(230,190,140,.20)" stroke-width="1.6" stroke-linecap="round" filter="url(#cGlow)"/>
     <polyline points="90,190 78,138 105,100 140,84"
-      fill="none" stroke="rgba(200,220,255,.12)" stroke-width="4.5"
-      stroke-linecap="round"/>
-    <!-- Star nodes with glow -->
-    <circle cx="55"  cy="235" r="4.5" fill="#d0e4ff" opacity=".65" filter="url(#cGlow)"/>
-    <circle cx="90"  cy="190" r="5.5" fill="#e0efff" opacity=".75" filter="url(#cGlow)"/>
-    <circle cx="125" cy="152" r="4"   fill="#d0e4ff" opacity=".55" filter="url(#cGlow)"/>
-    <circle cx="165" cy="122" r="5"   fill="#e0efff" opacity=".70" filter="url(#cGlow)"/>
-    <circle cx="205" cy="98"  r="4"   fill="#d0e4ff" opacity=".55" filter="url(#cGlow)"/>
-    <circle cx="245" cy="78"  r="6"   fill="#eaf4ff" opacity=".78" filter="url(#cGlow)"/>
-    <circle cx="268" cy="52"  r="5"   fill="#e0efff" opacity=".68" filter="url(#cGlow)"/>
-    <circle cx="78"  cy="138" r="3.5" fill="#d0e4ff" opacity=".50" filter="url(#cGlow)"/>
-    <circle cx="105" cy="100" r="4"   fill="#d8e8ff" opacity=".58" filter="url(#cGlow)"/>
-    <circle cx="140" cy="84"  r="3.5" fill="#d0e4ff" opacity=".50" filter="url(#cGlow)"/>
-    <!-- Outer glow rings on major nodes -->
-    <circle cx="268" cy="52"  r="12" fill="none" stroke="rgba(180,215,255,.10)" stroke-width="1"/>
-    <circle cx="245" cy="78"  r="14" fill="none" stroke="rgba(180,215,255,.09)" stroke-width="1"/>
-    <circle cx="90"  cy="190" r="13" fill="none" stroke="rgba(180,215,255,.08)" stroke-width="1"/>
+      fill="none" stroke="rgba(240,210,160,.10)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="55"  cy="235" r="4"  fill="#e8d0b0" opacity=".55" filter="url(#cGlow)"/>
+    <circle cx="90"  cy="190" r="5"  fill="#f0dcc0" opacity=".65" filter="url(#cGlow)"/>
+    <circle cx="125" cy="152" r="3.5" fill="#e8d0b0" opacity=".45" filter="url(#cGlow)"/>
+    <circle cx="165" cy="122" r="4.5" fill="#f0dcc0" opacity=".60" filter="url(#cGlow)"/>
+    <circle cx="205" cy="98"  r="3.5" fill="#e8d0b0" opacity=".45" filter="url(#cGlow)"/>
+    <circle cx="245" cy="78"  r="5.5" fill="#f5e4d0" opacity=".68" filter="url(#cGlow)"/>
+    <circle cx="268" cy="52"  r="4.5" fill="#f0dcc0" opacity=".58" filter="url(#cGlow)"/>
+    <circle cx="78"  cy="138" r="3"  fill="#e8d0b0" opacity=".40" filter="url(#cGlow)"/>
+    <circle cx="105" cy="100" r="3.5" fill="#ecd8c0" opacity=".48" filter="url(#cGlow)"/>
+    <circle cx="140" cy="84"  r="3"  fill="#e8d0b0" opacity=".40" filter="url(#cGlow)"/>
+    <circle cx="268" cy="52"  r="10" fill="none" stroke="rgba(230,190,140,.08)" stroke-width="1"/>
+    <circle cx="245" cy="78"  r="12" fill="none" stroke="rgba(230,190,140,.07)" stroke-width="1"/>
+    <circle cx="90"  cy="190" r="11" fill="none" stroke="rgba(230,190,140,.06)" stroke-width="1"/>
   </svg>
-  <div class="con-label">♑ C A P R I C O R N U S  ♑</div>
+  <div class="con-label">♑  C A P R I C O R N U S  ♑</div>
 </div>
 
-<!-- L6: VIGNETTE -->
+<!-- VIGNETTE -->
 <div class="vig"></div>
 
 <!-- TEXT SCENES -->
 <div class="stage">
-  <div class="scene" id="s0"><span class="sub">CHILDREN'S DAY · 2026</span><span class="hero">吴 总</span><span class="tag">✦  摩羯座 · 12.29  ✦</span></div>
+  <div class="scene" id="s0"><span class="sub">C H I L D R E N ' S   D A Y  ·  2 0 2 6</span><span class="hero">吴 总</span><span class="tag">✦  摩羯座 · 12.29  ✦</span></div>
   <div class="scene" id="s1"><span class="txt">你出生在<span class="txt e">12月29日</span>，</span><span class="txt">摩羯座的星星，从那天起就为你亮着。</span></div>
   <div class="scene" id="s2"><span class="txt"><span class="txt e">19岁</span>了，刚好的年纪——</span><span class="txt">有大人的洒脱，也有孩子气的骄傲。</span></div>
   <div class="scene" id="s3"><span class="txt hl">所以今天，</span><span class="txt">麻烦你做回那个<span class="txt e">吃糖的小孩</span>。</span></div>
@@ -230,77 +239,86 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
   <div class="scene" id="s10"><span class="txt">你的六一礼物，<span class="txt e">会晚两天到</span>。</span></div>
   <div class="scene" id="s11"><span class="txt">是我的疏忽，对不起。</span></div>
   <div class="scene" id="s12"><span class="txt">但等它到了——</span><span class="txt hl">希望你会感到双倍的快乐，</span></div>
-  <div class="scene" id="s13"><span class="end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，<br>一直是开心果。</span><span class="sign">—— 儿童节快乐，吴总 🌌</span></div>
+  <div class="scene" id="s13"><span class="end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，<br>一直是开心果。</span><span class="sign">—— 儿童节快乐，吴总 🌸</span></div>
 </div>
 
-<!-- FINALE OVERLAY -->
+<!-- FINALE -->
 <div class="finale" id="finale">
-  <div class="finale-text">
-    美女，要开心哦
-    <span class="finale-emoji">😜</span>
-  </div>
+  <div class="finale-text">美女，要开心哦<span class="finale-emoji">😜</span></div>
 </div>
 
 <script>
 (function(){
   var W=innerWidth,H=innerHeight;
 
-  /* ====== INJECT TWINKLE KEYFRAMES ====== */
+  /* ====== TWINKLE KEYFRAMES ====== */
   (function(){
     var s=document.createElement('style');s.textContent=
-      '@keyframes t0{0%,100%{opacity:.08}50%{opacity:.38}}'+
-      '@keyframes t1{0%,100%{opacity:.14}50%{opacity:.55}}'+
-      '@keyframes t2{0%,100%{opacity:.06}50%{opacity:.28}}'+
-      '@keyframes t3{0%,100%{opacity:.18}50%{opacity:.65}}'+
-      '@keyframes dt{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.75;transform:scale(1.35)}}';
+      '@keyframes t0{0%,100%{opacity:.10}50%{opacity:.42}}'+
+      '@keyframes t1{0%,100%{opacity:.16}50%{opacity:.60}}'+
+      '@keyframes t2{0%,100%{opacity:.08}50%{opacity:.30}}'+
+      '@keyframes t3{0%,100%{opacity:.20}50%{opacity:.70}}'+
+      '@keyframes dt{0%,100%{opacity:.30;transform:scale(1)}50%{opacity:.82;transform:scale(1.4)}}';
     document.head.appendChild(s);
   })();
 
-  /* ====== STAR FIELD — 3 layers ====== */
+  /* ====== STAR FIELD — warm champagne palette ====== */
   var sf=document.getElementById('starField');
-  var colors=['#c8d8f0','#b0c8e8','#d8e4f4','#a0bcd8','#e0ecf8','#c0d0e8','#b8cae0',
-    '#e8f0fc','#c8dae8','#d0dde8','#d4e2f0','#bcc8e0'];
+  var scols=[
+    '#e8d8c0','#dcc8a8','#f0e0d0','#d0b890','#f5e8d8','#dec8a8','#d8c0a0',
+    '#fff0e4','#dcccb0','#e0d0b8','#e4d4c0','#d0c0a0','#c8b090','#e8dcc8'
+  ];
 
-  // Layer 1: dense tiny (450)
-  for(var i=0;i<450;i++){
-    var s=document.createElement('div');s.className='sx';
-    var r=.35+Math.random()*1.1;
-    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*84+
-      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:'+colors[i%colors.length]+
-      ';animation:t'+[0,1,2][i%3]+' '+(2.5+Math.random()*7.5).toFixed(1)+'s ease-in-out infinite '+
-      (Math.random()*5.5).toFixed(1)+'s';
-    sf.appendChild(s);
+  // Dense tiny stars (600)
+  for(var i=0;i<600;i++){
+    var d=document.createElement('div');d.className='sx';
+    var r=.30+Math.random()*1.0;
+    d.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*88+
+      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:'+scols[i%scols.length]+
+      ';animation:t'+[0,1,2][i%3]+' '+(2.5+Math.random()*8).toFixed(1)+'s ease-in-out infinite '+
+      (Math.random()*6).toFixed(1)+'s';
+    sf.appendChild(d);
   }
 
-  // Layer 2: medium bright (110)
-  for(var i=0;i<110;i++){
-    var s=document.createElement('div');s.className='sx';
-    var r=.8+Math.random()*2;
-    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*78+
-      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#dce8f8;'+
-      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(200,225,255,.22);'+
-      ';animation:t'+[1,3][i%2]+' '+(2+Math.random()*5).toFixed(1)+'s ease-in-out infinite '+
-      (Math.random()*3.5).toFixed(1)+'s';
-    sf.appendChild(s);
+  // Medium bright (140)
+  for(var i=0;i<140;i++){
+    var d=document.createElement('div');d.className='sx';
+    var r=.7+Math.random()*1.8;
+    d.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*82+
+      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#ede0cc;'+
+      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(240,210,170,.20);'+
+      'animation:t'+[1,3][i%2]+' '+(2+Math.random()*6).toFixed(1)+'s ease-in-out infinite '+
+      (Math.random()*4).toFixed(1)+'s';
+    sf.appendChild(d);
   }
 
-  // Layer 3: DIAMOND STARS (28) — very visible
-  for(var i=0;i<28;i++){
-    var s=document.createElement('div');s.className='sx dx';
-    var r=2+Math.random()*3;
-    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*72+
-      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#edf4ff;'+
-      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(225,240,255,.45),'+
-      '0 0 '+(r*4.5).toFixed(0)+'px '+(r*2.5).toFixed(0)+'px rgba(205,225,255,.18);'+
-      'animation:dt '+(1.6+Math.random()*3.4).toFixed(1)+'s ease-in-out infinite '+
-      (Math.random()*2.5).toFixed(1)+'s';
-    sf.appendChild(s);
+  // Diamond stars (32)
+  for(var i=0;i<32;i++){
+    var d=document.createElement('div');d.className='sx dx';
+    var r=1.8+Math.random()*2.8;
+    d.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*76+
+      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#faf0e0;'+
+      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(255,225,195,.38),'+
+      '0 0 '+(r*4).toFixed(0)+'px '+(r*2.2).toFixed(0)+'px rgba(240,200,160,.14);'+
+      'animation:dt '+(1.8+Math.random()*3.6).toFixed(1)+'s ease-in-out infinite '+
+      (Math.random()*2.8).toFixed(1)+'s';
+    sf.appendChild(d);
+  }
+
+  /* ====== FIREFLY PARTICLES ====== */
+  var ffField=document.getElementById('fireflyField');
+  for(var i=0;i<35;i++){
+    var f=document.createElement('div');f.className='ff';
+    var dur=6+Math.random()*14;
+    f.style.cssText='left:'+(5+Math.random()*90)+'%;top:'+(60+Math.random()*38)+'%;'+
+      'animation-duration:'+dur.toFixed(0)+'s;animation-delay:'+(Math.random()*dur).toFixed(1)+'s;'+
+      'width:'+(2.5+Math.random()*4)+'px;height:'+(2.5+Math.random()*4)+'px';
+    ffField.appendChild(f);
   }
 
   /* ====== SCENE MANAGEMENT ====== */
   var scenes=[],prevEl=null;
   for(var i=0;i<14;i++){var el=document.getElementById('s'+i);if(el)scenes.push(el)}
-  // hide all scenes initially
   for(var j=0;j<scenes.length;j++)scenes[j].style.display='none';
 
   function showScene(n,delay){
@@ -316,7 +334,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
     prevEl=scenes[n];
   }
 
-  /* ====== METEOR SYSTEM (rAF-driven) ====== */
+  /* ====== METEOR SYSTEM ====== */
   function spawnMeteor(sx,sy,dx,dy,dur,tailLen){
     var m=document.createElement('div');m.className='me';m.style.cssText='left:'+sx+'px;top:'+sy+'px';
     m.innerHTML='<div class="mh"></div><div class="mt" style="width:'+tailLen+'px"></div>';
@@ -326,37 +344,35 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
       if(!t0)t0=ts;var p=(ts-t0)/dur;
       if(p>=1){if(m.parentNode)m.parentNode.removeChild(m);return}
       m.style.transform='translate('+p*dx+'px,'+p*dy+'px)';
-      m.style.opacity=p<.06?16*p:p>.36?Math.max(0,1.15-p):1;
+      m.style.opacity=p<.06?16*p:p>.34?Math.max(0,1.12-p):1;
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
   function randMeteor(){
     spawnMeteor(W*(.06+Math.random()*.9),H*Math.random()*.28-12,
-      160+Math.random()*400,85+Math.random()*280,1300+Math.random()*2200,85+Math.random()*150);
+      150+Math.random()*420,80+Math.random()*290,1300+Math.random()*2200,80+Math.random()*150);
   }
   function steepMeteor(){
     spawnMeteor(W*(.03+Math.random()*.95),H*Math.random()*.24-12,
-      100+Math.random()*250,165+Math.random()*320,1100+Math.random()*1700,65+Math.random()*120);
+      100+Math.random()*260,155+Math.random()*330,1100+Math.random()*1700,60+Math.random()*120);
   }
   function meteorBurst(n){n=n||5;
     for(var i=0;i<n;i++)setTimeout(function(){randMeteor();steepMeteor()},i*260+Math.random()*240)}
 
-  /* ====== FIREWORK SYSTEM — robust rAF spread ====== */
+  /* ====== FIREWORK SYSTEM — rose gold palette ====== */
   function firework(x,y,count,paletteIdx){
     count=count||50;paletteIdx=paletteIdx||0;
-    var palettes=[
-      ['#a8d0f0','#88b8e0','#c0e0ff','#d8ecff','#b0c8e8','#c8daf0'],
-      ['#d8b0e8','#c890d8','#e8c0f8','#f0d8ff','#b898c8','#e0c8f0'],
-      ['#e8d0a0','#d8b878','#f0e0b8','#fff0d0','#c8a868','#f8e0c0'],
-      ['#f0b8c0','#e898a8','#f8c8d0','#ffd8e0','#d88898','#f8c8d8'],
+    var pals=[
+      ['#e8c0a0','#d8a878','#f0d8b8','#fff0d8','#c89868','#f0e0c8'],
+      ['#e0b0c8','#d090a8','#f0c8d8','#ffe0ec','#c88098','#f0d0e0'],
+      ['#d8c0e0','#c0a0d0','#e8d0f0','#f8e8ff','#b890c8','#e0c8f0'],
+      ['#e8c8b0','#d8a888','#f0dcc0','#ffe8d0','#c89870','#f0d8c0'],
     ];
-    var pal=palettes[paletteIdx%palettes.length];
+    var pal=pals[paletteIdx%pals.length];
     var c=document.createElement('div');c.className='fw';
     c.style.cssText='left:'+x+'px;top:'+y+'px';
     var particles=[];
-
-    // Ring particles
     for(var i=0;i<count;i++){
       var p=document.createElement('div');p.className='fp';
       p.style.cssText='background:'+pal[i%pal.length]+';opacity:0';
@@ -364,10 +380,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
       var ang=Math.PI*2*i/count,dist=24+Math.random()*100;
       var durMs=(500+Math.random()*1100)|0;
       var delayMs=(18+i*9+Math.random()*30)|0;
-      particles.push({el:p,ang:ang,dist:dist,dur:durMs,delay:delayMs,t0:0,kind:'ring'});
+      particles.push({el:p,ang:ang,dist:dist,dur:durMs,delay:delayMs,t0:0});
     }
-
-    // Inner sparkle cluster
     for(var j=0;j<Math.floor(count*.38);j++){
       var p2=document.createElement('div');p2.className='fp';
       p2.style.cssText='background:'+pal[j%pal.length]+';opacity:0;width:2px;height:2px';
@@ -375,177 +389,83 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
       var a2=Math.random()*Math.PI*2,d2=6+Math.random()*42;
       var dur2Ms=(300+Math.random()*650)|0;
       var del2Ms=(25+j*7+Math.random()*20)|0;
-      particles.push({el:p2,ang:a2,dist:d2,dur:dur2Ms,delay:del2Ms,t0:0,kind:'sparkle'});
+      particles.push({el:p2,ang:a2,dist:d2,dur:dur2Ms,delay:del2Ms,t0:0});
     }
-
-    // Main animation
-    var startTime=null;
-    function fireTick(ts){
-      if(!startTime)startTime=ts;
-      var elapsed=ts-startTime;
-      var anyAlive=false;
+    var st=null;
+    function ft(ts){
+      if(!st)st=ts;var elap=ts-st;var alive=false;
       for(var k=0;k<particles.length;k++){
         var pt=particles[k];
-        if(pt.t0===0){
-          if(elapsed>=pt.delay)pt.t0=ts;
-          else{anyAlive=true;continue}
-        }
+        if(pt.t0===0){if(elap>=pt.delay)pt.t0=ts;else{alive=true;continue}}
         var pp=(ts-pt.t0)/pt.dur;
         if(pp>=1){
-          pt.el.style.transform='translate('+(Math.cos(pt.ang)*pt.dist)+'px,'+
-            (Math.sin(pt.ang)*pt.dist)+'px) scale(0)';
-          var fp=pp;
-          pt.el.style.opacity=Math.max(0,1-(fp-1)*2.5);
-          if(fp<2.5)anyAlive=true;
+          pt.el.style.transform='translate('+(Math.cos(pt.ang)*pt.dist)+'px,'+(Math.sin(pt.ang)*pt.dist)+'px) scale(0)';
+          var fp=pp;pt.el.style.opacity=Math.max(0,1-(fp-1)*2.5);
+          if(fp<2.5)alive=true;
         }else{
-          var eased=1-Math.pow(1-pp,3);
-          pt.el.style.transform='translate('+(Math.cos(pt.ang)*pt.dist*eased)+'px,'+
-            (Math.sin(pt.ang)*pt.dist*eased)+'px) scale('+(1-pp*0.7)+')';
-          pt.el.style.opacity=pp<.15?pp/.15:1-pp*0.4;
-          anyAlive=true;
+          var e=1-Math.pow(1-pp,3);
+          pt.el.style.transform='translate('+(Math.cos(pt.ang)*pt.dist*e)+'px,'+(Math.sin(pt.ang)*pt.dist*e)+'px) scale('+(1-pp*.7)+')';
+          pt.el.style.opacity=pp<.15?pp/.15:1-pp*.4;alive=true;
         }
       }
-      if(anyAlive&&elapsed<4000)requestAnimationFrame(fireTick);
-      else{if(c.parentNode)c.parentNode.removeChild(c)}
+      if(alive&&elap<4000)requestAnimationFrame(ft);else{if(c.parentNode)c.parentNode.removeChild(c)}
     }
-    requestAnimationFrame(fireTick);
+    requestAnimationFrame(ft);
   }
-
-  function grandFireworks(n){n=n||3;
+  function grandFw(n){n=n||3;
     for(var i=0;i<n;i++){var pi=i%4;
       setTimeout(function(ii,pp){firework(W*(.10+Math.random()*.80),H*(.06+Math.random()*.55),
-        (42+Math.floor(Math.random()*65))|0,pp)}(i,pi),i*220)}}
+        (38+Math.floor(Math.random()*65))|0,pp)}(i,pi),i*220)}}
 
-  /* ====== FINALE: REVEAL ANIMATION ====== */
+  /* ====== FINALE ====== */
   function revealFinale(){
-    var fin=document.getElementById('finale');
-    fin.classList.add('show');
-
-    // Sparkle particles around finale text
+    var fin=document.getElementById('finale');fin.classList.add('show');
     var cx=W/2,cy=H/2;
-    for(var i=0;i<80;i++){
+    for(var i=0;i<90;i++){
       var sp=document.createElement('div');sp.className='fsp';
-      var r=(30+Math.random()*220);
-      var a=Math.random()*Math.PI*2;
-      sp.style.cssText='left:'+(cx+Math.cos(a)*r)+'px;top:'+(cy+Math.sin(a)*r)+'px;'+
-        'animation:none;';
+      var r=(25+Math.random()*240),a=Math.random()*Math.PI*2;
+      sp.style.cssText='left:'+(cx+Math.cos(a)*r)+'px;top:'+(cy+Math.sin(a)*r)+'px;animation:none';
       document.body.appendChild(sp);
-      var targX=cx+Math.cos(a)*r,targY=cy+Math.sin(a)*r;
-      var outX=cx+(Math.cos(a)*(r+100+Math.random()*180));
-      var outY=cy+(Math.sin(a)*(r+100+Math.random()*180));
-      sp.style.transform='translate('+(outX-targX)+'px,'+(outY-targY)+'px)';
-      sp.style.opacity='0';
-      // animate in
-      var d=(300+Math.random()*900)|0;
-      var del=(Math.random()*600)|0;
-      var t0=null;
-      function spTick(ts){
+      var tx=cx+Math.cos(a)*r,ty=cy+Math.sin(a)*r;
+      var ox=cx+Math.cos(a)*(r+100+Math.random()*180),oy=cy+Math.sin(a)*(r+100+Math.random()*180);
+      sp.style.transform='translate('+(ox-tx)+'px,'+(oy-ty)+'px)';sp.style.opacity='0';
+      var d=(300+Math.random()*900)|0,del=(Math.random()*600)|0,t0=null;
+      function stk(ts){
         if(!t0)t0=ts;var p=(ts-t0)/d;
         if(p>=1){sp.style.transform='translate(0,0)';sp.style.opacity='1';return}
         var e=1-Math.pow(1-p,3);
-        sp.style.transform='translate('+((1-e)*(outX-targX))+'px,'+((1-e)*(outY-targY))+'px)';
-        sp.style.opacity=e.toFixed(2);
-        requestAnimationFrame(spTick);
+        sp.style.transform='translate('+((1-e)*(ox-tx))+'px,'+((1-e)*(oy-ty))+'px)';
+        sp.style.opacity=e.toFixed(2);requestAnimationFrame(stk);
       }
-      setTimeout(function(){requestAnimationFrame(spTick)},del);
+      setTimeout(function(){requestAnimationFrame(stk)},del);
     }
   }
 
-  /* ====== TIMELINE — slower pacing ====== */
-
-  // S0: Title
+  /* ====== TIMELINE ====== */
   showScene(0,300);
   setTimeout(function(){meteorBurst(6)},5000);
-
-  // S1
   setTimeout(function(){showScene(1)},5000);
   setTimeout(function(){randMeteor()},10000);
-
-  // S2
   setTimeout(function(){showScene(2);randMeteor()},10200);
   setTimeout(function(){meteorBurst(3)},14400);
-
-  // S3
   setTimeout(function(){showScene(3);meteorBurst(5)},14600);
   setTimeout(function(){randMeteor();setTimeout(randMeteor,650)},17800);
-
-  // S4
   setTimeout(function(){showScene(4)},18200);
-
-  // S5
   setTimeout(function(){showScene(5);meteorBurst(5)},21600);
-
-  // S6
   setTimeout(function(){showScene(6);steepMeteor();setTimeout(steepMeteor,900)},25400);
-
-  // S7 — "六一快乐" + fireworks
-  setTimeout(function(){
-    showScene(7);grandFireworks(8);
-    setTimeout(function(){grandFireworks(6)},900);
-    setTimeout(function(){grandFireworks(4)},1700);
-    meteorBurst(6);
-  },29600);
-
-  // S8
-  setTimeout(function(){showScene(8);grandFireworks(6);meteorBurst(4)},34400);
-
-  // S9
-  setTimeout(function(){
-    showScene(9);grandFireworks(8);
-    setTimeout(function(){grandFireworks(5)},850);
-    setTimeout(function(){grandFireworks(4)},1600);
-    meteorBurst(6);
-  },38800);
-
-  // S10
+  setTimeout(function(){showScene(7);grandFw(8);setTimeout(function(){grandFw(6)},900);setTimeout(function(){grandFw(4)},1700);meteorBurst(6)},29600);
+  setTimeout(function(){showScene(8);grandFw(6);meteorBurst(4)},34400);
+  setTimeout(function(){showScene(9);grandFw(8);setTimeout(function(){grandFw(5)},850);setTimeout(function(){grandFw(4)},1600);meteorBurst(6)},38800);
   setTimeout(function(){showScene(10);steepMeteor();setTimeout(steepMeteor,600)},44400);
-
-  // S11
   setTimeout(function(){showScene(11);randMeteor();setTimeout(randMeteor,800)},48800);
+  setTimeout(function(){showScene(12);grandFw(9);setTimeout(function(){grandFw(7)},750);setTimeout(function(){grandFw(5)},1500);setTimeout(function(){grandFw(3)},2300);meteorBurst(5)},53000);
+  setTimeout(function(){showScene(13);grandFw(10);setTimeout(function(){grandFw(8)},700);setTimeout(function(){grandFw(6)},1400);setTimeout(function(){grandFw(5)},2100);setTimeout(function(){grandFw(4)},2800);meteorBurst(8)},58800);
+  setTimeout(function(){grandFw(12);setTimeout(function(){grandFw(10)},550);setTimeout(function(){grandFw(8)},1100);setTimeout(function(){revealFinale()},1800)},62000);
 
-  // S12
-  setTimeout(function(){
-    showScene(12);grandFireworks(9);
-    setTimeout(function(){grandFireworks(7)},750);
-    setTimeout(function(){grandFireworks(5)},1500);
-    setTimeout(function(){grandFireworks(3)},2300);
-    meteorBurst(5);
-  },53000);
-
-  // S13 — finale text
-  setTimeout(function(){
-    showScene(13);
-    grandFireworks(10);
-    setTimeout(function(){grandFireworks(8)},700);
-    setTimeout(function(){grandFireworks(6)},1400);
-    setTimeout(function(){grandFireworks(5)},2100);
-    setTimeout(function(){grandFireworks(4)},2800);
-    meteorBurst(8);
-  },58800);
-
-  // "美女，要开心哦 😜" — 3s after S13
-  setTimeout(function(){
-    grandFireworks(12);
-    setTimeout(function(){grandFireworks(10)},550);
-    setTimeout(function(){grandFireworks(8)},1100);
-    setTimeout(function(){revealFinale()},1800);
-  },62000);
-
-  /* ====== CONTINUOUS AMBIENT ====== */
-  setInterval(function(){
-    if(Math.random()<.28)randMeteor();
-    if(Math.random()<.10)steepMeteor();
-  },2900);
-
-  setInterval(function(){
-    if(Math.random()<.08)firework(W*(.10+Math.random()*.80),H*(.08+Math.random()*.52),
-      (35+Math.floor(Math.random()*48))|0,(Math.floor(Math.random()*4))|0)
-  },5200);
-
-  setInterval(function(){
-    if(Math.random()<.04)meteorBurst(2)
-  },7800);
-
+  /* ====== AMBIENT ====== */
+  setInterval(function(){if(Math.random()<.28)randMeteor();if(Math.random()<.10)steepMeteor()},2900);
+  setInterval(function(){if(Math.random()<.08)firework(W*(.10+Math.random()*.80),H*(.08+Math.random()*.52),(30+Math.floor(Math.random()*52))|0,(Math.floor(Math.random()*4))|0)},5400);
+  setInterval(function(){if(Math.random()<.04)meteorBurst(2)},8000);
   window.addEventListener('resize',function(){W=innerWidth;H=innerHeight});
 })();
 </script>
