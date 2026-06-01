@@ -6,522 +6,545 @@
 <title>🌟 吴总 · 六一快乐</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#030812;-webkit-font-smoothing:antialiased}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB','Noto Sans SC',sans-serif;background:#020610;-webkit-font-smoothing:antialiased}
 
-/* ═══ LAYER 0 — DEEP SPACE (galaxy core like reference image) ═══ */
-.bg{
-  position:fixed;top:0;left:0;width:100%;height:100%;
+/* ======== L0: DEEP SPACE ======== */
+.cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+.cosmos-bg{
+  width:100%;height:100%;
   background:
-    radial-gradient(ellipse 68% 48% at 50% 32%, rgba(40,130,190,.26) 0%, rgba(20,90,140.13) 28%, transparent 56%),
-    radial-gradient(ellipse 44% 34% at 52% 36%, rgba(60,180,200.20) 0%, rgba(30,140,170.09) 26%, transparent 52%),
-    radial-gradient(ellipse 54% 42% at 30% 56%, rgba(160,60,110.20) 0%, rgba(130,40,90.11) 28%, transparent 54%),
-    radial-gradient(ellipse 38% 30% at 26% 60%, rgba(190,80,100.16) 0%, rgba(150,50,80.08) 28%, transparent 50%),
-    radial-gradient(ellipse 48% 26% at 46% 72%, rgba(180,120,90.14) 0%, rgba(140,80,60.07) 24%, transparent 48%),
-    radial-gradient(ellipse at center, rgba(8,18,45,.6) 0%, rgba(4,10,28.85) 50%, rgba(2,5,15.96) 100%),
-    linear-gradient(175deg, #041022 0%, #06182f 30%, #081e3a 50%, #061628 75%, #030812 100%);
+    radial-gradient(ellipse 70% 50% at 50% 34%, rgba(30,110,170,.30) 0%, rgba(15,70,120,.18) 22%, transparent 52%),
+    radial-gradient(ellipse 50% 36% at 52% 36%, rgba(60,180,210,25) 0%, rgba(25,130,165,.12) 24%, transparent 50%),
+    radial-gradient(ellipse 56% 44% at 28% 54%, rgba(150,55,100,24) 0%, rgba(120,35,80,.14) 26%, transparent 54%),
+    radial-gradient(ellipse 42% 32% at 24% 58%, rgba(180,75,95,.18) 0%, rgba(140,45,72,.10) 26%, transparent 48%),
+    radial-gradient(ellipse 52% 28% at 44% 68%, rgba(170,110,80,.16) 0%, rgba(130,75,55,.08) 22%, transparent 46%),
+    radial-gradient(ellipse at center, rgba(6,16,40,.55) 0%, rgba(3,8,22,.88) 48%, rgba(1,3,12,.97) 100%),
+    linear-gradient(172deg, #030e1c 0%, #051226 28%, #071a32 50%, #051224 74%, #020610 100%);
 }
 
-/* ═══ LAYER 1 — NEBULA CLOUDS (cyan/pink/purple, drifting) ═══ */
+/* ======== L1: NEBULAE ======== */
 .nebula{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden}
-.nb{position:absolute;border-radius:50%;filter:blur(75px);opacity:.72}
-.n1{width:62vmax;height:34vmax;top:-4%;left:14%;
-  background:radial-gradient(ellipse 52% 46% at 50% 44%, rgba(40,145,195.19), rgba(65,205,225.09), transparent);
-  animation:nbD1 36s ease-in-out infinite alternate}
-.n2{width:50vmax;height:27vmax;top:top:4%;left:27%;
-  background:radial-gradient(ellipse 50% 44% at 55% 41%, rgba(52,165,205.15), rgba(85,215,235.06), transparent);
-  animation:nbD2 42s ease-in-out infinite alternate-reverse}
-.n3{width:48vmax;height:29vmax;top:top:17%;left:19%;
-  background:radial-gradient(ellipse 54% 47% at 49% 51%, rgba(64,42,155.15), rgba(104,62,185.07), transparent);
-  animation:nbD3 33s ease-in-out infinite alternate}
-.n4{width:50vmax;height:29vmax;top:top:37%;left:1%;
-  background:radial-gradient(ellipse 56% 49% at 43% 55%, rgba(172,63,108.15), rgba(204,93,123.07), transparent);
-  animation:nbD4 41s ease-in-out infinite alternate-reverse}
-.n5{width:42vmax;height:23vmax;top:44%;left:9%;
-  background:radial-gradient(ellipse 52% 45% at 41% 57%, rgba(192,83,98.12), rgba(162,53,78.05), transparent);
-  animation:nbD5 35s ease-in-out infinite alternate}
+.nb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.68}
+.n0{width:64vmax;height:36vmax;top:-6%;left:12%;
+  background:radial-gradient(ellipse 50% 44% at 48% 42%, rgba(38,140,190,.22), rgba(60,200,218,.10), transparent);
+  animation:nbDrift0 34s ease-in-out infinite alternate}
+.n1{width:52vmax;height:28vmax;top:3%;left:25%;
+  background:radial-gradient(ellipse 50% 42% at 53% 40%, rgba(48,155,200,.18), rgba(78,208,228,.08), transparent);
+  animation:nbDrift1 40s ease-in-out infinite alternate-reverse}
+.n2{width:50vmax;height:30vmax;top:16%;left:17%;
+  background:radial-gradient(ellipse 52% 46% at 47% 50%, rgba(60,38,148,.18), rgba(98,58,178,.09), transparent);
+  animation:nbDrift2 32s ease-in-out infinite alternate}
+.n3{width:52vmax;height:30vmax;top:35%;left:0%;
+  background:radial-gradient(ellipse 54% 48% at 42% 54%, rgba(168,58,102,18), rgba(198,88,118,.09), transparent);
+  animation:nbDrift3 39s ease-in-out infinite alternate-reverse}
+.n4{width:44vmax;height:24vmax;top:42%;left:8%;
+  background:radial-gradient(ellipse 50% 43% at 40% 56%, rgba(185,78,92,14), rgba(158,48,74,.07), transparent);
+  animation:nbDrift4 33s ease-in-out infinite alternate}
 
-@keyframes nbD1{from{transform:translate(0,0)}to{transform:translate(3.2vw,-1.6vh)}}
-@keyframes nbD2{from{transform:translate(0,0)}to{transform:translate(-2.2vw,2.2vh)}}
-@keyframes nbD3{from{transform:translate(0,0)}to{transform:translate(2.6vh,1.1vh)}}
-@keyframes nbD4{from{transform:translate(0,0)}to{transform:translate(-1.7vw,-1.6vh)}}
-@keyframes nbD5{from{transform:translate(0,0)}to{transform:translate(2.2vw,1.6vh)}}
+@keyframes nbDrift0{from{transform:translate(0,0)}to{transform:translate(3.5vw,-1.8vh)}}
+@keyframes nbDrift1{from{transform:translate(0,0)}to{transform:translate(-2.4vw,2.4vh)}}
+@keyframes nbDrift2{from{transform:translate(0,0)}to{transform:translate(2.8vw,1.2vh)}}
+@keyframes nbDrift3{from{transform:translate(0,0)}to{transform:translate(-1.8vw,-1.6vh)}}
+@keyframes nbDrift4{from{transform:translate(0,0)}to{transform:translate(2.4vw,1.8vh)}}
 
-/* ═══ LAYER 2 — STARS (dense field + diamond stars) ═══ */
-.stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:hidden}
-.star{position:absolute;border-radius:50%}
-/* diamond star - cross glow */
-.dia::after{
-  content:'';position:absolute;top:50%;left:50%;width:200%;height:1px;
-  background:linear-gradient(to right,transparent,rgba(220,230,255,.35),transparent);
-  transform:translate(-50%,-50%);
-}
-.dia::before{
-  content:'';position:absolute;top:50%;left:50%;width:1px;height:200%;
-  background:linear-gradient(to bottom,transparent,rgba(220,230,255.35),transparent);
-  transform:translate(-50%,-50%);
-}
-
-/* ═══ LAYER 3 — CAPRICORN CONSTELLATION with aurora glow ═══ */
-.constellation{position:fixed;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none}
-.con-svg{position:absolute;top:15%;left:50%;width:320px;height:280px;
-  transform:translateX(-50%);opacity:.22;filter:drop-shadow(0 0 25px rgba(100,160,255,.18)) drop-shadow(0 0 60px rgba(140,100,220.14));
-  animation:conPulse 5s ease-in-out infinite alternate}
-.con-glow{
-  position:absolute;top:16%;left:50%;width:300px;height:260px;
-  transform:translateX(-50%);border-radius:50%;
-  background:radial-gradient(ellipse 70% 55% at 50% 48%, rgba(80,140,255.09), rgba(120,80,220.05), transparent);
-  filter:blur(30px);animation:auroraDrift 7s ease-in-out infinite alternate;
-}
+/* ======== CAPRICORN CONSTELLATION — big & bright ======== */
+.con{position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.con-svg{position:absolute;top:14%;left:50%;transform:translateX(-50%);
+  filter:drop-shadow(0 0 8px rgba(120,180,255,.35)) drop-shadow(0 0 25px rgba(100,150,230,22));
+  animation:conGlow 4s ease-in-out infinite alternate}
 .con-label{
-  position:absolute;top:calc(15% + 290px);left:50%;transform:translateX(-50%);
-  color:rgba(160,180,220,.22);font-size:.68rem;letter-spacing:10px;
-  text-transform:uppercase;font-weight:300;white-space:nowrap;
-  animation:conPulse 5s ease-in-out infinite alternate;
-}
+  position:absolute;top:14%;left:50%;transform:translateX(-50%) translateY(270px);
+  color:rgba(160,185,225,.30);font-size:.72rem;letter-spacing:12px;
+  font-weight:400;white-space:nowrap;
+  animation:conGlow 4s ease-in-out infinite alternate}
+@keyframes conGlow{0%{opacity:.22;filter:drop-shadow(0 0 6px rgba(120,180,255,.3)) drop-shadow(0 0 20px rgba(100,150,230,.18))}
+  100%{opacity:.40;filter:drop-shadow(0 0 14px rgba(150,200,255,.45)) drop-shadow(0 0 35px rgba(130,170,240,.25))}}
 
-@keyframes conPulse{from{opacity:.18}to{opacity:.34}}
-@keyframes auroraDrift{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-50%) scale(1.12) translateY(-5px)}}
+/* ======== COSMIC DUST BANDS ======== */
+.dust{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden}
+.dd{position:absolute;height:2.5px;border-radius:50%;filter:blur(4px);opacity:.10}
+.dd1{top:26%;left:-12%;width:124%;background:linear-gradient(90deg,transparent,rgba(90,150,210,.28),rgba(130,170,220,.18),rgba(90,150,210,.28),transparent);
+  animation:dustSweep 48s linear infinite}
+.dd2{top:44%;left:-14%;width:132%;background:linear-gradient(90deg,transparent,rgba(155,95,175,.22),rgba(175,115,195,.14),rgba(155,95,175,.22),transparent);
+  animation:dustSweep 56s linear infinite reverse}
+.dd3{top:60%;left:-10%;width:118%;background:linear-gradient(90deg,transparent,rgba(175,135,95,.18),rgba(195,155,115,.11),rgba(175,135,95,.18),transparent);
+  animation:dustSweep 50s linear infinite}
+@keyframes dustSweep{from{transform:translateX(0)}to{transform:translateX(-28%)}}
 
-/* ═══ LAYER 4 — METEORS ═══ */
-.meteor{position:fixed;z-index:4;pointer-events:none;overflow:hidden}
-.mh{width:2.5px;height:2.5px;background:#d8f0ff;border-radius:50%;
-  box-shadow:0 0 10px 4px rgba(216,240,255.55),0 0 20px 8px rgba(170,210,250.28)}
-.mt{position:absolute;top:50%;right:1px;height:.9px;
-  background:linear-gradient(to left, rgba(218,245,255.8), rgba(190,225,250.45) 22%, rgba(150,195,235.18) 52%, transparent)}
+/* ======== VIGNETTE ======== */
+.vig{position:fixed;top:0;left:0;width:100%;height:100%;z-index:6;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 38%,rgba(0,0,0,.38) 100%)}
 
-/* ═══ LAYER 5 — FIREWORKS ═══ */
+/* ======== STARS — dense field ======== */
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:hidden}
+.sx{position:absolute;border-radius:50%}
+/* diamond star cross-glow */
+.dx::before,.dx::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.dx::before{width:200%;height:1px;background:linear-gradient(90deg,transparent,rgba(220,235,255,.40),transparent)}
+.dx::after{width:1px;height:200%;background:linear-gradient(0deg,transparent,rgba(220,235,255,.40),transparent)}
+
+/* ======== METEORS ======== */
+.me{position:fixed;z-index:4;pointer-events:none}
+.mh{width:2.5px;height:2.5px;background:#e0f4ff;border-radius:50%;
+  box-shadow:0 0 10px 4px rgba(224,244,255,.55),0 0 22px 8px rgba(180,220,255,.28)}
+.mt{position:absolute;top:50%;right:1px;height:1px;
+  background:linear-gradient(to left,rgba(224,248,255,.80),rgba(195,230,255,.45) 22%,rgba(155,200,240,.18) 52%,transparent)}
+
+/* ======== FIREWORKS ======== */
 .fw{position:fixed;z-index:5;pointer-events:none}
-.fp{position:absolute;width:2.5px;height:2.5px;border-radius:50%}
+.fp{position:absolute;width:3px;height:3px;border-radius:50%}
 
-/* ═══ LAYER 6 — COSMIC DUST BANDS ═══ */
-.dust{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
-.db{position:absolute;height:2px;border-radius:50%;filter:blur(3px);opacity:.12}
-.db1{top:28%;left:-10%;width:120%;background:linear-gradient(90deg,transparent,rgba(100,160,220,.3),rgba(140,180,230.2),rgba(100,160,220.3),transparent);
-  animation:dustMove 45s linear infinite}
-.db2{top:45%;left:-15%;width:130%;background:linear-gradient(90deg,transparent,rgba(160,100,180.25),rgba(180,120,200.15),rgba(160,100,180.25),transparent);
-  animation:dustMove 58s linear infinite reverse}
-.db3{top:62%;left:-8%;width:116%;background:linear-gradient(90deg,transparent,rgba(180,140,100.2),rgba(200,160,120.12),rgba(180,140,100.2),transparent);
-  animation:dustMove 52s linear infinite}
-
-@keyframes dustMove{from{transform:translateX(0)}to{transform:translateX(-30%)}}
-
-/* ═══ CINEMA VIGNETTE ═══ */
-.vignette{
-  position:fixed;top:0;left:0;width:100%;height:100%;z-index:6;pointer-events:none;
-  background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.35) 100%);
-}
-
-/* ═══ TEXT OVERLAY — RICH ANIMATIONS ═══ */
+/* ======== TEXT SCENES ======== */
 .stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
-.scene{position:absolute;width:86%;max-width:540px;text-align:center;opacity:0;
-  transition:opacity 2s cubic-bezier(.16,1,.3,1), transform 2.2s cubic-bezier(.16,1,.3,1);
-  transform:scale(.94) translateY(18px)}
+.scene{position:absolute;width:86%;max-width:560px;text-align:center;opacity:0;
+  transition:opacity 2.4s cubic-bezier(.16,1,.3,1),transform 2.6s cubic-bezier(.16,1,.3,1);
+  transform:scale(.93) translateY(22px)}
 .scene.on{opacity:1;transform:scale(1) translateY(0)}
-.scene.off{opacity:0;transform:scale(1.03) translateY(-12px);transition-duration:.9s}
+.scene.off{opacity:0;transform:scale(1.04) translateY(-14px);transition-duration:1s}
 
-.sub{color:rgba(180,200,230.26);font-size:.58rem;letter-spacing:14px;display:block;margin-bottom:40px;
-  animation:subFade 3s ease-out forwards}
-.hero{font-size:5.2rem;font-weight:900;color:#e8e0f4;display:block;line-height:1.1;
-  text-shadow:
-    0 0 40px rgba(200,185,235.2), 0 0 80px rgba(180,165,220.12),
-    0 2px 14px rgba(0,0,0.5), 0 0 120px rgba(200,185,235.08);
-  animation:heroIn 2.2s cubic-bezier(.16,1,.3,1) forwards;
-  margin-bottom:18px}
-.tag{color:rgba(180,200,230.30);font-size:.76rem;letter-spacing:10px;display:block;margin-top:26px;
-  animation:tagIn 2s ease 1.5s both}
+.sub{color:rgba(175,195,225,.28);font-size:.56rem;letter-spacing:16px;display:block;margin-bottom:44px}
+.hero{
+  font-size:5.4rem;font-weight:900;color:#eae2f6;display:block;line-height:1.08;
+  text-shadow:0 0 36px rgba(200,185,235,.22),0 0 72px rgba(175,160,215,.13),
+              0 2px 16px rgba(0,0,0,.50),0 0 110px rgba(200,185,235,.10);
+  margin-bottom:20px}
+.tag{color:rgba(175,195,225,33);font-size:.74rem;letter-spacing:12px;display:block;margin-top:30px}
 
-.txt{color:#b8c4dc;font-size:1.16rem;line-height:2.7;font-weight:300;display:block;
-  text-shadow:0 1px 5px rgba(0,0,0.5), 0 0 20px rgba(100,120,160.06);
-  opacity:0;animation:txtUp 1.6s cubic-bezier(.16,1,.3,1) forwards}
-.txt.g{color:#d0bce8}
-.txt.b{font-size:1.95rem;font-weight:700;color:#ddd0ee;line-height:1.85;
-  text-shadow:0 0 28px rgba(220,208,235.16), 0 2px 8px rgba(0,0,0.5), 0 0 60px rgba(220,208,235.08);
-  margin:10px 0}
-.end{font-size:2.1rem;font-weight:700;color:#d8cce8;line-height:1.95;
-  text-shadow:0 0 40px rgba(216,204,232.18), 0 2px 8px rgba(0,0,0.5), 0 0 80px rgba(216,204,232.1);
-  opacity:0;animation:endIn 2.4s cubic-bezier(.16,1,.3,1) forwards}
-.sign{color:rgba(180,200,230.26);font-size:.8rem;margin-top:30px;display:block;
-  opacity:0;animation:signIn 2s ease 1.2s both}
+.txt{
+  color:#bcc8e0;font-size:1.2rem;line-height:2.8;font-weight:300;display:block;
+  text-shadow:0 1px 6px rgba(0,0,0,.52),0 0 22px rgba(95,115,155,.08)}
+.txt.e{color:#d7c2ec}
+.txt.hl{
+  font-size:2rem;font-weight:700;color:#e2d5f0;line-height:1.9;
+  text-shadow:0 0 26px rgba(222,210,238,.18),0 2px 10px rgba(0,0,0,.52),0 0 58px rgba(222,210,238,.10);
+  margin:12px 0}
+
+.end{
+  font-size:2.2rem;font-weight:700;color:#dfcfea;line-height:2;
+  text-shadow:0 0 42px rgba(222,206,234,.20),0 2px 10px rgba(0,0,0,.52),0 0 76px rgba(222,206,234,.12)}
+.sign{color:rgba(175,195,225,.28);font-size:.82rem;margin-top:34px;display:block}
+
+/* ======== FINALE: firework text reveal ======== */
+.finale{position:fixed;top:0;left:0;width:100%;height:100%;z-index:12;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;opacity:0;
+  transition:opacity 2s ease}
+.finale.show{opacity:1}
+.finale-text{
+  font-size:2.8rem;font-weight:900;text-align:center;line-height:2.2;
+  color:#ffe8d0;
+  text-shadow:0 0 24px rgba(255,210,140,.40),0 0 60px rgba(255,180,100,.25),
+              0 0 100px rgba(255,160,80,.15),0 2px 16px rgba(0,0,0,.55)}
+.finale-emoji{font-size:4rem;display:block;margin-top:18px;animation:emojiBounce 1.2s ease-in-out infinite alternate}
+@keyframes emojiBounce{from{transform:translateY(0) scale(1)}to{transform:translateY(-10px) scale(1.08)}}
+
+/* sparkle particles around finale text */
+.fsp{position:fixed;z-index:12;pointer-events:none;width:3px;height:3px;border-radius:50%;
+  background:#ffe8c0;box-shadow:0 0 6px 2px rgba(255,210,140,.35)}
 
 @media(max-width:768px){
-  .hero{font-size:3.2rem}.txt{font-size:1rem;line-height:2.4}
-  .txt.b{font-size:1.35rem}.end{font-size:1.52rem}
-  .con-svg{width:220px;height:192px}
+  .hero{font-size:3.4rem}.txt{font-size:1.04rem;line-height:2.5}
+  .txt.hl{font-size:1.42rem}.end{font-size:1.58rem}
+  .finale-text{font-size:1.8rem}.finale-emoji{font-size:2.8rem}
+  .con-svg{transform:translateX(-50%) scale(.75)}
 }
 
-@keyframes subFade{from{opacity:0;letter-spacing:30px}to{opacity:1}}
-@keyframes heroIn{from{opacity:0;transform:scale(.85) translateY(20px);filter:brightness(2)}to{opacity:1;transform:scale(1) translateY(0);filter:brightness(1)}}
-@keyframes tagIn{from{opacity:0}to{opacity:1}}
-@keyframes txtUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes endIn{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes signIn{from{opacity:0}to{opacity:1}}
-
-/* twinkle keyframes injected by JS for max compatibility */
+/* twinkle keyframes injected via JS */
 </style>
 </head>
 <body>
 
-<!-- L0: Deep Space -->
-<div class="bg"></div>
+<!-- L0: DEEP SPACE -->
+<div class="cosmos"><div class="cosmos-bg"></div></div>
 
-<!-- L1: Nebula Clouds -->
+<!-- L1: NEBULAE -->
 <div class="nebula">
-  <div class="nb n1"></div><div class="nb n2"></div><div class="nb n3"></div>
-  <div class="nb n4"></div><div class="nb n5"></div>
+  <div class="nb n0"></div><div class="nb n1"></div><div class="nb n2"></div>
+  <div class="nb n3"></div><div class="nb n4"></div>
 </div>
 
-<!-- Cosmic Dust Bands -->
+<!-- DUST BANDS -->
 <div class="dust">
-  <div class="db db1"></div><div class="db db2"></div><div class="db db3"></div>
+  <div class="dd dd1"></div><div class="dd dd2"></div><div class="dd dd3"></div>
 </div>
 
-<!-- L2: Stars -->
-<div class="stars" id="starLayer"></div>
+<!-- L2: STARS (filled by JS) -->
+<div class="stars" id="starField"></div>
 
-<!-- L3: Capricorn Constellation -->
-<div class="constellation">
-  <div class="con-glow"></div>
-  <svg class="con-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
-    <!-- ♑ Capricorn constellation lines -->
-    <polyline points="60,220 95,175 130,140 170,115 210,95 250,75 270,50"
-              fill="none" stroke="rgba(160,190,240,.18)" stroke-width="1"
-              stroke-linecap="round" stroke-linejoin="round"/>
-    <polyline points="95,175 80,135 105,100 140,85"
-              fill="none" stroke="rgba(160,190,240.14)" stroke-width=".8"
-              stroke-linecap="round"/>
-    <!-- star nodes -->
-    <circle cx="60" cy="220" r="2.5" fill="#c8daf0" opacity=".5"/>
-    <circle cx="95" cy="175" r="3" fill="#d8e8ff" opacity=".6"/>
-    <circle cx="130" cy="140" r="2.2" fill="#c8daf0" opacity=".45"/>
-    <circle cx="170" cy="115" r="2.8" fill="#d8e8ff" opacity=".55"/>
-    <circle cx="210" cy="95" r="2.3" fill="#c8daf0" opacity=".45"/>
-    <circle cx="250" cy="75" r="3.2" fill="#e0ecff" opacity=".6"/>
-    <circle cx="270" cy="50" r="2.5" fill="#d8e8ff" opacity=".5"/>
-    <circle cx="80" cy="135" r="2" fill="#c8daf0" opacity=".4"/>
-    <circle cx="105" cy="100" r="2.4" fill="#d0e0f0" opacity=".5"/>
-    <circle cx="140" cy="85" r="2" fill="#c8daf0" opacity=".4"/>
-    <!-- node glows -->
-    <circle cx="250" cy="75" r="7" fill="none" stroke="rgba(180,210,255.15)" stroke-width="1"/>
-    <circle cx="95" cy="175" r="6" fill="none" stroke="rgba(180,210,255.12)" stroke-width="1"/>
-    <circle cx="270" cy="50" r="6" fill="none" stroke="rgba(180,210,255.13)" stroke-width="1"/>
+<!-- L3: CAPRICORN CONSTELLATION — BIG & BRIGHT -->
+<div class="con">
+  <svg class="con-svg" viewBox="0 0 320 300" width="340" height="318" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="cGlow">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.5"/>
+        <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMergeNode>
+      </filter>
+    </defs>
+    <!-- Main line: top-right tail through body to head -->
+    <polyline points="55,235 90,190 125,152 165,122 205,98 245,78 268,52"
+      fill="none" stroke="rgba(160,195,245,.30)" stroke-width="2.2"
+      stroke-linecap="round" stroke-linejoin="round" filter="url(#cGlow)"/>
+    <polyline points="55,235 90,190 125,152 165,122 205,98 245,78 268,52"
+      fill="none" stroke="rgba(200,220,255,.16)" stroke-width="5"
+      stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Branch lines -->
+    <polyline points="90,190 78,138 105,100 140,84"
+      fill="none" stroke="rgba(160,195,245,.24)" stroke-width="1.8"
+      stroke-linecap="round" filter="url(#cGlow)"/>
+    <polyline points="90,190 78,138 105,100 140,84"
+      fill="none" stroke="rgba(200,220,255,.12)" stroke-width="4.5"
+      stroke-linecap="round"/>
+    <!-- Star nodes with glow -->
+    <circle cx="55"  cy="235" r="4.5" fill="#d0e4ff" opacity=".65" filter="url(#cGlow)"/>
+    <circle cx="90"  cy="190" r="5.5" fill="#e0efff" opacity=".75" filter="url(#cGlow)"/>
+    <circle cx="125" cy="152" r="4"   fill="#d0e4ff" opacity=".55" filter="url(#cGlow)"/>
+    <circle cx="165" cy="122" r="5"   fill="#e0efff" opacity=".70" filter="url(#cGlow)"/>
+    <circle cx="205" cy="98"  r="4"   fill="#d0e4ff" opacity=".55" filter="url(#cGlow)"/>
+    <circle cx="245" cy="78"  r="6"   fill="#eaf4ff" opacity=".78" filter="url(#cGlow)"/>
+    <circle cx="268" cy="52"  r="5"   fill="#e0efff" opacity=".68" filter="url(#cGlow)"/>
+    <circle cx="78"  cy="138" r="3.5" fill="#d0e4ff" opacity=".50" filter="url(#cGlow)"/>
+    <circle cx="105" cy="100" r="4"   fill="#d8e8ff" opacity=".58" filter="url(#cGlow)"/>
+    <circle cx="140" cy="84"  r="3.5" fill="#d0e4ff" opacity=".50" filter="url(#cGlow)"/>
+    <!-- Outer glow rings on major nodes -->
+    <circle cx="268" cy="52"  r="12" fill="none" stroke="rgba(180,215,255,.10)" stroke-width="1"/>
+    <circle cx="245" cy="78"  r="14" fill="none" stroke="rgba(180,215,255,.09)" stroke-width="1"/>
+    <circle cx="90"  cy="190" r="13" fill="none" stroke="rgba(180,215,255,.08)" stroke-width="1"/>
   </svg>
-  <div class="con-label">♑ CAPRICORNUS</div>
+  <div class="con-label">♑ C A P R I C O R N U S  ♑</div>
 </div>
 
-<!-- Text Scenes -->
+<!-- L6: VIGNETTE -->
+<div class="vig"></div>
+
+<!-- TEXT SCENES -->
 <div class="stage">
-  <div class="scene" id="s0"><span class="sub">CHILDREN'S DAY · 2026</span><span class="hero">吴 总</span><span class="tag">✦ 摩羯座 · 12.29 ✦</span></div>
-  <div class="scene" id="s1"><span class="txt">你出生在<span class="txt g">12月29日</span>，</span><span class="txt">摩羯座的星星，从那天起就为你亮着。</span></div>
-  <div class="scene" id="s2"><span class="txt"><span class="txt g">19岁</span>了，刚好的年纪——</span><span class="txt">有大人的洒脱，也有孩子气的骄傲。</span></div>
-  <div class="scene" id="s3"><span class="txt b">所以今天，</span><span class="txt">麻烦你做回那个<span class="txt g">吃糖的小孩</span>。</span></div>
-  <div class="scene" id="s4"><span class="txt">每一颗星星，都是你这一年里<span class="txt g">发过的光</span>——</span></div>
-  <div class="scene" id="s5"><span class="txt">倔强过，努力过，也偷偷<span class="txt g">难过过</span>。</span></div>
-  <div class="scene" id="s6"><span class="txt b">但你看看，</span><span class="txt">星星从来不会因为黑夜而停止<span class="txt g">闪烁</span>。</span></div>
-  <div class="scene" id="s7"><span class="txt b">六一快乐。</span></div>
-  <div class="scene" id="s8"><span class="txt">这里的所有烟花，<span class="txt g">为你一人而放</span>。</span></div>
-  <div class="scene" id="s9"><span class="txt">不是因为你需要庆祝，</span><span class="txt">而是因为这个世界——</span><span class="txt">需要你这样<span class="txt g">天真烂漫</span>的人。</span></div>
-  <div class="scene" id="s10"><span class="txt">你的六一礼物，<span class="txt g">会晚两天到</span>。</span></div>
+  <div class="scene" id="s0"><span class="sub">CHILDREN'S DAY · 2026</span><span class="hero">吴 总</span><span class="tag">✦  摩羯座 · 12.29  ✦</span></div>
+  <div class="scene" id="s1"><span class="txt">你出生在<span class="txt e">12月29日</span>，</span><span class="txt">摩羯座的星星，从那天起就为你亮着。</span></div>
+  <div class="scene" id="s2"><span class="txt"><span class="txt e">19岁</span>了，刚好的年纪——</span><span class="txt">有大人的洒脱，也有孩子气的骄傲。</span></div>
+  <div class="scene" id="s3"><span class="txt hl">所以今天，</span><span class="txt">麻烦你做回那个<span class="txt e">吃糖的小孩</span>。</span></div>
+  <div class="scene" id="s4"><span class="txt">每一颗星星，都是你这一年里<span class="txt e">发过的光</span>——</span></div>
+  <div class="scene" id="s5"><span class="txt">倔强过，努力过，也偷偷<span class="txt e">难过过</span>。</span></div>
+  <div class="scene" id="s6"><span class="txt hl">但你看看，</span><span class="txt">星星从来不会因为黑夜<br>而停止<span class="txt e">闪烁</span>。</span></div>
+  <div class="scene" id="s7"><span class="txt hl">六一快乐。</span></div>
+  <div class="scene" id="s8"><span class="txt">这里的所有烟花，<span class="txt e">为你一人而放</span>。</span></div>
+  <div class="scene" id="s9"><span class="txt">不是因为你需要庆祝，</span><span class="txt">而是因为这个世界——</span><span class="txt">需要你这样<span class="txt e">天真烂漫</span>的人。</span></div>
+  <div class="scene" id="s10"><span class="txt">你的六一礼物，<span class="txt e">会晚两天到</span>。</span></div>
   <div class="scene" id="s11"><span class="txt">是我的疏忽，对不起。</span></div>
-  <div class="scene" id="s12"><span class="txt">但等它到了——</span><span class="txt b">希望你会感到双倍的快乐，</span></div>
-  <div class="scene" id="s13"><span class="end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，一直是开心果。</span><span class="sign">—— 儿童节快乐，吴总 🌌</span></div>
+  <div class="scene" id="s12"><span class="txt">但等它到了——</span><span class="txt hl">希望你会感到双倍的快乐，</span></div>
+  <div class="scene" id="s13"><span class="end">永远有糖吃<br>永远被偏爱<br>也愿我永远能逗你笑，<br>一直是开心果。</span><span class="sign">—— 儿童节快乐，吴总 🌌</span></div>
 </div>
 
-<!-- Cinema Vignette -->
-<div class="vignette"></div>
+<!-- FINALE OVERLAY -->
+<div class="finale" id="finale">
+  <div class="finale-text">
+    美女，要开心哦
+    <span class="finale-emoji">😜</span>
+  </div>
+</div>
 
 <script>
 (function(){
-  var W=window.innerWidth,H=window.innerHeight;
+  var W=innerWidth,H=innerHeight;
 
-  /* ═════════════════════════════════
-     INJECT TWINKLE KEYFRAMES
-     ═════════════════════════════════ */
-  var ss=document.createElement('style');
-  ss.textContent=
-    '@keyframes twA{0%,100%{opacity:.08}50%{opacity:.35}}'+
-    '@keyframes twB{0%,100%{opacity:.12}50%{opacity:.5}}'+
-    '@keyframes twC{0%,100%{opacity:.05}50%{opacity:.25}}'+
-    '@keyframes twD{0%,100%{opacity:.15}50%{opacity:.6}}'+
-    '@keyframes diaTw{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:.7;transform:scale(1.3)}}';
-  document.head.appendChild(ss);
+  /* ====== INJECT TWINKLE KEYFRAMES ====== */
+  (function(){
+    var s=document.createElement('style');s.textContent=
+      '@keyframes t0{0%,100%{opacity:.08}50%{opacity:.38}}'+
+      '@keyframes t1{0%,100%{opacity:.14}50%{opacity:.55}}'+
+      '@keyframes t2{0%,100%{opacity:.06}50%{opacity:.28}}'+
+      '@keyframes t3{0%,100%{opacity:.18}50%{opacity:.65}}'+
+      '@keyframes dt{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.75;transform:scale(1.35)}}';
+    document.head.appendChild(s);
+  })();
 
-  /* ═════════════════════════════════
-     CREATE STAR FIELD — 3 layers + diamonds
-     ═════════════════════════════════ */
-  var sl=document.getElementById('starLayer');
-  var clrs=['#c8d8f0','#b0c8e8','#d8e4f4','#a0bcd8','#e0ecf8','#c0d0e8',
-            '#b8cae0','#e8f0fc','#c8dae8','#d0dde8','#d4e2f0','#bcc8e0'];
+  /* ====== STAR FIELD — 3 layers ====== */
+  var sf=document.getElementById('starField');
+  var colors=['#c8d8f0','#b0c8e8','#d8e4f4','#a0bcd8','#e0ecf8','#c0d0e8','#b8cae0',
+    '#e8f0fc','#c8dae8','#d0dde8','#d4e2f0','#bcc8e0'];
 
-  // Layer 1: dense tiny stars (400+) — Milky Way feel
-  for(var i=0;i<420;i++){
-    var s=document.createElement('div');s.className='star';
-    var r=.4+Math.random()*1.1;
-    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*
-      82+'%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;'+'background:'+
-      clrs[i%clrs.length]+';animation:tw'+['A','B','C'][i%3]+' '+(3+Math.random()*8).
-      toFixed(1)+'s ease-in-out infinite '+(Math.random()*6).toFixed(1)+'s';
-    sl.appendChild(s);
+  // Layer 1: dense tiny (450)
+  for(var i=0;i<450;i++){
+    var s=document.createElement('div');s.className='sx';
+    var r=.35+Math.random()*1.1;
+    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*84+
+      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:'+colors[i%colors.length]+
+      ';animation:t'+[0,1,2][i%3]+' '+(2.5+Math.random()*7.5).toFixed(1)+'s ease-in-out infinite '+
+      (Math.random()*5.5).toFixed(1)+'s';
+    sf.appendChild(s);
   }
 
-  // Layer 2: medium bright stars (120)
-  for(var i=0;i<120;i++){
-    var s=document.createElement('div');s.className='star';
-    var r=.9+Math.random()*2;
-    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*76+
-      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#d8e8ff;'+
-      'animation:tw'+['B','D'][i%2]+' '+(2.5+Math.random()*5).toFixed(1)+
-      's ease-in-out infinite '+(Math.random()*4).toFixed(1)+'s;'+
-      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(200,220,255,.2)';
-    sl.appendChild(s);
+  // Layer 2: medium bright (110)
+  for(var i=0;i<110;i++){
+    var s=document.createElement('div');s.className='sx';
+    var r=.8+Math.random()*2;
+    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*78+
+      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#dce8f8;'+
+      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(200,225,255,.22);'+
+      ';animation:t'+[1,3][i%2]+' '+(2+Math.random()*5).toFixed(1)+'s ease-in-out infinite '+
+      (Math.random()*3.5).toFixed(1)+'s';
+    sf.appendChild(s);
   }
 
-  // Layer 3: DIAMOND STARS (25) — cross-shaped glow, very visible
-  for(var i=0;i<25;i++){
-    var s=document.createElement('div');s.className='star dia';
-    var r=2+Math.random()*2.5;
-    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*70+
-      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#eaf0ff;'+
-      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(220,235,255.4),'+
-      '0 0 '+((r*4).toFixed(0))+'px '+((r*2).toFixed(0))+'px rgba(200,220,255.15);'+
-      'animation:diaTw '+(2+Math.random()*4).toFixed(1)+
-      's ease-in-out infinite '+(Math.random()*3).toFixed(1)+'s';
-    sl.appendChild(s);
+  // Layer 3: DIAMOND STARS (28) — very visible
+  for(var i=0;i<28;i++){
+    var s=document.createElement('div');s.className='sx dx';
+    var r=2+Math.random()*3;
+    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*72+
+      '%;width:'+r.toFixed(1)+'px;height:'+r.toFixed(1)+'px;background:#edf4ff;'+
+      'box-shadow:0 0 '+r.toFixed(0)+'px 1px rgba(225,240,255,.45),'+
+      '0 0 '+(r*4.5).toFixed(0)+'px '+(r*2.5).toFixed(0)+'px rgba(205,225,255,.18);'+
+      'animation:dt '+(1.6+Math.random()*3.4).toFixed(1)+'s ease-in-out infinite '+
+      (Math.random()*2.5).toFixed(1)+'s';
+    sf.appendChild(s);
   }
 
-  /* ═════════════════════════════════
-     SCENE TRANSITIONS
-     ═════════════════════════════════ */
-  var scenes=[],prev=null;
+  /* ====== SCENE MANAGEMENT ====== */
+  var scenes=[],prevEl=null;
   for(var i=0;i<14;i++){var el=document.getElementById('s'+i);if(el)scenes.push(el)}
+  // hide all scenes initially
+  for(var j=0;j<scenes.length;j++)scenes[j].style.display='none';
 
-  function show(n,delay){
-    if(delay){setTimeout(function(){show(n)},delay);return}
-    if(prev){
-      prev.classList.remove('on');
-      prev.classList.add('off');
-      setTimeout(function(){prev.style.display='none'},900)
+  function showScene(n,delay){
+    if(delay){setTimeout(function(){showScene(n)},delay);return}
+    if(prevEl){
+      prevEl.classList.remove('on');prevEl.classList.add('off');
+      setTimeout(function(){prevEl.style.display='none'},1000);
     }
     if(n>=0&&n<scenes.length){
-      scenes[n].style.display='';
-      // force reflow
-      void scenes[n].offsetHeight;
-      setTimeout(function(){scenes[n].classList.remove('off');scenes[n].classList.add('on')},50)
+      scenes[n].style.display='';void scenes[n].offsetHeight;
+      setTimeout(function(){scenes[n].classList.remove('off');scenes[n].classList.add('on')},60);
     }
-    prev=scenes[n];
+    prevEl=scenes[n];
   }
-  // hide all initially
-  for(var i=0;i<scenes.length;i++)scenes[i].style.display='none';
 
-  /* ═════════════════════════════════
-     METEOR SYSTEM — requestAnimationFrame driven
-     ═════════════════════════════════ */
-  function makeMeteor(sx,sy,dx,dy,dur,tailLen){
-    var m=document.createElement('div');m.className='meteor';
-    m.style.cssText='left:'+sx+'px;top:'+sy+'px';
-    m.innerHTML='<div class="mh"></div>'+
-      '<div class="mt" style="width:'+tailLen+'px"></div>';
+  /* ====== METEOR SYSTEM (rAF-driven) ====== */
+  function spawnMeteor(sx,sy,dx,dy,dur,tailLen){
+    var m=document.createElement('div');m.className='me';m.style.cssText='left:'+sx+'px;top:'+sy+'px';
+    m.innerHTML='<div class="mh"></div><div class="mt" style="width:'+tailLen+'px"></div>';
     document.body.appendChild(m);
     var t0=null;
-    function step(ts){
-      if(!t0)t0=ts;
-      var p=(ts-t0)/dur;
+    function tick(ts){
+      if(!t0)t0=ts;var p=(ts-t0)/dur;
       if(p>=1){if(m.parentNode)m.parentNode.removeChild(m);return}
       m.style.transform='translate('+p*dx+'px,'+p*dy+'px)';
-      m.style.opacity=p<.05?18*p:p>.38?Math.max(0,1.2-p):1;
-      requestAnimationFrame(step);
+      m.style.opacity=p<.06?16*p:p>.36?Math.max(0,1.15-p):1;
+      requestAnimationFrame(tick);
     }
-    requestAnimationFrame(step);
+    requestAnimationFrame(tick);
   }
   function randMeteor(){
-    makeMeteor(
-      W*(.08+Math.random()*.88),H*Math.random()*.3-10,
-      180+Math.random()*380,90+Math.random()*260,
-      1300+Math.random()*2000,90+Math.random()*140
-    );
+    spawnMeteor(W*(.06+Math.random()*.9),H*Math.random()*.28-12,
+      160+Math.random()*400,85+Math.random()*280,1300+Math.random()*2200,85+Math.random()*150);
   }
   function steepMeteor(){
-    makeMeteor(
-      W*(.02+Math.random()*.94),H*Math.random()*.25-10,
-      110+Math.random()*240,170+Math.random()*310,
-      1100+Math.random()*1600,70+Math.random()*110
-    );
+    spawnMeteor(W*(.03+Math.random()*.95),H*Math.random()*.24-12,
+      100+Math.random()*250,165+Math.random()*320,1100+Math.random()*1700,65+Math.random()*120);
   }
-  function meteorBurst(n){
-    n=n||5;
-    for(var i=0;i<n;i++){
-      setTimeout(function(){randMeteor();steepMeteor()},i*280+Math.random()*220)
-    }
-  }
+  function meteorBurst(n){n=n||5;
+    for(var i=0;i<n;i++)setTimeout(function(){randMeteor();steepMeteor()},i*260+Math.random()*240)}
 
-  /* ═════════════════════════════════
-     FIREWORK SYSTEM — rich particle burst
-     ═════════════════════════════════ */
-  function firework(x,y,count){
-    count=count||55;
-    var c=document.createElement('div');c.className='fw';
-    c.style.left=x+'px';c.style.top=y+'px';
+  /* ====== FIREWORK SYSTEM — robust rAF spread ====== */
+  function firework(x,y,count,paletteIdx){
+    count=count||50;paletteIdx=paletteIdx||0;
     var palettes=[
-      ['#a8d0f0','#88b8e0','#c0e0ff','#d8ecff','#b0c8e8'],  // cool blue
-      ['#d8b0e8','#c890d8','#e8c0f8','#f0d8ff','#b898c8'],  // purple-pink
-      ['#e8d0a0','#d8b878','#f0e0b8','#fff0d0','#c8a868'],  // warm gold
-      ['#b8e0d0','#90c8b0','#d0f0e0','#e8fff0','#98b8a8'],  // teal
-      ['#e8b8c0','#d898a8','#f0c8d0','#ffd8e0','#c88898'],  // rose
+      ['#a8d0f0','#88b8e0','#c0e0ff','#d8ecff','#b0c8e8','#c8daf0'],
+      ['#d8b0e8','#c890d8','#e8c0f8','#f0d8ff','#b898c8','#e0c8f0'],
+      ['#e8d0a0','#d8b878','#f0e0b8','#fff0d0','#c8a868','#f8e0c0'],
+      ['#f0b8c0','#e898a8','#f8c8d0','#ffd8e0','#d88898','#f8c8d8'],
     ];
-    var pal=palettes[Math.floor(Math.random()*palettes.length)];
-    var frag=document.createDocumentFragment();
+    var pal=palettes[paletteIdx%palettes.length];
+    var c=document.createElement('div');c.className='fw';
+    c.style.cssText='left:'+x+'px;top:'+y+'px';
+    var particles=[];
 
-    // main ring
+    // Ring particles
     for(var i=0;i<count;i++){
       var p=document.createElement('div');p.className='fp';
-      var ang=Math.PI*2*i/count;
-      var dist=28+Math.random()*95;
       p.style.cssText='background:'+pal[i%pal.length]+';opacity:0';
       c.appendChild(p);
-      (function(el,a,d,t){
-        setTimeout(function(){
-          el.style.transition='all '+(.5+Math.random()*1.1).toFixed(1)+'s cubic-bezier(.1,.7,.3,1)';
-          el.style.transform='translate('+Math.cos(a)*d+'px,'+Math.sin(a)*d+'px) scale(0)';
-          el.style.opacity='1';
-          setTimeout(function(){
-            el.style.transition='opacity .8s';
-            el.style.opacity='0';
-          },(t*.7))
-        },t)
-      })(p,ang,dist,20+i*10)
+      var ang=Math.PI*2*i/count,dist=24+Math.random()*100;
+      var durMs=(500+Math.random()*1100)|0;
+      var delayMs=(18+i*9+Math.random()*30)|0;
+      particles.push({el:p,ang:ang,dist:dist,dur:durMs,delay:delayMs,t0:0,kind:'ring'});
     }
 
-    // inner sparkle cluster
-    for(var j=0;j<count*.35;j++){
+    // Inner sparkle cluster
+    for(var j=0;j<Math.floor(count*.38);j++){
       var p2=document.createElement('div');p2.className='fp';
-      var a2=Math.random()*Math.PI*2,d2=5+Math.random()*38;
-      p2.style.cssText='background:'+pal[j%pal.length]+';opacity:0;width:1.5px;height:1.5px';
+      p2.style.cssText='background:'+pal[j%pal.length]+';opacity:0;width:2px;height:2px';
       c.appendChild(p2);
-      (function(el,a,d,t){
-        setTimeout(function(){
-          el.style.transition='all '+(.3+Math.random()*.6).toFixed(1)+'s ease-out';
-          el.style.transform='translate('+Math.cos(a)*d+'px,'+Math.sin(a)*d+'px) scale(0)';
-          el.style.opacity='.8';
-          setTimeout(function(){el.style.transition='opacity .5s';el.style.opacity='0'},t*.6)
-        },t)
-      })(p2,a2,d2,30+j*6)
+      var a2=Math.random()*Math.PI*2,d2=6+Math.random()*42;
+      var dur2Ms=(300+Math.random()*650)|0;
+      var del2Ms=(25+j*7+Math.random()*20)|0;
+      particles.push({el:p2,ang:a2,dist:d2,dur:dur2Ms,delay:del2Ms,t0:0,kind:'sparkle'});
     }
 
-    document.body.appendChild(c);
-    setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c)},3500);
+    // Main animation
+    var startTime=null;
+    function fireTick(ts){
+      if(!startTime)startTime=ts;
+      var elapsed=ts-startTime;
+      var anyAlive=false;
+      for(var k=0;k<particles.length;k++){
+        var pt=particles[k];
+        if(pt.t0===0){
+          if(elapsed>=pt.delay)pt.t0=ts;
+          else{anyAlive=true;continue}
+        }
+        var pp=(ts-pt.t0)/pt.dur;
+        if(pp>=1){
+          pt.el.style.transform='translate('+(Math.cos(pt.ang)*pt.dist)+'px,'+
+            (Math.sin(pt.ang)*pt.dist)+'px) scale(0)';
+          var fp=pp;
+          pt.el.style.opacity=Math.max(0,1-(fp-1)*2.5);
+          if(fp<2.5)anyAlive=true;
+        }else{
+          var eased=1-Math.pow(1-pp,3);
+          pt.el.style.transform='translate('+(Math.cos(pt.ang)*pt.dist*eased)+'px,'+
+            (Math.sin(pt.ang)*pt.dist*eased)+'px) scale('+(1-pp*0.7)+')';
+          pt.el.style.opacity=pp<.15?pp/.15:1-pp*0.4;
+          anyAlive=true;
+        }
+      }
+      if(anyAlive&&elapsed<4000)requestAnimationFrame(fireTick);
+      else{if(c.parentNode)c.parentNode.removeChild(c)}
+    }
+    requestAnimationFrame(fireTick);
   }
 
-  function grandFirework(n){
-    n=n||3;
-    for(var i=0;i<n;i++){
-      setTimeout(function(){
-        firework(W*(.12+Math.random()*.76),H*(.08+Math.random()*.52),
-          40+Math.floor(Math.random()*65))
-      },i*240)
+  function grandFireworks(n){n=n||3;
+    for(var i=0;i<n;i++){var pi=i%4;
+      setTimeout(function(ii,pp){firework(W*(.10+Math.random()*.80),H*(.06+Math.random()*.55),
+        (42+Math.floor(Math.random()*65))|0,pp)}(i,pi),i*220)}}
+
+  /* ====== FINALE: REVEAL ANIMATION ====== */
+  function revealFinale(){
+    var fin=document.getElementById('finale');
+    fin.classList.add('show');
+
+    // Sparkle particles around finale text
+    var cx=W/2,cy=H/2;
+    for(var i=0;i<80;i++){
+      var sp=document.createElement('div');sp.className='fsp';
+      var r=(30+Math.random()*220);
+      var a=Math.random()*Math.PI*2;
+      sp.style.cssText='left:'+(cx+Math.cos(a)*r)+'px;top:'+(cy+Math.sin(a)*r)+'px;'+
+        'animation:none;';
+      document.body.appendChild(sp);
+      var targX=cx+Math.cos(a)*r,targY=cy+Math.sin(a)*r;
+      var outX=cx+(Math.cos(a)*(r+100+Math.random()*180));
+      var outY=cy+(Math.sin(a)*(r+100+Math.random()*180));
+      sp.style.transform='translate('+(outX-targX)+'px,'+(outY-targY)+'px)';
+      sp.style.opacity='0';
+      // animate in
+      var d=(300+Math.random()*900)|0;
+      var del=(Math.random()*600)|0;
+      var t0=null;
+      function spTick(ts){
+        if(!t0)t0=ts;var p=(ts-t0)/d;
+        if(p>=1){sp.style.transform='translate(0,0)';sp.style.opacity='1';return}
+        var e=1-Math.pow(1-p,3);
+        sp.style.transform='translate('+((1-e)*(outX-targX))+'px,'+((1-e)*(outY-targY))+'px)';
+        sp.style.opacity=e.toFixed(2);
+        requestAnimationFrame(spTick);
+      }
+      setTimeout(function(){requestAnimationFrame(spTick)},del);
     }
   }
 
-  /* ═════════════════════════════════
-     TIMELINE — orchestrated experience
-     ═════════════════════════════════ */
+  /* ====== TIMELINE — slower pacing ====== */
 
-  // Scene 0: Title card
-  show(0,200);
+  // S0: Title
+  showScene(0,300);
+  setTimeout(function(){meteorBurst(6)},5000);
 
-  // Initial meteor shower during title
-  setTimeout(function(){meteorBurst(6)},3600);
+  // S1
+  setTimeout(function(){showScene(1)},5000);
+  setTimeout(function(){randMeteor()},10000);
 
-  // Scene 1
-  setTimeout(function(){show(1)},3400);
-  setTimeout(function(){randMeteor()},7200);
+  // S2
+  setTimeout(function(){showScene(2);randMeteor()},10200);
+  setTimeout(function(){meteorBurst(3)},14400);
 
-  // Scene 2
-  setTimeout(function(){show(2);randMeteor()},7200);
-  setTimeout(function(){meteorBurst(3)},10200);
+  // S3
+  setTimeout(function(){showScene(3);meteorBurst(5)},14600);
+  setTimeout(function(){randMeteor();setTimeout(randMeteor,650)},17800);
 
-  // Scene 3
-  setTimeout(function(){show(3);meteorBurst(4)},10400);
-  setTimeout(function(){randMeteor();setTimeout(randMeteor,600)},12600);
+  // S4
+  setTimeout(function(){showScene(4)},18200);
 
-  // Scene 4
-  setTimeout(function(){show(4)},12800);
+  // S5
+  setTimeout(function(){showScene(5);meteorBurst(5)},21600);
 
-  // Scene 5
-  setTimeout(function(){show(5);meteorBurst(5)},15400);
+  // S6
+  setTimeout(function(){showScene(6);steepMeteor();setTimeout(steepMeteor,900)},25400);
 
-  // Scene 6
-  setTimeout(function(){show(6);steepMeteor();setTimeout(steepMeteor,800)},18200);
-
-  // Scene 7 — "六一快乐" + GRAND fireworks
+  // S7 — "六一快乐" + fireworks
   setTimeout(function(){
-    show(7);
-    grandFirework(8);
-    setTimeout(function(){grandFirework(6)},1000);
-    setTimeout(function(){grandFirework(4)},1800);
+    showScene(7);grandFireworks(8);
+    setTimeout(function(){grandFireworks(6)},900);
+    setTimeout(function(){grandFireworks(4)},1700);
     meteorBurst(6);
-  },21200);
+  },29600);
 
-  // Scene 8
-  setTimeout(function(){show(8);grandFirework(5);meteorBurst(4)},24600);
+  // S8
+  setTimeout(function(){showScene(8);grandFireworks(6);meteorBurst(4)},34400);
 
-  // Scene 9
+  // S9
   setTimeout(function(){
-    show(9);
-    grandFirework(7);
-    setTimeout(function(){grandFirework(5)},900);
-    setTimeout(function(){grandFirework(3)},1700);
+    showScene(9);grandFireworks(8);
+    setTimeout(function(){grandFireworks(5)},850);
+    setTimeout(function(){grandFireworks(4)},1600);
+    meteorBurst(6);
+  },38800);
+
+  // S10
+  setTimeout(function(){showScene(10);steepMeteor();setTimeout(steepMeteor,600)},44400);
+
+  // S11
+  setTimeout(function(){showScene(11);randMeteor();setTimeout(randMeteor,800)},48800);
+
+  // S12
+  setTimeout(function(){
+    showScene(12);grandFireworks(9);
+    setTimeout(function(){grandFireworks(7)},750);
+    setTimeout(function(){grandFireworks(5)},1500);
+    setTimeout(function(){grandFireworks(3)},2300);
     meteorBurst(5);
-  },27800);
+  },53000);
 
-  // Scene 10
-  setTimeout(function(){show(10);steepMeteor()},31800);
-
-  // Scene 11
-  setTimeout(function(){show(11);setTimeout(randMeteor,500);setTimeout(randMeteor,1100)},34800);
-
-  // Scene 12
+  // S13 — finale text
   setTimeout(function(){
-    show(12);
-    grandFirework(9);
-    setTimeout(function(){grandFirework(7)},800);
-    setTimeout(function(){grandFirework(5)},1600);
-    setTimeout(function(){grandFirework(3)},2400);
-    meteorBurst(5);
-  },37800);
-
-  // Scene 13 — Finale
-  setTimeout(function(){
-    show(13);
-    grandFirework(10);
-    setTimeout(function(){grandFirework(8)},700);
-    setTimeout(function(){grandFirework(6)},1400);
-    setTimeout(function(){grandFirework(5)},2100);
-    setTimeout(function(){grandFirework(4)},2800);
-    setTimeout(function(){grandFirework(3)},3400);
+    showScene(13);
+    grandFireworks(10);
+    setTimeout(function(){grandFireworks(8)},700);
+    setTimeout(function(){grandFireworks(6)},1400);
+    setTimeout(function(){grandFireworks(5)},2100);
+    setTimeout(function(){grandFireworks(4)},2800);
     meteorBurst(8);
-    // final mega burst after text settles
-    setTimeout(function(){
-      grandFirework(12);
-      setTimeout(function(){grandFirework(10)},600);
-      setTimeout(function(){grandFirework(8)},1200);
-      meteorBurst(10);
-    },3000);
-  },42000);
+  },58800);
 
-  /* ═════════════════════════════════
-     CONTINUOUS AMBIENT EFFECTS
-     ═════════════════════════════════ */
-  setInterval(function(){
-    if(Math.random()<.30)randMeteor();
-    if(Math.random()<.12)steepMeteor();
-  },2800);
+  // "美女，要开心哦 😜" — 3s after S13
+  setTimeout(function(){
+    grandFireworks(12);
+    setTimeout(function(){grandFireworks(10)},550);
+    setTimeout(function(){grandFireworks(8)},1100);
+    setTimeout(function(){revealFinale()},1800);
+  },62000);
 
+  /* ====== CONTINUOUS AMBIENT ====== */
   setInterval(function(){
-    if(Math.random()<.09)firework(W*(.12+Math.random()*.76),H*(.1+Math.random()*.48))
-  },5000);
+    if(Math.random()<.28)randMeteor();
+    if(Math.random()<.10)steepMeteor();
+  },2900);
 
   setInterval(function(){
-    if(Math.random()<.05)meteorBurst(2)
-  },7500);
+    if(Math.random()<.08)firework(W*(.10+Math.random()*.80),H*(.08+Math.random()*.52),
+      (35+Math.floor(Math.random()*48))|0,(Math.floor(Math.random()*4))|0)
+  },5200);
+
+  setInterval(function(){
+    if(Math.random()<.04)meteorBurst(2)
+  },7800);
 
   window.addEventListener('resize',function(){W=innerWidth;H=innerHeight});
 })();
