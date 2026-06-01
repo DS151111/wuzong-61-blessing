@@ -56,8 +56,23 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
 .vig{position:fixed;top:0;left:0;width:100%;height:100%;z-index:8;pointer-events:none;background:radial-gradient(ellipse at center,transparent 52%,rgba(8,3,16),(.35) 100%)}
 
 .stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
-.scene{position:absolute;width:86%;max-width:560px;text-align:center;opacity:0;transition:opacity 1.2s cubic-bezier(.22,.9,.3,1),transform 1.2s cubic-bezier(.22,.9,.3,1);transform:translateY(16px)}
-.scene.on{opacity:1;transform:translateY(0)}
+.scene{position:absolute;width:86%;max-width:560px;text-align:center;opacity:0;pointer-events:none}
+.scene.on{opacity:1;pointer-events:auto}
+.scene.on .sub{animation:cinIn .9s cubic-bezier(.16,1,.24,1) both .05s}
+.scene.on .hero{animation:cinIn 1.1s cubic-bezier(.16,1,.24,1) both .25s}
+.scene.on .tag{animation:cinIn .9s cubic-bezier(.16,1,.24,1) both .45s}
+.scene.on .txt{animation:cinIn .85s cubic-bezier(.16,1,.24,1) both}
+.scene.on .txt:nth-of-type(1){animation-delay:.08s}
+.scene.on .txt:nth-of-type(2){animation-delay:.30s}
+.scene.on .txt:nth-of-type(3){animation-delay:.52s}
+.scene.on .txt.hl{animation:cinInH 1.0s cubic-bezier(.16,1,.24,1) both .06s}
+.scene.on .txt.big{animation:cinInB 1.15s cubic-bezier(.16,1,.24,1) both .12s}
+.scene.on .end{animation:cinInE 1.1s cubic-bezier(.16,1,.24,1) both .10s}
+.scene.on .sign{animation:cinIn .8s cubic-bezier(.16,1,.24,1) both .55s}
+@keyframes cinIn{from{opacity:0;transform:translateY(28px);filter:blur(6px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes cinInH{from{opacity:0;transform:translateY(32px);filter:blur(8px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes cinInB{from{opacity:0;transform:translateY(36px);filter:blur(10px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes cinInE{from{opacity:0;transform:translateY(30px);filter:blur(7px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 
 .sub{color:rgba(210,180,170),(.30);font-size:.52rem;letter-spacing:14px;display:block;margin-bottom:52px}
 .hero{font-size:5.2rem;font-weight:900;color:#fff8f0;display:block;line-height:1.08;text-shadow:0 0 30px rgba(255,230,200),(.35),0 0 70px rgba(240,200,160),(.20),0 3px 16px rgba(15,5,12),(.65),0 0 100px rgba(250,220,190),(.14);margin-bottom:18px}
@@ -159,21 +174,24 @@ var currentScene=null;
 function showScene(n,delay){
   if(delay){setTimeout(function(){showScene(n)},delay);return}
 
-  // STEP 1: Hide current scene (fade out → display none)
+  // Fade out current scene smoothly
   if(currentScene){
     var oldEl=currentScene;
-    oldEl.classList.remove('on');
-    setTimeout(function(){oldEl.style.display='none'},900);
+    oldEl.style.transition='opacity .7s ease';
+    oldEl.style.opacity='0';
+    setTimeout(function(){oldEl.classList.remove('on');oldEl.style.display='none';oldEl.style.transition='';oldEl.style.opacity=''},800);
   }
 
-  // STEP 2: Show new scene AFTER old is fully hidden — zero overlap
+  // Show new scene after brief pause (cinematic beat)
   var newEl=scenes[n];
   setTimeout(function(){
     newEl.style.display='';
+    newEl.style.opacity='0';
     void newEl.offsetHeight;
+    newEl.style.opacity='1';
     newEl.classList.add('on');
     currentScene=newEl;
-  },1000);
+  },380);
 }
 
 // ========== METEORS ==========
