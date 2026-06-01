@@ -169,15 +169,14 @@ function showScene(n,delay){
     setTimeout(function(){oldEl.style.display='none'},400);
   }
 
-  // STEP 2: Wait then show new scene
+  // STEP 2: Show new scene AFTER old is fully hidden — zero overlap
   var newEl=scenes[n];
-  // Show after old starts fading (400ms ensures clean separation)
   setTimeout(function(){
     newEl.style.display='';
     void newEl.offsetHeight;
     newEl.classList.add('on');
     currentScene=newEl;
-  },300);
+  },500);
 }
 
 // ========== METEORS ==========
