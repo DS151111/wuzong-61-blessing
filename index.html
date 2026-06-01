@@ -56,8 +56,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Micr
 .vig{position:fixed;top:0;left:0;width:100%;height:100%;z-index:8;pointer-events:none;background:radial-gradient(ellipse at center,transparent 52%,rgba(8,3,16),(.35) 100%)}
 
 .stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;justify-content:center;align-items:center;pointer-events:none}
-.scene{position:absolute;width:86%;max-width:560px;text-align:center;opacity:0;transition:opacity .6s ease-out,transform .6s ease-out;transform:scale(.97) translateY(10px)}
-.scene.on{opacity:1;transform:scale(1) translateY(0)}
+.scene{position:absolute;width:86%;max-width:560px;text-align:center;opacity:0;transition:opacity 1.2s cubic-bezier(.22,.9,.3,1),transform 1.2s cubic-bezier(.22,.9,.3,1);transform:translateY(16px)}
+.scene.on{opacity:1;transform:translateY(0)}
 
 .sub{color:rgba(210,180,170),(.30);font-size:.52rem;letter-spacing:14px;display:block;margin-bottom:52px}
 .hero{font-size:5.2rem;font-weight:900;color:#fff8f0;display:block;line-height:1.08;text-shadow:0 0 30px rgba(255,230,200),(.35),0 0 70px rgba(240,200,160),(.20),0 3px 16px rgba(15,5,12),(.65),0 0 100px rgba(250,220,190),(.14);margin-bottom:18px}
@@ -163,7 +163,7 @@ function showScene(n,delay){
   if(currentScene){
     var oldEl=currentScene;
     oldEl.classList.remove('on');
-    setTimeout(function(){oldEl.style.display='none'},400);
+    setTimeout(function(){oldEl.style.display='none'},900);
   }
 
   // STEP 2: Show new scene AFTER old is fully hidden — zero overlap
@@ -173,7 +173,7 @@ function showScene(n,delay){
     void newEl.offsetHeight;
     newEl.classList.add('on');
     currentScene=newEl;
-  },500);
+  },1000);
 }
 
 // ========== METEORS ==========
@@ -259,7 +259,7 @@ setTimeout(function(){showScene(12);grandFireworks(12);setTimeout(function(){gra
 setTimeout(function(){
   showScene(13);
   grandFireworks(16);
-  setTimeout(function(){grandFireworks(14)},500);
+  setTimeout(function(){grandFireworks(14)},1000);
   setTimeout(function(){grandFireworks(12)},1000);
   setTimeout(function(){grandFireworks(9)},1500);
   setTimeout(function(){grandFireworks(7)},2000);
